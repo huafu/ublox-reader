@@ -1,7 +1,7 @@
 ﻿"use strict";
 
-const fs = require('fs');
 const { SerialPort } = require('serialport');
+const settings = require("./settings.js");
 
 var APBDecoder = require("./codecs/APB.js");
 var BWCDecoder = require("./codecs/BWC.js");
@@ -27,7 +27,7 @@ var VTGDecoder = require("./codecs/VTG.js");
 var ZDADecoder = require("./codecs/ZDA.js");
 var Configurator = require("./Configurator.js");
 
-var settings = JSON.parse(fs.readFileSync(`${__dirname}/settings.json`));
+//var settings = new appsettings(); //JSON.parse(fs.readFileSync(`${__dirname}/settings.json`));
 
 class SerialData {
     constructor(sentence = "") {

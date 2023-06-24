@@ -1,17 +1,8 @@
 "use strict";
 
-const fs = require('fs');
+const settings = require("./settings.js");
 
 var m_hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-
-var prettify = false;
-
-const loadSettings = function() {
-    let settings = JSON.parse(fs.readFileSync(`${__dirname}/settings.json`));
-    prettify = settings.prettifyjson;
-}
-
-loadSettings();
 
 exports.toHexString = function(v) {
     var lsn;
@@ -379,7 +370,7 @@ exports.parseDateTime = function(date, time) {
 };
 
 exports.outputJson = function(jobj) {
-    if (prettify) {
+    if (settings.prettify) {
         return JSON.stringify(jobj, null, 2);
     }
     else {

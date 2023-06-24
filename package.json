@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "@serialport/parser-byte-length": "^11.0.0",
-    "@serialport/parser-readline": "^11.0.0",
-    "fs": "^0.0.1-security",
     "serialport": "^11.0.0"
   }
 }
