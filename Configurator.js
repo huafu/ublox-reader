@@ -1,5 +1,7 @@
 "use strict";
 
+const settings = require("./settings.js");
+
 class Configurator {
 	
 	constructor() {
@@ -8,17 +10,15 @@ class Configurator {
 		this.processUbx = false; 
 		this.navRate = 2; 
 		this.pid = ""; 
-	 	this.settings = {}; 
 	}
 	
-	writeConfig = function(port, pid, settings) {
+	writeConfig = function(port, pid) {
 		this.serialPort = port;
 		this.baudRate = settings.baudrate;
 		this.processUbx = settings.pubxmessages;
 		this.navRate = settings.navrate;
 		this.pid = pid;
-		this.settings = settings;
-
+		
 		switch (this.pid) {
 			case "u-blox6":
 			case "u-blox7":
@@ -72,7 +72,7 @@ class Configurator {
 		// UBX-CFG-HNR set to 30hz
 		this.serialPortWrite(this.makeUBXCFG(0x06, 0x5C, 4, new Uint8Array([0x1E, 0x00, 0x00, 0x00])));
 		
-		if (this.settings.hnrmessages) {
+		if (settings.hnrmessages) {
 			//UBX-CFG-MSG setup UBX-HNR-PVT, UBX-HNR-ATT, ESF-INS messages
 			//                                                                 CLASS  ID   I2C  UART1 UART2  USB   SPI   RESERVED
 			//                                                                 -------------------------------------------------- 

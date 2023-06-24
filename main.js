@@ -1,58 +1,33 @@
 ﻿"use strict";
 
 const { SerialPort } = require('serialport');
+const { SerialData } = require('./SerialData.js');
 const settings = require("./settings.js");
 
-var APBDecoder = require("./codecs/APB.js");
-var BWCDecoder = require("./codecs/BWC.js");
-var DBTDecoder = require("./codecs/DBT.js");
-var DTMDecoder = require("./codecs/DTM.js");
-var GGADecoder = require("./codecs/GGA.js");
-var GLLDecoder = require("./codecs/GLL.js");
-var GNSDecoder = require("./codecs/GNS.js");
-var GSADecoder = require("./codecs/GSA.js");
-var GSTDecoder = require("./codecs/GST.js");
-var GSVDecoder = require("./codecs/GSV.js");
-var HDGDecoder = require("./codecs/HDG.js");
-var HDMDecoder = require("./codecs/HDM.js");
-var HDTDecoder = require("./codecs/HDT.js");
-var MTKDecoder = require("./codecs/MTK.js");
-var MWVDecoder = require("./codecs/MWV.js");
-var RDIDecoder = require("./codecs/RDI.js");
-var RMCDecoder = require("./codecs/RMC.js");
-var TXTDecoder = require("./codecs/TXT.js");
-var UBXDecoder = require("./codecs/UBX.js");
-var VHWDecoder = require("./codecs/VHW.js");
-var VTGDecoder = require("./codecs/VTG.js");
-var ZDADecoder = require("./codecs/ZDA.js");
-var Configurator = require("./Configurator.js");
+const APBDecoder = require("./codecs/APB.js");
+const BWCDecoder = require("./codecs/BWC.js");
+const DBTDecoder = require("./codecs/DBT.js");
+const DTMDecoder = require("./codecs/DTM.js");
+const GGADecoder = require("./codecs/GGA.js");
+const GLLDecoder = require("./codecs/GLL.js");
+const GNSDecoder = require("./codecs/GNS.js");
+const GSADecoder = require("./codecs/GSA.js");
+const GSTDecoder = require("./codecs/GST.js");
+const GSVDecoder = require("./codecs/GSV.js");
+const HDGDecoder = require("./codecs/HDG.js");
+const HDMDecoder = require("./codecs/HDM.js");
+const HDTDecoder = require("./codecs/HDT.js");
+const MTKDecoder = require("./codecs/MTK.js");
+const MWVDecoder = require("./codecs/MWV.js");
+const RDIDecoder = require("./codecs/RDI.js");
+const RMCDecoder = require("./codecs/RMC.js");
+const TXTDecoder = require("./codecs/TXT.js");
+const UBXDecoder = require("./codecs/UBX.js");
+const VHWDecoder = require("./codecs/VHW.js");
+const VTGDecoder = require("./codecs/VTG.js");
+const ZDADecoder = require("./codecs/ZDA.js");
+const Configurator = require("./Configurator.js");
 
-//var settings = new appsettings(); //JSON.parse(fs.readFileSync(`${__dirname}/settings.json`));
-
-class SerialData {
-    constructor(sentence = "") {
-        this.sentence = sentence;
-        this.fields = [];
-        this.sentenceId = "";
-
-        if (!this.sentence.startsWith("$")) {
-            this.fields = [""];
-            this.sentenceId = "";
-        }
-        else {
-            if (this.sentence.startsWith("$PUB")) {
-                this.fields = this.sentence.substring(2, this.sentence.length - 2).split(",");
-            }
-            else {
-                this.fields = this.sentence.substring(3, this.sentence.length - 3).split(",");
-            }
-            this.sentenceId = this.fields[0];
-        }
-    }
-    isValid = function() { 
-        return this.sentenceId.length > 1;
-    }
-}
 
 
 var decoders = new Map();
@@ -95,8 +70,8 @@ function mainFunction() {
                 port.open();
                 port.on('open', function() {
                     console.log(port);
-                    var cfg = new Configurator();
-                    cfg.writeConfig(port, device.pid, settings);
+                    const cfg = new Configurator();
+                    cfg.writeConfig(port, device.pid);
                 }); 
                 port.on('readable', function() {
                     runParsing(port);
