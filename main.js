@@ -85,16 +85,6 @@ function mainFunction() {
     let baudrate = settings.baudrate;
     let port; 
     let device;
-
-    const open = function() {
-        console.log(port);
-        var cfg = new Configurator();
-        cfg.writeConfig(port, device.pid, settings);
-    };
-
-    const readable = function () {
-       runParsing(port)
-    };
     
     SerialPort.list().then(list => {
         for (var i = 0; i < list.length; i++) {
@@ -103,8 +93,14 @@ function mainFunction() {
                 console.log(device);
                 port = new SerialPort({ path: device.path, baudRate: baudrate, autoOpen: false });
                 port.open();
-                port.on('open', open);
-                port.on('readable', readable);
+                port.on('open', function() {
+                    console.log(port);
+                    var cfg = new Configurator();
+                    cfg.writeConfig(port, device.pid, settings);
+                }); 
+                port.on('readable', function() {
+                    runParsing(port);
+                });
                 break;
             }
         }

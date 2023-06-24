@@ -3,6 +3,6 @@
     "navrate": 2,
     "pubxmessages": false,
     "hnrmessages": false,
-    "prettifyjson": true,
+    "prettifyjson": false,
     "outputlogfile": false
 }
