@@ -190,6 +190,7 @@ const getDeviceInfo = function(portjson){
     let pid = "";
     if (portjson.productId !== undefined) {
         try {
+            // force lower case on hex strings for interoperability
             switch (portjson.productId.toLowerCase()) {
                 case "01a4":
                     pid = "Antaris4";
@@ -208,7 +209,7 @@ const getDeviceInfo = function(portjson){
                     break;
             }
             if (portjson.vendorId === "1546") {
-                // we have a u-blox device on this com port!
+                // we have a u-blox device on this serial port!
                 outjson.isublox = true;
                 outjson.path = portjson.path;
                 outjson.pid = pid;    
