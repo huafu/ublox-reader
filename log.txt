@@ -1,0 +1,2657 @@
+{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 52,
+      "azimuthTrue": 226,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 80,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 41,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 71,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 80,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 41,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 16
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 71,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 22
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 24
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 80,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 41,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 16
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 71,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 22
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 24
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 80,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 41,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 16
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 71,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 41,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 71,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 22
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 41,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 71,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 24
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 9
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 12
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 226,
+      "SNRdB": 22
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 333,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 79,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 13
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 13
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 23
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 22,
+      "azimuthTrue": 136,
+      "SNRdB": 13
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 12
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 11
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 13
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 19
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 13
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 16
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 22
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 14
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 24
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 21
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 13
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 23
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 25
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 22
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 269,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 15
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 22
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 270,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 16
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 22
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 3,
+      "elevationDegrees": 51,
+      "azimuthTrue": 225,
+      "SNRdB": 20
+    },
+    {
+      "prnNumber": 4,
+      "elevationDegrees": 57,
+      "azimuthTrue": 334,
+      "SNRdB": 26
+    },
+    {
+      "prnNumber": 7,
+      "elevationDegrees": 13,
+      "azimuthTrue": 270,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 8,
+      "elevationDegrees": 10,
+      "azimuthTrue": 167,
+      "SNRdB": 0
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 1,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 9,
+      "elevationDegrees": 27,
+      "azimuthTrue": 316,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 16,
+      "elevationDegrees": 73,
+      "azimuthTrue": 78,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 26,
+      "elevationDegrees": 40,
+      "azimuthTrue": 46,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 27,
+      "elevationDegrees": 23,
+      "azimuthTrue": 135,
+      "SNRdB": 16
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 2,
+  "satellitesInView": 10
+}{
+  "sentenceId": "GSV",
+  "sentenceName": "Satellites in view",
+  "satellites": [
+    {
+      "prnNumber": 28,
+      "elevationDegrees": 3,
+      "azimuthTrue": 72,
+      "SNRdB": 0
+    },
+    {
+      "prnNumber": 31,
+      "elevationDegrees": 29,
+      "azimuthTrue": 55,
+      "SNRdB": 21
+    }
+  ],
+  "numberOfMessages": 3,
+  "messageNumber": 3,
+  "satellitesInView": 10
+}
