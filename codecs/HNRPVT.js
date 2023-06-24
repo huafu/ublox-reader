@@ -1,8 +1,8 @@
 "use strict";
 
-const Helper = require("./Helper.js");
+const Helper = require("../Helper.js");
 
-class HNRPVT {
+class HNRPVTDecoder {
     constructor() {
         this.iTOW;
         this.year;
@@ -31,7 +31,7 @@ class HNRPVT {
         this.reserved2;
     }
         
-    load = function(fielddata) {
+    parse = function(fielddata) {
         // TODO: decode fielddata into properties
         this.fielddata = fielddata;
     }
@@ -41,4 +41,4 @@ class HNRPVT {
     }
 }
 
-module.exports = HNRPVT;
+module.exports = HNRPVTDecoder;

@@ -1,8 +1,8 @@
 "use strict";
 
-const Helper = require("./Helper.js");
+const Helper = require("../Helper.js");
 
-class HNRINS {
+class HNRINSDecoder {
     constructor() {
         this.iTOW = 0;
         this.version = 0;
@@ -14,7 +14,7 @@ class HNRINS {
         this.accHeading = 0;
     }
 
-    load = function(fielddata) {
+    parse = function(fielddata) {
         // TODO: decode fielddata into properties
         this.fielddata = fielddata;
     }
@@ -24,4 +24,4 @@ class HNRINS {
     }
 }
 
-module.exports = HNRINS;
+module.exports = HNRINSDecoder;

@@ -1,8 +1,8 @@
 "use strict";
 
-const Helper = require("./Helper.js");
+const Helper = require("../Helper.js");
 
-class HNRATT {
+class HNRATTDecoder {
     constructor() {
         this.iTOW = 0;
         this.version = 0;
@@ -15,7 +15,7 @@ class HNRATT {
         this.fielddata = [];
     }
 
-    load = function(fielddata) {
+    parse = function(fielddata) {
         // TODO: decode fielddata into properties
         this.fielddata = fielddata;
     }
@@ -25,5 +25,5 @@ class HNRATT {
     }
 }
 
-module.exports = HNRATT;
+module.exports = HNRATTDecoder;
 

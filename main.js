@@ -28,12 +28,10 @@ const UBXDecoder = require("./codecs/UBX.js");
 const VHWDecoder = require("./codecs/VHW.js");
 const VTGDecoder = require("./codecs/VTG.js");
 const ZDADecoder = require("./codecs/ZDA.js");
+const HNRATTDecoder = require('./codecs/HNRATT.js');
+const HNRPVTDecoder = require('./codecs/HNRPVT.js');
+const HNRINSDecoder = require('./codecs/HNRINS.js');
 const Configurator = require("./Configurator.js");
-const HNRATT = require('./hnratt.js');
-const HNRPVT = require('./hnrpvt.js');
-const ESFINS = require("./esfins.js");
-const HNRINS = require('./hnrins.js');
-
 
 
 var decoders = new Map();
@@ -59,6 +57,9 @@ decoders.set("UBX", new UBXDecoder());
 decoders.set("VHW", new VHWDecoder());
 decoders.set("VTG", new VTGDecoder());
 decoders.set("ZDA", new ZDADecoder());
+decoders.set("HNRATT", new HNRATTDecoder());
+decoders.set("HNRINS", new HNRINSDecoder());
+decoders.set("HNRPVT", new HNRPVTDecoder());
 
 mainFunction();
 
@@ -127,19 +128,19 @@ function runParsing(port) {
                 let msgbuffer = new Buffer.alloc(msglen);
                 buffer.copy(msgbuffer, 0, buffer.length - 2); 
                 if (id === 0x01) { // HNR-ATT
-                    let att = new HNRATT();
-                    att.load(msgbuffer);
-                    console.log("HNR-ATT", att.getJson());
+                    var decoder = decoders.get("HNRATT");
+                    decoder.parse(msgbuffer);
+                    console.log("HNR-ATT", decoder.getJson());
                 }
                 else if (id === 0x02) { // HNR-INS
-                    let ins = new HNRINS();
-                    ins.load(msgbuffer);
-                    console.log("HNR-INS: ", ins.getJson());
+                    var decoder = decoders.get("HNRINS");
+                    decoder.parse(msgbuffer);
+                    console.log("HNR-INS: ", decoder.getJson());
                 }
                 else if (id === 0x00) { // HNR-PVT
-                    let pvt = new HNRPVT();
-                    pvt.load(msgbuffer);
-                    console.log("HNR-PVT: ", pvt.getJson());
+                    var decoder = decoders.get("HNRPVT");
+                    decoder.parse(msgbuffer);
+                    console.log("HNR-PVT: ", decoder.getJson());
                 }
             }
         }
