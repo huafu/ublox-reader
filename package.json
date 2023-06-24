@@ -1,5 +1,11 @@
 {
+  "name": "ublox-reader",
+  "version": "1.0.0",
+  "description": "Parse U-BLOX serial device messages",
+  "main": "main.js",	
   "dependencies": {
     "serialport": "^11.0.0"
-  }
+  },
+  "author": "Brian A. Manlove",
+  "license": "MIT"
 }
