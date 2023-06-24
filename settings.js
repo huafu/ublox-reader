@@ -4,6 +4,6 @@ module.exports = {
     "navrate": 2,
     "pubxmessages": false,
     "hnrmessages": false,
-    "prettifyjson": false,
+    "prettifyjson": true,
     "outputlogfile": false
 }
