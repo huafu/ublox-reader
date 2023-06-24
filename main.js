@@ -129,17 +129,17 @@ function runParsing(port) {
                 if (id === 0x01) { // HNR-ATT
                     let att = new HNRATT();
                     att.load(msgbuffer);
-                    console.log("HNR-ATT: ", msgbuffer);
+                    console.log("HNR-ATT", att.getJson());
                 }
                 else if (id === 0x02) { // HNR-INS
                     let ins = new HNRINS();
                     ins.load(msgbuffer);
-                    console.log("HNR-INS: ", msgbuffer);
+                    console.log("HNR-INS: ", ins.getJson());
                 }
                 else if (id === 0x00) { // HNR-PVT
                     let pvt = new HNRPVT();
                     pvt.load(msgbuffer);
-                    console.log("HNR-PVT: ", msgbuffer);
+                    console.log("HNR-PVT: ", pvt.getJson());
                 }
             }
         }

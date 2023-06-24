@@ -16,7 +16,11 @@ class HNRINS {
 
     load = function(fielddata) {
         // TODO: decode fielddata into properties
-        Helper.outputJson(Buffer.from(fielddata).toJSON());
+        this.fielddata = fielddata;
+    }
+
+    getJson = function() {
+        return Helper.outputJson(this);   
     }
 }
 

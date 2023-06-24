@@ -72,19 +72,28 @@ class Configurator {
 		// UBX-CFG-HNR set to 30hz
 		this.serialPortWrite(this.makeUBXCFG(0x06, 0x5C, 4, new Uint8Array([0x1E, 0x00, 0x00, 0x00])));
 		
-		if (settings.hnrmessages) {
-			//UBX-CFG-MSG setup UBX-HNR-PVT, UBX-HNR-ATT, ESF-INS messages
-			//                                                                 CLASS  ID   I2C  UART1 UART2  USB   SPI   RESERVED
-			//                                                                 -------------------------------------------------- 
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-PVT
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-ATT
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // ESF-INS
+		//UBX-CFG-MSG setup UBX-HNR-PVT, UBX-HNR-ATT, ESF-INS messages
+		//                              	                                   CLASS  ID   I2C  UART1 UART2  USB   SPI   RESERVED
+		//                            	    	                               -------------------------------------------------- 
+		if (settings.hnrpvtmessages) {
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-PVT ON
 		}
 		else {
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-PVT
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-ATT
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // ESF-INS
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-PVT OFF
 		}
+		if (settings.hnrattmessages) {
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-ATT ON
+		}
+		else {
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-ATT OFF
+		}
+		if (settings.hnrinsmessages) {
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-INS ON
+		}
+		else {
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-INS OFF
+		}
+		
 		// UBX-CFG-MSG (NMEA Standard Messages)  msg   msg   Ports 1-6 (every 10th message over UART1, every message over USB)
 		//                                                                 CLASS   ID   I2C  UART1 UART2  USB   SPI   RESERVED
 		//-----------------------------------------------------------------------------------------------------------------------------------------------------

@@ -3,7 +3,9 @@ module.exports = {
     "baudrate": 115200,
     "navrate": 2,
     "pubxmessages": false,
-    "hnrmessages": false,
-    "prettifyjson": true,
+    "hnrpvtmessages": false,
+    "hnrattmessages": false,
+    "hnrinsmessages": false,
+    "prettifyjson": false,
     "outputlogfile": false
 }

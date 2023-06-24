@@ -12,11 +12,16 @@ class HNRATT {
         this.accRoll = 0;
         this.accPitch = 0;
         this.accHeading = 0;
+        this.fielddata = [];
     }
 
     load = function(fielddata) {
         // TODO: decode fielddata into properties
-        Helper.outputJson(Buffer.from(fielddata).toJSON());
+        this.fielddata = fielddata;
+    }
+
+    getJson = function() {
+        return Helper.outputJson(this);   
     }
 }
 
