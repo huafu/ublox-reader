@@ -188,28 +188,33 @@ const getDeviceInfo = function(portjson){
 */
     let outjson = {"isublox": false, "path": "", "pid": ""};
     let pid = "";
-    switch (portjson.productId) {
-        case "01A4":
-            pid = "Antaris4";
-            break;
-        case "01A5":
-            pid = "u-blox5"
-            break;
-        case "01A6":
-            pid = "u-blox6"
-            break;
-        case "01A7":
-            pid = "u-blox7"
-            break;
-        case "01A8":
-            pid = "u-blox8"
-            break;
-    }
-    if (portjson.vendorId === "1546") {
-        // we have a u-blox device on this com port!
-        outjson.isublox = true;
-        outjson.path = portjson.path;
-        outjson.pid = pid;    
+    if (portjson.productId !== undefined) {
+        try {
+            switch (portjson.productId.toLowerCase()) {
+                case "01a4":
+                    pid = "Antaris4";
+                    break;
+                case "01a5":
+                    pid = "u-blox5"
+                    break;
+                case "01a6":
+                    pid = "u-blox6"
+                    break;
+                case "01a7":
+                    pid = "u-blox7"
+                    break;
+                case "01a8":
+                    pid = "u-blox8"
+                    break;
+            }
+            if (portjson.vendorId === "1546") {
+                // we have a u-blox device on this com port!
+                outjson.isublox = true;
+                outjson.path = portjson.path;
+                outjson.pid = pid;    
+            }
+        }
+        finally {}
     }
     return outjson;
 }
