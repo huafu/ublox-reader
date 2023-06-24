@@ -2,7 +2,7 @@
   "name": "ublox-reader",
   "version": "1.0.0",
   "description": "Parse U-BLOX serial device messages",
-  "main": "main.js",	
+  "main": "./main.js",	
   "dependencies": {
     "serialport": "^11.0.0"
   },
