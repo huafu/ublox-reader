@@ -2,7 +2,9 @@
 
 const { SerialPort } = require('serialport');
 const { SerialData } = require('./SerialData.js');
+
 const settings = require("./settings.js");
+const Helper = require("./Helper.js")
 
 const APBDecoder = require("./codecs/APB.js");
 const BWCDecoder = require("./codecs/BWC.js");
@@ -27,6 +29,10 @@ const VHWDecoder = require("./codecs/VHW.js");
 const VTGDecoder = require("./codecs/VTG.js");
 const ZDADecoder = require("./codecs/ZDA.js");
 const Configurator = require("./Configurator.js");
+const HNRATT = require('./hnratt.js');
+const HNRPVT = require('./hnrpvt.js');
+const ESFINS = require("./esfins.js");
+const HNRINS = require('./hnrins.js');
 
 
 
@@ -88,50 +94,53 @@ function mainFunction() {
 function runParsing(port) {
     let buffer = port.read();
     if (buffer !== null) {
-        if (buffer[0] === 0xB5 && buffer[1] === 0x62) {
-            // we have a UBX message, see if its HNR
-            if (buffer[2] === 0x28) {
+        let hdr0 = buffer[0];
+        let hdr1 = buffer[1]; 
+        if (hdr0 === 0x24 && ( hdr1 === 0x47 || hdr1 === 0x50)) { 
+            // we have a NMEA message, read to CRLF
+            let msg = new Array();
+            for (var x = 0; x < buffer.length; x++) {
+                let tb = buffer[x];
+                    if (tb === 0x0D) { // carriage return
+                        let lf = buffer[x+1];
+                            if (lf === 0x0A) { // linefeed
+                                break;  
+                        }
+                    }
+                    else {
+                        msg.push(tb);
+                    }
+            }
+            var line = Buffer.from(msg).toString();
+            var sd = new SerialData(line);
+            var decoder = decoders.get(sd.sentenceId);
+            decoder.parse(sd.fields);
+            console.log(decoder.getJson());
+        }
+        else if (hdr0 === 0xB5 && hdr1 === 0x62) {
+            // we have a UBX accelerometer message
+            if (buffer[2] === 0x28) { // HNR message
                 let id = buffer[3];
-                let hb = buffer[4];
-                let lb = buffer[5];
-                let msglen = (((hb & 0xFF) << 8) | (lb & 0xFF));
+                let hibyte = buffer[4];
+                let lowbyte = buffer[5];
+                let msglen = Helper.parseUInt16(hibyte, lowbyte);
                 let msgbuffer = new Buffer.alloc(msglen);
-                buffer.copy(msgbuffer, 0, 6); 
+                buffer.copy(msgbuffer, 0, buffer.length - 2); 
                 if (id === 0x01) { // HNR-ATT
+                    let att = new HNRATT();
+                    att.load(msgbuffer);
                     console.log("HNR-ATT: ", msgbuffer);
                 }
                 else if (id === 0x02) { // HNR-INS
+                    let ins = new HNRINS();
+                    ins.load(msgbuffer);
                     console.log("HNR-INS: ", msgbuffer);
                 }
                 else if (id === 0x00) { // HNR-PVT
+                    let pvt = new HNRPVT();
+                    pvt.load(msgbuffer);
                     console.log("HNR-PVT: ", msgbuffer);
                 }
-            }
-        }
-        else {
-            let ch0 = buffer[0];
-            let ch1 = buffer[1]; 
-            if (ch0 === 36 && ( ch1 === 71 || ch1 === 80)) { 
-                // we have a NMEA message, read to CRLF
-                //let done = false;
-                let msg = new Array();
-                for (var x = 0; x < buffer.length; x++) {
-                    let tb = buffer[x];
-                        if (tb === 0x0D) { // carriage return
-                            let lf = buffer[x+1];
-                                if (lf === 0x0A) { // linefeed
-                                    break;  
-                            }
-                        }
-                        else {
-                            msg.push(tb);
-                        }
-                }
-                var line = Buffer.from(msg).toString();
-                var sd = new SerialData(line);
-                var decoder = decoders.get(sd.sentenceId);
-                decoder.parse(sd.fields);
-                console.log(decoder.getJson());
             }
         }
     }

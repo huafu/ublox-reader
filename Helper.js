@@ -369,6 +369,10 @@ exports.parseDateTime = function(date, time) {
     return new Date(Date.UTC(Y, M, D, h, m, s));
 };
 
+exports.parseUInt16 = function(hibyte, lowbyte) {
+    return (((hibyte & 0xFF) << 8) | (lowbyte & 0xFF));
+}
+
 exports.outputJson = function(jobj) {
     if (settings.prettifyjson) {
         return JSON.stringify(jobj, null, 2);
