@@ -10,5 +10,5 @@ module.exports = {
     "outputlogfile": false,
     "outputconsole": false,
     "httpport": 5050,
-    "wsport": 6050
+    "wsport": 6060
 }
