@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../Helper.js");
+const Helper = require("../helper.js");
 
 /*
     * === BWC - Bearing and distance to waypoint - great circle ===

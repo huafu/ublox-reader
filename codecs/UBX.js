@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../Helper.js");
+const Helper = require("../helper.js");
 var UBX00Decoder = require("./UBX00.js");
 var UBX03Decoder = require("./UBX03.js");
 var UBX04Decoder = require("./UBX04.js");

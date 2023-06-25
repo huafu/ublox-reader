@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../Helper.js");
+const Helper = require("../helper.js");
 
 /*
 * === HDT - Heading - true ===

@@ -1,10 +1,10 @@
 ﻿"use strict";
 
 const { SerialPort } = require('serialport');
-const { SerialData } = require('./SerialData.js');
+const { SerialData } = require('./serialdata.js');
 
 const settings = require("./settings.js");
-const Helper = require("./Helper.js")
+const Helper = require("./helper.js")
 
 const APBDecoder = require("./codecs/APB.js");
 const BWCDecoder = require("./codecs/BWC.js");
@@ -31,10 +31,11 @@ const ZDADecoder = require("./codecs/ZDA.js");
 const HNRATTDecoder = require('./codecs/HNRATT.js');
 const HNRPVTDecoder = require('./codecs/HNRPVT.js');
 const HNRINSDecoder = require('./codecs/HNRINS.js');
-const Configurator = require("./Configurator.js");
+const Configurator = require("./configurator.js");
 const server = require("./server.js");
 
 var decoders = new Map();
+
 decoders.set("APB", new APBDecoder());
 decoders.set("BWC", new BWCDecoder());
 decoders.set("DBT", new DBTDecoder());

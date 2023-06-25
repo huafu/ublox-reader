@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../Helper.js");
+const Helper = require("../helper.js");
 
 /*
 * === ZDA - Time & Date - UTC, day, month, year and local time zone ===
