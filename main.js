@@ -104,8 +104,8 @@ function runParsing(port) {
                 let tb = buffer[x];
                     if (tb === 0x0D) { // carriage return
                         let lf = buffer[x+1];
-                            if (lf === 0x0A) { // linefeed
-                                break;  
+                        if (lf === 0x0A) { // linefeed
+                            break;  
                         }
                     }
                     else {
