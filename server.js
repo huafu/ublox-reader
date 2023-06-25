@@ -5,6 +5,7 @@ const http = require("http");
 const { WebSocketServer } = require("ws");
 const favicon = require('serve-favicon');
 const settings = require("./settings.js");
+const main = require("./main.js");
 
 const connections = {};
 
@@ -32,6 +33,12 @@ exports.runServers = function() {
 
         app.get('/',(req, res) => {
             res.sendFile(`${__dirname}/public/index.html`);
+        });
+
+        app.post("/msgselect", (req, res) => {
+            main.selectMessages(req.body);
+            res.writeHead(200);
+            res.end();
         });
 
         runWebsockServer();
@@ -62,6 +69,11 @@ function runWebsockServer() {
                     break;
                 }
             }
+        });
+
+        wsconn.on("message", (message) => { 
+            var data = message.toString();
+            main.selectMessages(JSON.parse(data));
         });
     });
 }

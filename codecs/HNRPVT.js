@@ -4,6 +4,7 @@ const Helper = require("../helper.js");
 
 class HNRPVTDecoder {
     constructor() {
+        this.sentenceId = "HNRPVT";
         this.iTOW;
         this.year;
         this.month;

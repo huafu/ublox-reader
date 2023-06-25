@@ -4,6 +4,7 @@ const Helper = require("../helper.js");
 
 class HNRATTDecoder {
     constructor() {
+        this.sentenceId = "HNRATT";
         this.iTOW = 0;
         this.version = 0;
         this.reserved = 0;

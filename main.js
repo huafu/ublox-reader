@@ -4,7 +4,8 @@ const { SerialPort } = require('serialport');
 const { SerialData } = require('./serialdata.js');
 
 const settings = require("./settings.js");
-const Helper = require("./helper.js")
+const helper = require("./helper.js")
+const webserver = require("./server.js");
 
 const APBDecoder = require("./codecs/APB.js");
 const BWCDecoder = require("./codecs/BWC.js");
@@ -32,10 +33,8 @@ const HNRATTDecoder = require('./codecs/HNRATT.js');
 const HNRPVTDecoder = require('./codecs/HNRPVT.js');
 const HNRINSDecoder = require('./codecs/HNRINS.js');
 const Configurator = require("./configurator.js");
-const server = require("./server.js");
 
 var decoders = new Map();
-
 decoders.set("APB", new APBDecoder());
 decoders.set("BWC", new BWCDecoder());
 decoders.set("DBT", new DBTDecoder());
@@ -62,11 +61,13 @@ decoders.set("HNRATT", new HNRATTDecoder());
 decoders.set("HNRINS", new HNRINSDecoder());
 decoders.set("HNRPVT", new HNRPVTDecoder());
 
+var selectedMessages = {};
+
 mainFunction();
 
 function mainFunction() {
 
-    server.runServers();
+    webserver.runServers();
 
     let baudrate = settings.baudrate;
     let port; 
@@ -120,7 +121,7 @@ function runParsing(port) {
             var sd = new SerialData(line);
             var decoder = decoders.get(sd.sentenceId);
             decoder.parse(sd.fields);
-            server.sendDataToBrowser(decoder.getJson())
+            sendMessage(decoder);
             if (settings.outputconsole) console.log(decoder.getJson());
         }
         else if (hdr0 === 0xB5 && hdr1 === 0x62) {
@@ -129,25 +130,25 @@ function runParsing(port) {
                 let id = buffer[3];
                 let hibyte = buffer[4];
                 let lowbyte = buffer[5];
-                let msglen = Helper.parseUInt16(hibyte, lowbyte);
+                let msglen = helper.parseUInt16(hibyte, lowbyte);
                 let msgbuffer = new Buffer.alloc(msglen);
                 buffer.copy(msgbuffer, 0, buffer.length - 2); 
                 if (id === 0x01) { // HNR-ATT
                     var decoder = decoders.get("HNRATT");
                     decoder.parse(msgbuffer);
-                    server.sendDataToBrowser(decoder.getJson())
+                    sendMessage(decoder);
                     if (settings.outputconsole) console.log("HNR-ATT", decoder.getJson());
                 }
                 else if (id === 0x02) { // HNR-INS
                     var decoder = decoders.get("HNRINS");
                     decoder.parse(msgbuffer);
-                    server.sendDataToBrowser(decoder.getJson())
+                    sendMessage(decoder);
                     if (settings.outputconsole) console.log("HNR-INS: ", decoder.getJson());
                 }
                 else if (id === 0x00) { // HNR-PVT
                     var decoder = decoders.get("HNRPVT");
                     decoder.parse(msgbuffer);
-                    server.sendDataToBrowser(decoder.getJson())
+                    sendMessage(decoder);
                     if (settings.outputconsole) console.log("HNR-PVT: ", decoder.getJson());
                 }
             }
@@ -207,4 +208,18 @@ const getDeviceInfo = function(portjson){
         finally {}
     }
     return outjson;
+}
+
+const sendMessage = function(decoder) {
+    if (selectedMessages[decoder.sentenceId] !== undefined) {
+        webserver.sendDataToBrowser(decoder.getJson());
+    } 
+}
+
+exports.selectMessages = function(data) {
+    selectedMessages = data;
+    Object.entries(selectedMessages).forEach((entry) => {
+        const [key, value] = entry;
+        console.log(`${key}: ${value}`);
+    });
 }
