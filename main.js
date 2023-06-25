@@ -32,7 +32,7 @@ const HNRATTDecoder = require('./codecs/HNRATT.js');
 const HNRPVTDecoder = require('./codecs/HNRPVT.js');
 const HNRINSDecoder = require('./codecs/HNRINS.js');
 const Configurator = require("./Configurator.js");
-
+const server = require("./server.js");
 
 var decoders = new Map();
 decoders.set("APB", new APBDecoder());
@@ -64,6 +64,9 @@ decoders.set("HNRPVT", new HNRPVTDecoder());
 mainFunction();
 
 function mainFunction() {
+
+    server.runServers();
+
     let baudrate = settings.baudrate;
     let port; 
     let device;
@@ -116,7 +119,8 @@ function runParsing(port) {
             var sd = new SerialData(line);
             var decoder = decoders.get(sd.sentenceId);
             decoder.parse(sd.fields);
-            console.log(decoder.getJson());
+            server.sendDataToBrowser(decoder.getJson())
+            if (settings.outputconsole) console.log(decoder.getJson());
         }
         else if (hdr0 === 0xB5 && hdr1 === 0x62) {
             // we have a UBX accelerometer message
@@ -130,17 +134,20 @@ function runParsing(port) {
                 if (id === 0x01) { // HNR-ATT
                     var decoder = decoders.get("HNRATT");
                     decoder.parse(msgbuffer);
-                    console.log("HNR-ATT", decoder.getJson());
+                    server.sendDataToBrowser(decoder.getJson())
+                    if (settings.outputconsole) console.log("HNR-ATT", decoder.getJson());
                 }
                 else if (id === 0x02) { // HNR-INS
                     var decoder = decoders.get("HNRINS");
                     decoder.parse(msgbuffer);
-                    console.log("HNR-INS: ", decoder.getJson());
+                    server.sendDataToBrowser(decoder.getJson())
+                    if (settings.outputconsole) console.log("HNR-INS: ", decoder.getJson());
                 }
                 else if (id === 0x00) { // HNR-PVT
                     var decoder = decoders.get("HNRPVT");
                     decoder.parse(msgbuffer);
-                    console.log("HNR-PVT: ", decoder.getJson());
+                    server.sendDataToBrowser(decoder.getJson())
+                    if (settings.outputconsole) console.log("HNR-PVT: ", decoder.getJson());
                 }
             }
         }
