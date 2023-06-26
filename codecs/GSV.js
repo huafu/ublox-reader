@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 /*
 * === GSV - Satellites in view ===
 *
@@ -53,9 +53,9 @@ class GSVDecoder {
     constructor() {
         this.sentenceId = "GSV";
         this.sentenceName = "Satellites in view"; 
-        this.numberOfMessages = ""; // Helper.parseIntX(fields[1]);
-        this.messageNumber = ""; // Helper.parseIntX(fields[2]);
-        this.satellitesInView = ""; // Helper.parseIntX(fields[3]);
+        this.numberOfMessages = "";
+        this.messageNumber = "";
+        this.satellitesInView = "";
         this.satellites = new Array();
     }
 
@@ -64,21 +64,21 @@ class GSVDecoder {
             var numRecords = (fields.length - 4) / 4;
             for (var i = 0; i < numRecords; i++) {
                 var offset = i * 4 + 4;
-                this.satellites.push(new GSVSatellite(Helper.parseIntX(fields[offset]),
-                                           Helper.parseIntX(fields[offset + 1]),
-                                           Helper.parseIntX(fields[offset + 2]),
-                                           Helper.parseIntX(fields[offset + 3])));
+                this.satellites.push(new GSVSatellite(helper.parseIntX(fields[offset]),
+                                           helper.parseIntX(fields[offset + 1]),
+                                           helper.parseIntX(fields[offset + 2]),
+                                           helper.parseIntX(fields[offset + 3])));
             
             }
             
-            this.numberOfMessages = Helper.parseIntX(fields[1]);
-            this.messageNumber = Helper.parseIntX(fields[2]);
-            this.satellitesInView = Helper.parseIntX(fields[3]);
+            this.numberOfMessages = helper.parseIntX(fields[1]);
+            this.messageNumber = helper.parseIntX(fields[2]);
+            this.satellitesInView = helper.parseIntX(fields[3]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

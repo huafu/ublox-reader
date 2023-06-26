@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === ZDA - Time & Date - UTC, day, month, year and local time zone ===
@@ -32,14 +32,14 @@ class ZDADecoder {
 
     parse = function(fields) {
         try {
-            this.datetime = Helper.parseTime(fields[1], ""); //fields.Skip(2).Take(5));
-            this.localZoneHours = Helper.parseIntX(fields[5]);
-            this.localZoneMinutes = Helper.parseIntX(fields[6]);
+            this.datetime = helper.parseTime(fields[1], ""); 
+            this.localZoneHours = helper.parseIntX(fields[5]);
+            this.localZoneMinutes = helper.parseIntX(fields[6]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 class HNRINSDecoder {
     constructor() {
@@ -21,7 +21,7 @@ class HNRINSDecoder {
     }
 
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

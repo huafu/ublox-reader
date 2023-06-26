@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === HDG - Heading - deviation and variation ===
@@ -24,24 +24,24 @@ class HDGDecoder {
     constructor() {
         this.sentenceId = "HDG";
         this.sentenceName = "Heading - deviation and variation";
-        this.heading = ""; // Helper.parseFloatX(fields[1]);
-        this.deviation = ""; // Helper.parseFloatX(fields[2]);
-        this.deviationDirection = ""; // fields[3] == "E" ? "E" : fields[3] == "W" ? "W" : "";
-        this.variation = ""; // Helper.parseFloatX(fields[4]);
-        this.variationDirection = ""; // fields[5] == "E" ? "E" : fields[5] == "W" ? "W" : "";
+        this.heading = "";
+        this.deviation = "";
+        this.deviationDirection = "";
+        this.variation = "";
+        this.variationDirection = "";
     }
     parse = function(fields) {
         try {
-            this.heading = Helper.parseFloatX(fields[1]);
-            this.deviation = Helper.parseFloatX(fields[2]);
+            this.heading = helper.parseFloatX(fields[1]);
+            this.deviation = helper.parseFloatX(fields[2]);
             this.deviationDirection = fields[3] == "E" ? "E" : fields[3] == "W" ? "W" : "";
-            this.variation = Helper.parseFloatX(fields[4]);
+            this.variation = helper.parseFloatX(fields[4]);
             this.variationDirection = fields[5] == "E" ? "E" : fields[5] == "W" ? "W" : "";
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

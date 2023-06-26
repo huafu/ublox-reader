@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === VTG - Track made good and ground speed ===
@@ -29,24 +29,24 @@ class VTGDecoder {
     constructor() {
         this.sentenceId = "VTG";
         this.sentenceName = "Track made good and ground speed";
-        this.trackTrue = ""; // Helper.parseFloatX(fields[1]);
-        this.trackMagnetic = ""; // Helper.parseFloatX(fields[3]);
-        this.speedKnots = ""; // Helper.parseFloatX(fields[5]);
-        this.speedKmph = ""; // Helper.parseFloatX(fields[7]);
-        this.faaMode = ""; // fields[9];
+        this.trackTrue = "";
+        this.trackMagnetic = "";
+        this.speedKnots = "";
+        this.speedKmph = "";
+        this.faaMode = "";
     }
     parse = function(fields) {
         try {
-            this.trackTrue = Helper.parseFloatX(fields[1]);
-            this.trackMagnetic = Helper.parseFloatX(fields[3]);
-            this.speedKnots = Helper.parseFloatX(fields[5]);
-            this.speedKmph = Helper.parseFloatX(fields[7]);
+            this.trackTrue = helper.parseFloatX(fields[1]);
+            this.trackMagnetic = helper.parseFloatX(fields[3]);
+            this.speedKnots = helper.parseFloatX(fields[5]);
+            this.speedKmph = helper.parseFloatX(fields[7]);
             this.faaMode = fields[9];
         }
         finally {}   
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

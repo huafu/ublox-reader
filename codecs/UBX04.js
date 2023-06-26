@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === UBX04 - Time of day and clock information ===
@@ -26,28 +26,28 @@ class UBX04Decoder {
     constructor() {
         this.sentenceId = "UBX04";
         this.sentenceName = "Time of day and clock information";
-        this.utcDateTime = ""; // Helper.parseDateTime(fields[3], fields[2]);
-        this.utcTow = ""; // Helper.parseIntX(fields[4]);
-        this.utcWeek = ""; // Helper.parseIntX(fields[5]);
-        this.leapSec = ""; // Helper.parseIntX(fields[6]);
-        this.clkBias = ""; // Helper.parseIntX(fields[7]);
-        this.clkDrift = ""; // Helper.parseIntX(fields[8]);
-        this.tpGranularity = ""; // Helper.parseIntX(fields[9]);
+        this.utcDateTime = "";
+        this.utcTow = "";
+        this.utcWeek = "";
+        this.leapSec = "";
+        this.clkBias = "";
+        this.clkDrift = "";
+        this.tpGranularity = "";
     }
     parse = function(fields) {
         try {        
-            this.utcDateTime = Helper.parseDateTime(fields[3], fields[2]);
-            this.utcTow = Helper.parseIntX(fields[4]);
-            this.utcWeek = Helper.parseIntX(fields[5]);
-            this.leapSec = Helper.parseIntX(fields[6]);
-            this.clkBias = Helper.parseIntX(fields[7]);
-            this.clkDrift = Helper.parseIntX(fields[8]);
-            this.tpGranularity = Helper.parseIntX(fields[9]);
+            this.utcDateTime = helper.parseDateTime(fields[3], fields[2]);
+            this.utcTow = helper.parseIntX(fields[4]);
+            this.utcWeek = helper.parseIntX(fields[5]);
+            this.leapSec = helper.parseIntX(fields[6]);
+            this.clkBias = helper.parseIntX(fields[7]);
+            this.clkDrift = helper.parseIntX(fields[8]);
+            this.tpGranularity = helper.parseIntX(fields[9]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
     * === APB - Autopilot Sentence "B" ===
@@ -40,44 +40,44 @@ class APBDecoder {
     constructor() {
         this.sentenceId = "APB";
         this.sentenceName = "Autopilot sentence \"B\"";
-        this.status1 = ""; // fields[1];
-        this.status2 =  ""; // fields[2];
-        this.xteMagn = ""; // Helper.parseFloatX(fields[3]);
-        this.steerDir = ""; // fields[4];
-        this.xteUnit = ""; // fields[5];
-        this.arrivalCircleStatus = ""; // fields[6];
-        this.arrivalPerpendicularStatus = ""; // fields[7];
-        this.bearingOrig2Dest = ""; // Helper.parseFloatX(fields[8]);
-        this.bearingOrig2DestType = ""; // fields[9];
-        this.waypoint = ""; // fields[10];
-        this.bearing2Dest = ""; // Helper.parseFloatX(fields[11]);
-        this.bearingDestType = ""; // fields[12];
-        this.heading2steer = ""; // Helper.parseFloatX(fields[13]);
-        this.headingDestType = ""; // fields[14];
+        this.status1 = ""; 
+        this.status2 =  ""; 
+        this.xteMagn = ""; 
+        this.steerDir = ""; 
+        this.xteUnit = ""; 
+        this.arrivalCircleStatus = ""; 
+        this.arrivalPerpendicularStatus = ""; 
+        this.bearingOrig2Dest = ""; 
+        this.bearingOrig2DestType = ""; 
+        this.waypoint = ""; 
+        this.bearing2Dest = ""; 
+        this.bearingDestType = ""; 
+        this.heading2steer = ""; 
+        this.headingDestType = ""; 
     }
     
     parse = function(fields) {
         try {     
             this.status1 =  fields[1];
             this.status2 =  fields[2];
-            this.xteMagn = Helper.parseFloatX(fields[3]);
+            this.xteMagn = helper.parseFloatX(fields[3]);
             this.steerDir = fields[4];
             this.xteUnit = fields[5];
             this.arrivalCircleStatus = fields[6];
             this.arrivalPerpendicularStatus = fields[7];
-            this.bearingOrig2Dest = Helper.parseFloatX(fields[8]);
+            this.bearingOrig2Dest = helper.parseFloatX(fields[8]);
             this.bearingOrig2DestType = fields[9];
             this.waypoint = fields[10];
-            this.bearing2Dest = Helper.parseFloatX(fields[11]);
+            this.bearing2Dest = helper.parseFloatX(fields[11]);
             this.bearingDestType = fields[12];
-            this.heading2steer = Helper.parseFloatX(fields[13]);
+            this.heading2steer = helper.parseFloatX(fields[13]);
             this.headingDestType = fields[14];
         }
         finally {}
     }
     
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

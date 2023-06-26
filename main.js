@@ -11,6 +11,7 @@ const APBDecoder = require("./codecs/APB.js");
 const BWCDecoder = require("./codecs/BWC.js");
 const DBTDecoder = require("./codecs/DBT.js");
 const DTMDecoder = require("./codecs/DTM.js");
+const GBSDecoder = require("./codecs/GBS.js");
 const GGADecoder = require("./codecs/GGA.js");
 const GLLDecoder = require("./codecs/GLL.js");
 const GNSDecoder = require("./codecs/GNS.js");
@@ -35,38 +36,43 @@ const HNRINSDecoder = require('./codecs/HNRINS.js');
 const Configurator = require("./configurator.js");
 
 var decoders = new Map();
-decoders.set("APB", new APBDecoder());
-decoders.set("BWC", new BWCDecoder());
-decoders.set("DBT", new DBTDecoder());
-decoders.set("DTM", new DTMDecoder());
-decoders.set("GGA", new GGADecoder());
-decoders.set("GLL", new GLLDecoder());
-decoders.set("GNS", new GNSDecoder());
-decoders.set("GSA", new GSADecoder());
-decoders.set("GST", new GSTDecoder());
-decoders.set("GSV", new GSVDecoder());
-decoders.set("HDG", new HDGDecoder());
-decoders.set("HDM", new HDMDecoder());
-decoders.set("HDT", new HDTDecoder());
-decoders.set("MTK", new MTKDecoder());
-decoders.set("MWV", new MWVDecoder());
-decoders.set("RDI", new RDIDecoder());
-decoders.set("RMC", new RMCDecoder());
-decoders.set("TXT", new TXTDecoder());
-decoders.set("UBX", new UBXDecoder());
-decoders.set("VHW", new VHWDecoder());
-decoders.set("VTG", new VTGDecoder());
-decoders.set("ZDA", new ZDADecoder());
-decoders.set("HNRATT", new HNRATTDecoder());
-decoders.set("HNRINS", new HNRINSDecoder());
-decoders.set("HNRPVT", new HNRPVTDecoder());
-
 var selectedMessages = {};
+
+const loadDecoders = function() {
+    decoders.set("APB", new APBDecoder());
+    decoders.set("BWC", new BWCDecoder());
+    decoders.set("DBT", new DBTDecoder());
+    decoders.set("DTM", new DTMDecoder());
+    decoders.set("GBS", new GBSDecoder());
+    decoders.set("GGA", new GGADecoder());
+    decoders.set("GLL", new GLLDecoder());
+    decoders.set("GNS", new GNSDecoder());
+    decoders.set("GSA", new GSADecoder());
+    decoders.set("GST", new GSTDecoder());
+    decoders.set("GSV", new GSVDecoder());
+    decoders.set("HDG", new HDGDecoder());
+    decoders.set("HDM", new HDMDecoder());
+    decoders.set("HDT", new HDTDecoder());
+    decoders.set("MTK", new MTKDecoder());
+    decoders.set("MWV", new MWVDecoder());
+    decoders.set("RDI", new RDIDecoder());
+    decoders.set("RMC", new RMCDecoder());
+    decoders.set("TXT", new TXTDecoder());
+    decoders.set("UBX", new UBXDecoder());
+    decoders.set("VHW", new VHWDecoder());
+    decoders.set("VTG", new VTGDecoder());
+    decoders.set("ZDA", new ZDADecoder());
+    decoders.set("HNRATT", new HNRATTDecoder());
+    decoders.set("HNRINS", new HNRINSDecoder());
+    decoders.set("HNRPVT", new HNRPVTDecoder());
+}
 
 mainFunction();
 
 function mainFunction() {
 
+    loadDecoders();
+    
     webserver.runServers();
 
     let baudrate = settings.baudrate;

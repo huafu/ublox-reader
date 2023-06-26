@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === VHW – Water speed and heading ===
@@ -26,22 +26,22 @@ class VHWDecoder {
     constructor() {
         this.sentenceId = "VHW";
         this.sentenceName = "Water speed and heading";
-        this.degreesTrue = ""; // Helper.parseFloatX(fields[1]);
-        this.degreesMagnetic = ""; // Helper.parseFloatX(fields[3]);
-        this.speedKnots = ""; // Helper.parseFloatX(fields[5]);
-        this.speedKmph = ""; // Helper.parseFloatX(fields[7]);
+        this.degreesTrue = "";
+        this.degreesMagnetic = "";
+        this.speedKnots = "";
+        this.speedKmph = "";
     }
     parse = function(fields) {
         try {
-            this.degreesTrue = Helper.parseFloatX(fields[1]);
-            this.degreesMagnetic = Helper.parseFloatX(fields[3]);
-            this.speedKnots = Helper.parseFloatX(fields[5]);
-            this.speedKmph = Helper.parseFloatX(fields[7]);
+            this.degreesTrue = helper.parseFloatX(fields[1]);
+            this.degreesMagnetic = helper.parseFloatX(fields[3]);
+            this.speedKnots = helper.parseFloatX(fields[5]);
+            this.speedKmph = helper.parseFloatX(fields[7]);
         }
         finally {}   
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

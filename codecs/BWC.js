@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
     * === BWC - Bearing and distance to waypoint - great circle ===
@@ -32,25 +32,25 @@ class  BWCDecoder {
     constructor() {
         this.sentenceId = "BWC";
         this.sentenceName = "Bearing and distance to waypoint - great circle";
-        this.time = ""; // Helper.parseTime(fields[1], "");
-        this.bearingLatitude = ""; //  Helper.parseLatitude(fields[2], fields[3]);
-        this.bearingLongitude = ""; // Helper.parseLongitude(fields[4], fields[5]);
-        this.bearingTrue = ""; // Helper.parseFloatX(fields[6]);
-        this.bearingMagnetic = ""; // Helper.parseFloatX(fields[8]);
-        this.distanceNm = ""; // Helper.parseFloatX(fields[10]);
-        this.waypointId = ""; // fields[12];
-        this.faaMode = ""; // fields[13];
+        this.time = ""; 
+        this.bearingLatitude = ""; 
+        this.bearingLongitude = ""; 
+        this.bearingTrue = ""; 
+        this.bearingMagnetic = ""; 
+        this.distanceNm = ""; 
+        this.waypointId = ""; 
+        this.faaMode = ""; 
     }
     
     parse = function(fields) {
         try {
             
-            this.time = Helper.parseTime(fields[1], "");
-            this.bearingLatitude = Helper.parseLatitude(fields[2], fields[3]);
-            this.bearingLongitude = Helper.parseLongitude(fields[4], fields[5]);
-            this.bearingTrue = Helper.parseFloatX(fields[6]);
-            this.bearingMagnetic = Helper.parseFloatX(fields[8]);
-            this.distanceNm = Helper.parseFloatX(fields[10]);
+            this.time = helper.parseTime(fields[1], "");
+            this.bearingLatitude = helper.parseLatitude(fields[2], fields[3]);
+            this.bearingLongitude = helper.parseLongitude(fields[4], fields[5]);
+            this.bearingTrue = helper.parseFloatX(fields[6]);
+            this.bearingMagnetic = helper.parseFloatX(fields[8]);
+            this.distanceNm = helper.parseFloatX(fields[10]);
             this.waypointId = fields[12];
             this.faaMode = fields[13];
         }
@@ -58,7 +58,7 @@ class  BWCDecoder {
     }
     
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

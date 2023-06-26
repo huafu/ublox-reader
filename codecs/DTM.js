@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === DTM - Datum reference ===
@@ -31,27 +31,27 @@ class DTMDecoder {
     constructor() {
         this.sentenceId = "DTM"; 
         this.sentenceName = "Datum reference";
-        this.datumCode = ""; // this.parseDatumCode(fields[1]);
-        this.datumSubcode = ""; // fields[2];
-        this.offsetLatitude = ""; // Helper.parseLatitude(fields[3], fields[4]);
-        this.offsetLongitude = ""; // Helper.parseLongitude(fields[5], fields[6]);
-        this.offsetAltitudeMeters = ""; // Helper.parseFloatX(fields[7]);
-        this.datumName = ""; // this.parseDatumCode(fields[8]);
+        this.datumCode = ""; 
+        this.datumSubcode = ""; 
+        this.offsetLatitude = ""; 
+        this.offsetLongitude = ""; 
+        this.offsetAltitudeMeters = ""; 
+        this.datumName = ""; 
     }
     parse = function(fields) {
         try {
             
             this.datumCode = this.parseDatumCode(fields[1]);
             this.datumSubcode = fields[2];
-            this.offsetLatitude = Helper.parseLatitude(fields[3], fields[4]);
-            this.offsetLongitude = Helper.parseLongitude(fields[5], fields[6]);
-            this.offsetAltitudeMeters = Helper.parseFloatX(fields[7]);
+            this.offsetLatitude = helper.parseLatitude(fields[3], fields[4]);
+            this.offsetLongitude = helper.parseLongitude(fields[5], fields[6]);
+            this.offsetAltitudeMeters = helper.parseFloatX(fields[7]);
             this.datumName = this.parseDatumCode(fields[8]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
     
     parseDatumCode = function(field) {

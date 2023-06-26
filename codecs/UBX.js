@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 var UBX00Decoder = require("./UBX00.js");
 var UBX03Decoder = require("./UBX03.js");
 var UBX04Decoder = require("./UBX04.js");
@@ -16,7 +16,7 @@ class UBXDecoder {
         this.UBX04Decoder = new UBX04Decoder();
     }
     parse = function(fields) {
-        this.pid = Helper.parseIntX(fields[1]);
+        this.pid = helper.parseIntX(fields[1]);
         switch (this.pid) {
             case 0:
                 this.UBX00Decoder.parse(fields);

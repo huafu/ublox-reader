@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
     * === DBT - Depth below transducer ===
@@ -24,20 +24,20 @@ class DBTDecoder {
     constructor() {
         this.sentenceId = "DBT";
         this.sentenceName = "Depth below transducer";
-        this.depthFeet = ""; // Helper.parseFloatX(fields[1]);
-        this.depthMeters = ""; // Helper.parseFloatX(fields[3]);
-        this.depthFathoms = ""; // Helper.parseFloatX(fields[5]);
+        this.depthFeet = ""; 
+        this.depthMeters = ""; 
+        this.depthFathoms = ""; 
     }    
     parse = function(fields) {
         try {
-            this.depthFeet = Helper.parseFloatX(fields[1]);
-            this.depthMeters = Helper.parseFloatX(fields[3]);
-            this.depthFathoms = Helper.parseFloatX(fields[5]);
+            this.depthFeet = helper.parseFloatX(fields[1]);
+            this.depthMeters = helper.parseFloatX(fields[3]);
+            this.depthFathoms = helper.parseFloatX(fields[5]);
         }
         finally {}
     }    
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

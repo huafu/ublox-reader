@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 /*
 * === GSA - Active satellites and dilution of precision ===
 *
@@ -32,12 +32,12 @@ class GSADecoder {
     constructor() {
         this.sentenceId = "GSA";
         this.sentenceName = "Active satellites and dilution of precision";
-        this.selectionMode = ""; //fields[1] == "A" ? "automatic" : "manual";
-        this.fixMode = ""; // ThreeDFixTypes[Helper.parseIntX(fields[2])];
-        this.satellites = ""; // sats;
-        this.PDOP = ""; // Helper.parseFloatX(fields[15]);
-        this.HDOP = ""; // Helper.parseFloatX(fields[16]);
-        this.VDOP = ""; // Helper.parseFloatX(fields[17]);
+        this.selectionMode = "";
+        this.fixMode = "";
+        this.satellites = "";
+        this.PDOP = "";
+        this.HDOP = "";
+        this.VDOP = "";
     }
     parse = function(fields) {
         var ThreeDFixTypes = ["unknown", "none", "2D", "3D"];
@@ -50,16 +50,16 @@ class GSADecoder {
             }
             
             this.selectionMode = fields[1] == "A" ? "automatic" : "manual";
-            this.fixMode = ThreeDFixTypes[Helper.parseIntX(fields[2])];
+            this.fixMode = ThreeDFixTypes[helper.parseIntX(fields[2])];
             this.satellites = sats;
-            this.PDOP = Helper.parseFloatX(fields[15]);
-            this.HDOP = Helper.parseFloatX(fields[16]);
-            this.VDOP = Helper.parseFloatX(fields[17]);
+            this.PDOP = helper.parseFloatX(fields[15]);
+            this.HDOP = helper.parseFloatX(fields[16]);
+            this.VDOP = helper.parseFloatX(fields[17]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

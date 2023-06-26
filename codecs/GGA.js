@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
     * === GGA - Global positioning system fix data ===
@@ -44,37 +44,37 @@ class GGADecoder {
     constructor() {
         this.sentenceId = "GGA";
         this.sentenceName = "Global positioning system fix data";
-        this.time = ""; // Helper.parseTime(fields[1], "");
-        this.latitude = ""; // Helper.parseLatitude(fields[2], fields[3]);
-        this.longitude = ""; // Helper.parseLongitude(fields[4], fields[5]);
-        this.fixType = ""; // FixTypes[Helper.parseIntX(fields[6])];
-        this.satellitesInView = ""; // Helper.parseIntX(fields[7]);
-        this.horizontalDilution = ""; // Helper.parseFloatX(fields[8]);
-        this.altitudeMeters = ""; // Helper.parseFloatX(fields[9]);
-        this.geoidalSeperation = ""; // Helper.parseFloatX(fields[11]);
-        this.differentialAge = ""; // Helper.parseFloatX(fields[13]);
-        this.differentialRefStn = ""; // fields[14];
+        this.time = ""; 
+        this.latitude = ""; 
+        this.longitude = "";
+        this.fixType = ""; 
+        this.satellitesInView = "";
+        this.horizontalDilution = "";
+        this.altitudeMeters = ""; 
+        this.geoidalSeperation = "";
+        this.differentialAge = ""; 
+        this.differentialRefStn = "";
     }
 
     parse = function(fields) {
         var FixTypes = ["none", "fix", "delta", "pps", "rtk", "frtk", "estimated", "manual", "simulation"];
         try {
-            this.time = Helper.parseTime(fields[1], "");
-            this.latitude = Helper.parseLatitude(fields[2], fields[3]);
-            this.longitude = Helper.parseLongitude(fields[4], fields[5]);
-            this.fixType = FixTypes[Helper.parseIntX(fields[6])];
-            this.satellitesInView = Helper.parseIntX(fields[7]);
-            this.horizontalDilution = Helper.parseFloatX(fields[8]);
-            this.altitudeMeters = Helper.parseFloatX(fields[9]);
-            this.geoidalSeperation = Helper.parseFloatX(fields[11]);
-            this.differentialAge = Helper.parseFloatX(fields[13]);
+            this.time = helper.parseTime(fields[1], "");
+            this.latitude = helper.parseLatitude(fields[2], fields[3]);
+            this.longitude = helper.parseLongitude(fields[4], fields[5]);
+            this.fixType = FixTypes[helper.parseIntX(fields[6])];
+            this.satellitesInView = helper.parseIntX(fields[7]);
+            this.horizontalDilution = helper.parseFloatX(fields[8]);
+            this.altitudeMeters = helper.parseFloatX(fields[9]);
+            this.geoidalSeperation = helper.parseFloatX(fields[11]);
+            this.differentialAge = helper.parseFloatX(fields[13]);
             this.differentialRefStn = fields[14];
         }
         finally {}
     }
     
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }   
 } 
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === HDT - Heading - true ===
@@ -25,12 +25,12 @@ class HDTDecoder {
     parse = function(fields) {
         try {
             
-            this.heading = Helper.parseFloatX(fields[1]);
+            this.heading = helper.parseFloatX(fields[1]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

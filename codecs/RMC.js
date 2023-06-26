@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === RMC - Recommended minimum navigation information ===
@@ -34,26 +34,26 @@ class RMCDecoder {
     constructor() {
         this.sentenceId = "RMC";
         this.sentenceName = "Recommended minimum navigation information";
-        this.datetime = ""; // Helper.parseDateTime(fields[9], fields[1]);"
-        this.status = ""; // fields[2] == "A" ? "valid" : "warning";
-        this.latitude = ""; // Helper.parseLatitude(fields[3], fields[4]);
-        this.longitude = ""; // Helper.parseLongitude(fields[5], fields[6]);
-        this.speedKnots = ""; // Helper.parseFloatX(fields[7]);
-        this.trackTrue = ""; // Helper.parseFloatX(fields[8]);
-        this.variation = ""; // Helper.parseFloatX(fields[10]);
-        this.variationPole = ""; // fields[11] == "E" ? "E" : fields[11] == "W" ? "W" : "";
-        this.faaMode = ""; // fields[12];
+        this.datetime = "";
+        this.status = "";
+        this.latitude = "";
+        this.longitude = "";
+        this.speedKnots = "";
+        this.trackTrue = "";
+        this.variation = "";
+        this.variationPole = "";
+        this.faaMode = "";
     }
     
     parse = function(fields) {
         try {
-            this.datetime = Helper.parseDateTime(fields[9], fields[1]);
+            this.datetime = helper.parseDateTime(fields[9], fields[1]);
             this.status = fields[2] == "A" ? "valid" : "warning";
-            this.latitude = Helper.parseLatitude(fields[3], fields[4]);
-            this.longitude = Helper.parseLongitude(fields[5], fields[6]);
-            this.speedKnots = Helper.parseFloatX(fields[7]);
-            this.trackTrue = Helper.parseFloatX(fields[8]);
-            this.variation = Helper.parseFloatX(fields[10]);
+            this.latitude = helper.parseLatitude(fields[3], fields[4]);
+            this.longitude = helper.parseLongitude(fields[5], fields[6]);
+            this.speedKnots = helper.parseFloatX(fields[7]);
+            this.trackTrue = helper.parseFloatX(fields[8]);
+            this.variation = helper.parseFloatX(fields[10]);
             this.variationPole = fields[11] == "E" ? "E" : fields[11] == "W" ? "W" : "";
             this.faaMode = fields[12];
         }
@@ -61,7 +61,7 @@ class RMCDecoder {
     }
     
     getJson = function(){
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

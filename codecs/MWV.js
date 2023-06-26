@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === MWV - Wind speed and angle ===
@@ -24,24 +24,24 @@ class MWVDecoder {
     constructor() {
         this.sentenceId = "MWV";
         this.sentenceName = "Wind speed and angle";
-        this.windAngle = ""; // Helper.parseFloatX(fields[1]);
-        this.reference = ""; // fields[2] == "R" ? "relative" : "true";
-        this.speed = ""; // Helper.parseFloatX(fields[3]);
-        this.units = ""; // fields[4] == "K" ? "K" : fields[4] == "M" ? "M" : "N";
-        this.status = ""; // fields[5] == "A" ? "valid" : "invalid";
+        this.windAngle = "";
+        this.reference = "";
+        this.speed = "";
+        this.units = "";
+        this.status = "";
     } 
     parse = function(fields) {
         try {
-            this.windAngle = Helper.parseFloatX(fields[1]);
+            this.windAngle = helper.parseFloatX(fields[1]);
             this.reference = fields[2] == "R" ? "relative" : "true";
-            this.speed = Helper.parseFloatX(fields[3]);
+            this.speed = helper.parseFloatX(fields[3]);
             this.units = fields[4] == "K" ? "K" : fields[4] == "M" ? "M" : "N";
             this.status = fields[5] == "A" ? "valid" : "invalid";
         }
         finally {}   
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

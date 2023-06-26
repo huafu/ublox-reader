@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 class HNRATTDecoder {
     constructor() {
@@ -22,7 +22,7 @@ class HNRATTDecoder {
     }
 
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

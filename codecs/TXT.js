@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === TXT - Human readable text information for display purposes ===
@@ -23,23 +23,23 @@ class TXTDecoder {
     constructor() {
         this.sentenceId = "TXT";
         this.sentenceName = "Human readable text information for display purposes";
-        this.numberOfSentences = ""; // Helper.parseIntX(fields[1]);
-        this.sentenceNumber = ""; // Helper.parseIntX(fields[2]);
-        this.textId = ""; // Helper.parseIntX(fields[3]);
-        this.textInformation = ""; // fields[4];
+        this.numberOfSentences = "";
+        this.sentenceNumber = "";
+        this.textId = "";
+        this.textInformation = "";
     }
     
     parse = function(fields) {
         try {
-            this.numberOfSentences = Helper.parseIntX(fields[1]);
-            this.sentenceNumber = Helper.parseIntX(fields[2]);
-            this.textId = Helper.parseIntX(fields[3]);
+            this.numberOfSentences = helper.parseIntX(fields[1]);
+            this.sentenceNumber = helper.parseIntX(fields[2]);
+            this.textId = helper.parseIntX(fields[3]);
             this.textInformation = fields[4];
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === GST - GPS pseudorange noise statistics ===
@@ -27,31 +27,31 @@ class GSTDecoder {
     constructor() {
         this.sentenceId = "GST";
         this.sentenceName = "GPS pseudorange noise statistics";
-        this.time = ""; // Helper.parseTime(fields[1], "");
-        this.totalRms = ""; // Helper.parseFloatX(fields[2]);
-        this.semiMajorError = ""; // Helper.parseFloatX(fields[3]);
-        this.semiMinorError = ""; // Helper.parseFloatX(fields[4]);
-        this.orientationOfSemiMajorError = ""; // Helper.parseFloatX(fields[5]);
-        this.latitudeError = ""; // Helper.parseFloatX(fields[6]);
-        this.longitudeError = ""; // Helper.parseFloatX(fields[7]);
-        this.altitudeError = ""; // Helper.parseFloatX(fields[8]);
+        this.time = "";
+        this.totalRms = "";
+        this.semiMajorError = "";
+        this.semiMinorError = "";
+        this.orientationOfSemiMajorError = "";
+        this.latitudeError = "";
+        this.longitudeError = "";
+        this.altitudeError = "";
     }
     parse = function(fields) {
         try {
             
-            this.time = Helper.parseTime(fields[1], "");
-            this.totalRms = Helper.parseFloatX(fields[2]);
-            this.semiMajorError = Helper.parseFloatX(fields[3]);
-            this.semiMinorError = Helper.parseFloatX(fields[4]);
-            this.orientationOfSemiMajorError = Helper.parseFloatX(fields[5]);
-            this.latitudeError = Helper.parseFloatX(fields[6]);
-            this.longitudeError = Helper.parseFloatX(fields[7]);
-            this.altitudeError = Helper.parseFloatX(fields[8]);
+            this.time = helper.parseTime(fields[1], "");
+            this.totalRms = helper.parseFloatX(fields[2]);
+            this.semiMajorError = helper.parseFloatX(fields[3]);
+            this.semiMinorError = helper.parseFloatX(fields[4]);
+            this.orientationOfSemiMajorError = helper.parseFloatX(fields[5]);
+            this.latitudeError = helper.parseFloatX(fields[6]);
+            this.longitudeError = helper.parseFloatX(fields[7]);
+            this.altitudeError = helper.parseFloatX(fields[8]);
         }
         finally {}
     }    
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 
 /*
@@ -29,25 +29,25 @@ class GLLDecoder {
     constructor() {
         this.sentenceId = "GLL";
         this.sentenceName = "Geographic position - latitude and longitude";
-        this.latitude = ""; // Helper.parseLatitude(fields[1], fields[2]);
-        this.longitude = ""; // Helper.parseLongitude(fields[3], fields[4]);
-        this.time = ""; // Helper.parseTime(fields[5], "");
-        this.status = ""; // fields[6] == "A" ? "valid" : "invalid";
-        this.faaMode = ""; // fields[7];
+        this.latitude = ""; 
+        this.longitude = "";
+        this.time = "";
+        this.status = ""; 
+        this.faaMode = "";
     }
     parse = function(fields) {
         try {
             
-            this.latitude = Helper.parseLatitude(fields[1], fields[2]);
-            this.longitude = Helper.parseLongitude(fields[3], fields[4]);
-            this.time = Helper.parseTime(fields[5], "");
+            this.latitude = helper.parseLatitude(fields[1], fields[2]);
+            this.longitude = helper.parseLongitude(fields[3], fields[4]);
+            this.time = helper.parseTime(fields[5], "");
             this.status = fields[6] == "A" ? "valid" : "invalid";
             this.faaMode = fields[7];
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

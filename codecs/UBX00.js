@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === UBX00 -  Lat/Long position data ===
@@ -38,52 +38,52 @@ class UBX00Decoder {
     constructor() {
         this.sentenceId = "UBX00";
         this.sentenceName = "Lat/Long position data";
-        this.utcTime = ""; // fields[2];
-        this.latitude = ""; // Helper.parseFloatX(fields[3]);
-        this.nsIndicator = ""; // fields[4];
-        this.longitude = ""; // Helper.parseFloatX(fields[5]);
-        this.ewIndicator = ""; // fields[6];
-        this.altRef = ""; // Helper.parseFloatX(fields[7]);
-        this.navStatus = ""; // fields[8];
-        this.hAccuracy = ""; // Helper.parseFloatX(fields[9]);
-        this.vAccuracy = ""; // Helper.parseFloatX(fields[10]);
-        this.speedOverGround = ""; // Helper.parseFloatX(fields[11]);
-        this.courseOverGround = ""; // Helper.parseFloatX(fields[12]);
-        this.vVelocity = ""; // Helper.parseFloatX(fields[13]);
-        this.ageCorrections = ""; // Helper.parseFloatX(fields[14]);
-        this.hdop = ""; // Helper.parseFloatX(fields[15]);
-        this.vdop = ""; // Helper.parseFloatX(fields[16]);
-        this.tdop = ""; // Helper.parseFloatX(fields[17]);
-        this.gpsSatellites = ""; // Helper.parseFloatX(fields[18]);
-        this.glonassSatellites = ""; // Helper.parseFloatX(fields[19]);
-        this.drUsed = ""; // Helper.parseFloatX(fields[20]);
+        this.utcTime = "";
+        this.latitude = ""; 
+        this.nsIndicator = "";
+        this.longitude = "";
+        this.ewIndicator = "";
+        this.altRef = "";
+        this.navStatus = "";
+        this.hAccuracy = "";
+        this.vAccuracy = "";
+        this.speedOverGround = "";
+        this.courseOverGround = "";
+        this.vVelocity = "";
+        this.ageCorrections = ""; 
+        this.hdop = "";
+        this.vdop = "";
+        this.tdop = "";
+        this.gpsSatellites = "";
+        this.glonassSatellites = "";
+        this.drUsed = "";
     }
     parse = function(fields) {
         try {
             this.utcTime = fields[2];
-            this.latitude = Helper.parseFloatX(fields[3]);
+            this.latitude = helper.parseFloatX(fields[3]);
             this.nsIndicator = fields[4];
-            this.longitude = Helper.parseFloatX(fields[5]);
+            this.longitude = helper.parseFloatX(fields[5]);
             this.ewIndicator = fields[6];
-            this.altRef = Helper.parseFloatX(fields[7]);
+            this.altRef = helper.parseFloatX(fields[7]);
             this.navStatus = fields[8];
-            this.hAccuracy = Helper.parseFloatX(fields[9]);
-            this.vAccuracy = Helper.parseFloatX(fields[10]);
-            this.speedOverGround = Helper.parseFloatX(fields[11]);
-            this.courseOverGround = Helper.parseFloatX(fields[12]);
-            this.vVelocity = Helper.parseFloatX(fields[13]);
-            this.ageCorrections = Helper.parseFloatX(fields[14]);
-            this.hdop = Helper.parseFloatX(fields[15]);
-            this.vdop = Helper.parseFloatX(fields[16]);
-            this.tdop = Helper.parseFloatX(fields[17]);
-            this.gpsSatellites = Helper.parseFloatX(fields[18]);
-            this.glonassSatellites = Helper.parseFloatX(fields[19]);
-            this.drUsed = Helper.parseFloatX(fields[20]);
+            this.hAccuracy = helper.parseFloatX(fields[9]);
+            this.vAccuracy = helper.parseFloatX(fields[10]);
+            this.speedOverGround = helper.parseFloatX(fields[11]);
+            this.courseOverGround = helper.parseFloatX(fields[12]);
+            this.vVelocity = helper.parseFloatX(fields[13]);
+            this.ageCorrections = helper.parseFloatX(fields[14]);
+            this.hdop = helper.parseFloatX(fields[15]);
+            this.vdop = helper.parseFloatX(fields[16]);
+            this.tdop = helper.parseFloatX(fields[17]);
+            this.gpsSatellites = helper.parseFloatX(fields[18]);
+            this.glonassSatellites = helper.parseFloatX(fields[19]);
+            this.drUsed = helper.parseFloatX(fields[20]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === PRDID - RDI proprietary heading, pitch, and roll ===
@@ -22,21 +22,21 @@ class RDIDecoder {
     constructor() {
         this.sentenceId = "RDI";
         this.sentenceName = "RDI proprietary heading, pitch, and roll";
-        this.roll = ""; //Helper.parseFloatX(fields[1]);
-        this.pitch = ""; //Helper.parseFloatX(fields[2]);
-        this.heading = ""; //Helper.parseFloatX(fields[3]);
+        this.roll = "";
+        this.pitch = "";
+        this.heading = "";
     }
     parse = function(fields) {
         try {
             
-            this.roll = Helper.parseFloatX(fields[1]);
-            this.pitch = Helper.parseFloatX(fields[2]);
-            this.heading = Helper.parseFloatX(fields[3]);
+            this.roll = helper.parseFloatX(fields[1]);
+            this.pitch = helper.parseFloatX(fields[2]);
+            this.heading = helper.parseFloatX(fields[3]);
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 

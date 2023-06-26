@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === UBX03 - Satellite status ===
@@ -36,17 +36,17 @@ class UBX03Decoder {
                     satid,
                     this.getSatelliteType(satid),
                     fields[offset + 1],
-                    Helper.parseIntX(fields[offset + 2]),
-                    Helper.parseIntX(fields[offset + 3]),
-                    Helper.parseIntX(fields[offset + 4]),
-                    Helper.parseIntX(fields[offset + 5])));
+                    helper.parseIntX(fields[offset + 2]),
+                    helper.parseIntX(fields[offset + 3]),
+                    helper.parseIntX(fields[offset + 4]),
+                    helper.parseIntX(fields[offset + 5])));
                 offset += 6;
             }
         }
         finally {}
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
         
     getSatelliteType = function(satid) {

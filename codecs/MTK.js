@@ -1,6 +1,6 @@
 "use strict";
 
-const Helper = require("../helper.js");
+const helper = require("../helper.js");
 
 /*
 * === MTK - Configuration packet ===
@@ -25,13 +25,13 @@ class MTKDecoder {
     parse = function(fields) {
         try {
             
-            this.packetType = Helper.parseIntX(fields[0].Substring(3));
-            //this.data = fields.Take(1).Select(Helper.parseNumberOrString().ToArray());
+            this.packetType = helper.parseIntX(fields[0].Substring(3));
+            //this.data = fields.Take(1).Select(helper.parseNumberOrString().ToArray());
         }
         finally {}            
     }
     getJson = function() {
-        return Helper.outputJson(this);   
+        return helper.outputJson(this);   
     }
 }
 
