@@ -1,7 +1,8 @@
 var ws = new WebSocket("ws://localhost:6060");
 var linecount = 0;
-//var selected = new Array();
 var dataspan = document.getElementById("dataspan");
+
+ws.onopen = function() {}
 
 ws.onmessage = function(item) {
     dataspan.innerHTML += item.data + '\n\n' ;
@@ -19,9 +20,7 @@ const onSubmitClick = function() {
     var inputs = document.querySelectorAll(".cb");
     for (var i = 0; i < inputs.length; i++) {   
         var key = inputs[i];
-        if (key.checked === true) {
-            msg[key.id] = key.id;
-        }   
+        msg[key.id] = key.checked;   
     }   
     ws.send(JSON.stringify(msg));
 }

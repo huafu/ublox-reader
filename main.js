@@ -180,11 +180,7 @@ const sendMessage = function(decoder) {
 exports.selectMessages = function(data) {
     selectedMessages = data;
     decoders.forEach((decoder, key) => {
-        var enabled = false;
-        if (selectedMessages[key] !== undefined) {
-            enabled = true;
-        }
-        configurator.setMessageEnabled(decoder.cid, decoder.mid, enabled);
-        console.log(`${decoder.sentenceId} enabled: ${enabled}`)
-    });
+        configurator.setMessageEnabled(decoder.cid, decoder.mid, data[key]);
+        console.log(`${decoder.sentenceId} enabled: ${data[key]}`)
+    })
 }
