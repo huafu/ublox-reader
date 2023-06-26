@@ -6,65 +6,41 @@ const { SerialData } = require('./serialdata.js');
 const settings = require("./settings.js");
 const helper = require("./helper.js")
 const webserver = require("./server.js");
+const Configurator = require("./configurator.js");
 
-const APBDecoder = require("./codecs/APB.js");
-const BWCDecoder = require("./codecs/BWC.js");
-const DBTDecoder = require("./codecs/DBT.js");
 const DTMDecoder = require("./codecs/DTM.js");
 const GBSDecoder = require("./codecs/GBS.js");
+const GRSDecoder = require("./codecs/GRS.js");
 const GGADecoder = require("./codecs/GGA.js");
 const GLLDecoder = require("./codecs/GLL.js");
 const GNSDecoder = require("./codecs/GNS.js");
 const GSADecoder = require("./codecs/GSA.js");
 const GSTDecoder = require("./codecs/GST.js");
 const GSVDecoder = require("./codecs/GSV.js");
-const HDGDecoder = require("./codecs/HDG.js");
-const HDMDecoder = require("./codecs/HDM.js");
-const HDTDecoder = require("./codecs/HDT.js");
-const MTKDecoder = require("./codecs/GBQ.js");
-const MWVDecoder = require("./codecs/MWV.js");
-const RDIDecoder = require("./codecs/RDI.js");
 const RMCDecoder = require("./codecs/RMC.js");
 const TXTDecoder = require("./codecs/TXT.js");
-const UBXDecoder = require("./codecs/UBX.js");
-const VHWDecoder = require("./codecs/VHW.js");
+const VLWDecoder = require("./codecs/VLW.js");
 const VTGDecoder = require("./codecs/VTG.js");
 const ZDADecoder = require("./codecs/ZDA.js");
-const HNRATTDecoder = require('./codecs/HNRATT.js');
-const HNRPVTDecoder = require('./codecs/HNRPVT.js');
-const HNRINSDecoder = require('./codecs/HNRINS.js');
-const Configurator = require("./configurator.js");
 
 var decoders = new Map();
 var selectedMessages = {};
 
 const loadDecoders = function() {
-    decoders.set("APB", new APBDecoder());
-    decoders.set("BWC", new BWCDecoder());
-    decoders.set("DBT", new DBTDecoder());
     decoders.set("DTM", new DTMDecoder());
     decoders.set("GBS", new GBSDecoder());
     decoders.set("GGA", new GGADecoder());
     decoders.set("GLL", new GLLDecoder());
     decoders.set("GNS", new GNSDecoder());
+    decoders.set("GRS", new GRSDecoder());
     decoders.set("GSA", new GSADecoder());
     decoders.set("GST", new GSTDecoder());
     decoders.set("GSV", new GSVDecoder());
-    decoders.set("HDG", new HDGDecoder());
-    decoders.set("HDM", new HDMDecoder());
-    decoders.set("HDT", new HDTDecoder());
-    decoders.set("MTK", new MTKDecoder());
-    decoders.set("MWV", new MWVDecoder());
-    decoders.set("RDI", new RDIDecoder());
     decoders.set("RMC", new RMCDecoder());
     decoders.set("TXT", new TXTDecoder());
-    decoders.set("UBX", new UBXDecoder());
-    decoders.set("VHW", new VHWDecoder());
+    decoders.set("VLW", new VLWDecoder());
     decoders.set("VTG", new VTGDecoder());
     decoders.set("ZDA", new ZDADecoder());
-    decoders.set("HNRATT", new HNRATTDecoder());
-    decoders.set("HNRINS", new HNRINSDecoder());
-    decoders.set("HNRPVT", new HNRPVTDecoder());
 }
 
 mainFunction();
@@ -126,37 +102,10 @@ function runParsing(port) {
             var line = Buffer.from(msg).toString();
             var sd = new SerialData(line);
             var decoder = decoders.get(sd.sentenceId);
-            decoder.parse(sd.fields);
-            sendMessage(decoder);
-            if (settings.outputconsole) console.log(decoder.getJson());
-        }
-        else if (hdr0 === 0xB5 && hdr1 === 0x62) {
-            // we have a UBX accelerometer message
-            if (buffer[2] === 0x28) { // HNR message
-                let id = buffer[3];
-                let hibyte = buffer[4];
-                let lowbyte = buffer[5];
-                let msglen = helper.parseUInt16(hibyte, lowbyte);
-                let msgbuffer = new Buffer.alloc(msglen);
-                buffer.copy(msgbuffer, 0, buffer.length - 2); 
-                if (id === 0x01) { // HNR-ATT
-                    var decoder = decoders.get("HNRATT");
-                    decoder.parse(msgbuffer);
-                    sendMessage(decoder);
-                    if (settings.outputconsole) console.log("HNR-ATT", decoder.getJson());
-                }
-                else if (id === 0x02) { // HNR-INS
-                    var decoder = decoders.get("HNRINS");
-                    decoder.parse(msgbuffer);
-                    sendMessage(decoder);
-                    if (settings.outputconsole) console.log("HNR-INS: ", decoder.getJson());
-                }
-                else if (id === 0x00) { // HNR-PVT
-                    var decoder = decoders.get("HNRPVT");
-                    decoder.parse(msgbuffer);
-                    sendMessage(decoder);
-                    if (settings.outputconsole) console.log("HNR-PVT: ", decoder.getJson());
-                }
+            if (decoder !== undefined) {
+                decoder.parse(sd.fields);
+                sendMessage(decoder);
+                if (settings.outputconsole) console.log(decoder.getJson());
             }
         }
     }
