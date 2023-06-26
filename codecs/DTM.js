@@ -29,6 +29,10 @@ const helper = require("../helper.js");
 */
 class DTMDecoder { 
     constructor() {
+        // message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
+        //----------------------------------------------------------------------------------
+        //                       byte#:    0     1     2     3     4     5     6     7 
+        this.msgconfig = new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "DTM"; 
         this.sentenceName = "Datum reference";
         this.datumCode = ""; 
@@ -40,7 +44,6 @@ class DTMDecoder {
     }
     parse = function(fields) {
         try {
-            
             this.datumCode = this.parseDatumCode(fields[1]);
             this.datumSubcode = fields[2];
             this.offsetLatitude = helper.parseLatitude(fields[3], fields[4]);
@@ -54,6 +57,15 @@ class DTMDecoder {
         return helper.outputJson(this);   
     }
     
+    subscribe = function(enable) {
+        if (enable) {
+            this.msgconfig[5] = 0x01;
+        }
+        else {
+            this.msgconfig[5] = 0x00;
+        }
+    }
+
     parseDatumCode = function(field) {
             return field == "W84" ? "W84"
                 : field == "W72" ? "W72"

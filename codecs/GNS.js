@@ -37,7 +37,10 @@ const helper = require("../helper.js");
     * 13. Checksum
 */
 class GNSDecoder {
-    constructor() {
+    constructor() {\// message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
+        //----------------------------------------------------------------------------------
+        //                       byte#:    0     1     2     3     4     5     6     7 
+        this.msgconfig = new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GNS";
         this.sentenceName = "GNSS fix data";
         this.time = ""; 
@@ -67,6 +70,15 @@ class GNSDecoder {
         finally {}
     }
     
+    subscribe = function(enable) {
+        if (enable) {
+            this.msgconfig[5] = 0x01;
+        }
+        else {
+            this.msgconfig[5] = 0x00;
+        }
+    }
+
     getJson = function() {
         return helper.outputJson(this);   
     }

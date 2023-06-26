@@ -21,6 +21,7 @@ class HNRATTDecoder {
         this.fielddata = fielddata;
     }
 
+    
     getJson = function() {
         return helper.outputJson(this);   
     }

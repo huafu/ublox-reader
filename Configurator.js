@@ -70,27 +70,19 @@ class Configurator {
 		this.serialPortWrite(this.makeUBXCFG(0x06, 0x16, 8, new Uint8Array([0x01, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00])));
 
 		// UBX-CFG-HNR set to 30hz
-		this.serialPortWrite(this.makeUBXCFG(0x06, 0x5C, 4, new Uint8Array([0x1E, 0x00, 0x00, 0x00])));
+		this.serialPortWrite(this.makeUBXCFG(0x06, 0x5C, 4, new Uint8Array([0x05, 0x00, 0x00, 0x00])));
 		
 		//UBX-CFG-MSG setup UBX-HNR-PVT, UBX-HNR-ATT, ESF-INS messages
 		//                              	                                   CLASS  ID   I2C  UART1 UART2  USB   SPI   RESERVED
 		//                            	    	                               -------------------------------------------------- 
-		if (settings.hnrpvtmessages) {
+		if (settings.hnrmessages) {
 			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-PVT ON
-		}
-		else {
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-PVT OFF
-		}
-		if (settings.hnrattmessages) {
 			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-ATT ON
-		}
-		else {
-			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-ATT OFF
-		}
-		if (settings.hnrinsmessages) {
 			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-INS ON
 		}
 		else {
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-PVT OFF
+			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-ATT OFF
 			this.serialPortWrite(this.makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-INS OFF
 		}
 		
@@ -141,9 +133,9 @@ class Configurator {
 
 	writeUblox7ConfigCommands = function() {
 	    var cfgGnss = new Uint8Array([0x00, 0x00, 0xFF, 0x04]); // numTrkChUse=0xFF: number of tracking channels to use will be set to number of tracking channels available in hardware
-		var gps = new Uint8Array([0x00, 0x04, 0xFF, 0x00, 0x01, 0x00, 0x01, 0x01]); // enable GPS with 4-255 channels (ublox default)
-		var sbas = new Uint8Array([0x01, 0x01, 0x03, 0x00, 0x01, 0x00, 0x01, 0x01]); // enable SBAS with 1-3 channels (ublox default)
-		var qzss = new Uint8Array([0x05, 0x00, 0x03, 0x00, 0x01, 0x00, 0x01, 0x01]); // enable QZSS with 0-3 channel (ublox default)
+		var gps      = new Uint8Array([0x00, 0x04, 0xFF, 0x00, 0x01, 0x00, 0x01, 0x01]); // enable GPS with 4-255 channels (ublox default)
+		var sbas    = new Uint8Array([0x01, 0x01, 0x03, 0x00, 0x01, 0x00, 0x01, 0x01]); // enable SBAS with 1-3 channels (ublox default)
+		var qzss    = new Uint8Array([0x05, 0x00, 0x03, 0x00, 0x01, 0x00, 0x01, 0x01]); // enable QZSS with 0-3 channel (ublox default)
 		var glonass = new Uint8Array([0x06, 0x08, 0xFF, 0x00, 0x00, 0x00, 0x01, 0x01]); // disable GLONASS (ublox default)
 		cfgGnss = this.concatTypedArrays(cfgGnss, gps);
 		cfgGnss = this.concatTypedArrays(cfgGnss, sbas);

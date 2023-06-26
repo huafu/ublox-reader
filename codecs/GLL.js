@@ -27,6 +27,10 @@ const helper = require("../helper.js");
     */
 class GLLDecoder { 
     constructor() {
+        // message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
+        //----------------------------------------------------------------------------------
+        //                       byte#:    0     1     2     3     4     5     6     7 
+        this.msgconfig = new Uint8Array([0xF0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GLL";
         this.sentenceName = "Geographic position - latitude and longitude";
         this.latitude = ""; 
@@ -37,7 +41,6 @@ class GLLDecoder {
     }
     parse = function(fields) {
         try {
-            
             this.latitude = helper.parseLatitude(fields[1], fields[2]);
             this.longitude = helper.parseLongitude(fields[3], fields[4]);
             this.time = helper.parseTime(fields[5], "");
@@ -46,6 +49,16 @@ class GLLDecoder {
         }
         finally {}
     }
+
+    subscribe = function(enable) {
+        if (enable) {
+            this.msgconfig[5] = 0x01;
+        }
+        else {
+            this.msgconfig[5] = 0x00;
+        }
+    }
+
     getJson = function() {
         return helper.outputJson(this);   
     }

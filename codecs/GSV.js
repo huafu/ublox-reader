@@ -51,6 +51,10 @@ class GSVSatellite {
 
 class GSVDecoder {
     constructor() {
+        // message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
+        //----------------------------------------------------------------------------------
+        //                       byte#:    0     1     2     3     4     5     6     7 
+        this.msgconfig = new Uint8Array([0xF0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GSV";
         this.sentenceName = "Satellites in view"; 
         this.numberOfMessages = "";
@@ -77,6 +81,16 @@ class GSVDecoder {
         }
         finally {}
     }
+
+    subscribe = function(enable) {
+        if (enable) {
+            this.msgconfig[5] = 0x01;
+        }
+        else {
+            this.msgconfig[5] = 0x00;
+        }
+    }
+
     getJson = function() {
         return helper.outputJson(this);   
     }

@@ -45,6 +45,16 @@ class UBX03Decoder {
         }
         finally {}
     }
+
+    subscribe = function(enable) {
+        if (enable) {
+            this.msgconfig[5] = 0x01;
+        }
+        else {
+            this.msgconfig[5] = 0x00;
+        }
+    }
+    
     getJson = function() {
         return helper.outputJson(this);   
     }

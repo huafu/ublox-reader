@@ -34,6 +34,16 @@ class UBXDecoder {
                 console.log("UBX UNKNOWN", fields);
         }
     }
+
+    subscribe = function(enable) {
+        if (enable) {
+            this.msgconfig[5] = 0x01;
+        }
+        else {
+            this.msgconfig[5] = 0x00;
+        }
+    }
+    
     getJson = function() {
         return this.jsonout;
     }
