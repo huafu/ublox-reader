@@ -53,10 +53,6 @@ mainFunction();
 
 function mainFunction() {
 
-    loadDecoders();
-
-    webserver.runServers();
-
     let baudrate = settings.baudrate;
     let port; 
     let device;
@@ -70,7 +66,6 @@ function mainFunction() {
                 port.open();
                 port.on('open', function() {
                     console.log(port);
-                    //const cfg = new Configurator();
                     configurator.writeConfig(port, device.pid);
                 }); 
                 port.on('readable', function() {
@@ -83,6 +78,10 @@ function mainFunction() {
     err => {
         console.log(err);
     });
+
+    loadDecoders();
+    webserver.runServers();
+
 }
 
 function runParsing(port) {

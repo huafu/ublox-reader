@@ -29,7 +29,7 @@ exports.runServers = function() {
         };
 
         app.use(express.static(`${__dirname}/public`, options));
-        app.use(favicon(`${__dirname}/public/favicon.png`));
+        app.use(favicon(`${__dirname}/public/favicon.ico`));
 
         app.get('/',(req, res) => {
             res.sendFile(`${__dirname}/public/index.html`);

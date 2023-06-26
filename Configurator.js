@@ -2,7 +2,7 @@
 
 const settings =  require("./settings.js");
 
-var serialPort = "";
+var serialPort = undefined;
 var pid = "";
 var baudRate = 9600;
 var navRate = 2;
@@ -66,36 +66,36 @@ const writeUbloxGenericConfigCommands = function() {
     // UBX-CFG-HNR set to 5hz
     serialPortWrite(makeUBXCFG(0x06, 0x5C, 4, new Uint8Array([0x05, 0x00, 0x00, 0x00])));
     
-    //UBX-CFG-MSG setup UBX-HNR-PVT, UBX-HNR-ATT, ESF-INS messages
-    //                              	                                   CLASS  ID   I2C  UART1 UART2  USB   SPI   RESERVED
-    //                            	    	                               -------------------------------------------------- 
-    if (settings.hnrmessages) {
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-PVT ON
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-ATT ON
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-INS ON
-    }
-    else {
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-PVT OFF
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-ATT OFF
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-INS OFF
-    }
+    // //UBX-CFG-MSG setup UBX-HNR-PVT, UBX-HNR-ATT, ESF-INS messages
+    // //                              	                                   CLASS  ID   I2C  UART1 UART2  USB   SPI   RESERVED
+    // //                            	    	                               -------------------------------------------------- 
+    // if (settings.hnrmessages) {
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-PVT ON
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-ATT ON
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00]))); // HNR-INS ON
+    // }
+    // else {
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-PVT OFF
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x28, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-ATT OFF
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0x10, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // HNR-INS OFF
+    // }
     
-    // UBX-CFG-MSG (NMEA Standard Messages)  msg   msg   Ports 1-6 (every 10th message over UART1, every message over USB)
-    //                                                       CLASS   ID   I2C  UART1 UART2  USB   SPI   RESERVED
-    //-----------------------------------------------------------------------------------------------------------------------------------------------------
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GGA - Global positioning system fix data
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GLL - Latitude and longitude, with time of position fix and status
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GSA - GNSS DOP and Active Satellites
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GSV - GNSS Satellites in View
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // RMC - Recommended Minimum data
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // VTG - Course over ground and Ground speed
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GRS - GNSS Range Residuals
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GST - GNSS Pseudo Range Error Statistics
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // ZDA - Time and Date<
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GBS - GNSS Satellite Fault Detection
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // DTM - Datum Reference
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GNS - GNSS fix data
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // VLW - Dual ground/water distance
+    // // UBX-CFG-MSG (NMEA Standard Messages)  msg   msg   Ports 1-6 (every 10th message over UART1, every message over USB)
+    // //                                                       CLASS   ID   I2C  UART1 UART2  USB   SPI   RESERVED
+    // //-----------------------------------------------------------------------------------------------------------------------------------------------------
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GGA - Global positioning system fix data
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GLL - Latitude and longitude, with time of position fix and status
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GSA - GNSS DOP and Active Satellites
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GSV - GNSS Satellites in View
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // RMC - Recommended Minimum data
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // VTG - Course over ground and Ground speed
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GRS - GNSS Range Residuals
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GST - GNSS Pseudo Range Error Statistics
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // ZDA - Time and Date<
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GBS - GNSS Satellite Fault Detection
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // DTM - Datum Reference
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GNS - GNSS fix data
+    // serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // VLW - Dual ground/water distance
 
     // //if (settings.processUbx) {
     //     // UBX-CFG-MSG (TURN ON NMEA PUBX Messages)      msg   msg   Ports 1-6
@@ -106,13 +106,13 @@ const writeUbloxGenericConfigCommands = function() {
     //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x04, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX04
     // }
     // else {
-        // UBX-CFG-MSG (TURN OFF NMEA PUBX Messages)      msg   msg   Ports 1-6
-        //                                                       Class    ID  I2C  UART1 UART2  USB   SPI   Reseved
-        //---------------------------------------------------------------------------------------------------------------------
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
-    // }
+    //     // UBX-CFG-MSG (TURN OFF NMEA PUBX Messages)      msg   msg   Ports 1-6
+    //     //                                                       Class    ID  I2C  UART1 UART2  USB   SPI   Reseved
+    //     //---------------------------------------------------------------------------------------------------------------------
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
+    // // }
     
     if (navRate === 10) {
         serialPortWrite(makeUBXCFG(0x06, 0x08, 6, new Uint8Array([0x64, 0x00, 0x01, 0x00, 0x01, 0x00]))); // 100ms & 1 cycle -> 10Hz (UBX-CFG-RATE payload bytes: little endian!)
@@ -253,7 +253,9 @@ const chksumUBX = function(msg, startIndex) {
 }
 
 const serialPortWrite = function(msg) {
-    serialPort.write(msg);
+    if (serialPort !== undefined) {
+        serialPort.write(msg);
+    }
 }
 
 exports.setMessageEnabled = function(cls, id, enabled) {
