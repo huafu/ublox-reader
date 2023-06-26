@@ -2,7 +2,7 @@ var ws = new WebSocket("ws://localhost:6060");
 var linecount = 0;
 var dataspan = document.getElementById("dataspan");
 
-ws.onopen = function() {}
+ws.onopen = function() { onSubmitClick() }
 
 ws.onmessage = function(item) {
     dataspan.innerHTML += item.data + '\n\n' ;
