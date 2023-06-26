@@ -11,6 +11,7 @@
         .data {
             grid-column-start: 1;
             background-color: black;
+            font-size: small;
             color: lightgreen;
             width: 100%;
             height: 600px;
@@ -30,13 +31,13 @@
             width: 60px;
             height: 30px;
             border: 10px; 
-            margin-left: 40px;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <div class="data" id="dataspan">this is sample text</div>
+        <textarea class="data" id="dataspan"></textarea>
         <div class="menu">
             <form id="msgselect">
                 <div>Select which NMEA messages to monitor, then click Submit:</div><br><br>
@@ -62,20 +63,18 @@
                 <label for="RMC"> RMC</label><br>
                 <input type="checkbox" class="cb" id="TXT" name="TXT" value="TXT">
                 <label for="TXT"> TXT</label><br>
-                <!--
-                <input type="checkbox" class="cb" id="UBX00" name="UBX00" value="UBX00">
-                <label for="UBX00"> UBX00</label><br>
-                <input type="checkbox" class="cb" id="UBX03" name="UBX03" value="UBX03">
-                <label for="UBX03"> UBX03</label><br>
-                <input type="checkbox" class="cb" id="UBX04" name="UBX04" value="UBX04">
-                <label for="UBX04"> UBX04</label><br>
-                -->
                 <input type="checkbox" class="cb" id="VLW" name="VLW" value="VLW">
                 <label for="VLW"> VLW</label><br>
                 <input type="checkbox" class="cb" id="VTG" name="VTG" value="VTG">
                 <label for="VTG"> VTG</label><br>
                 <input type="checkbox" class="cb" id="ZDA" name="ZDA" value="ZDA">
                 <label for="ZDA"> ZDA</label><br>
+                <input type="checkbox" class="cb" id="UBX00" name="UBX00" value="UBX00">
+                <label for="UBX00"> UBX00</label><br>
+                <input type="checkbox" class="cb" id="UBX03" name="UBX03" value="UBX03">
+                <label for="UBX03"> UBX03</label><br>
+                <input type="checkbox" class="cb" id="UBX04" name="UBX04" value="UBX04">
+                <label for="UBX04"> UBX04</label><br><br>
                 <input type="button" class="button" value="Submit" onclick="onSubmitClick()">
             </form>
         </div>

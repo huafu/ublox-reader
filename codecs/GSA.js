@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === GSA - Active satellites and dilution of precision ===
 *
@@ -64,15 +64,6 @@ class GSADecoder {
             this.VDOP = helper.parseFloatX(fields[17]);
         }
         finally {}
-    }
-
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
     }
 
     getJson = function() {

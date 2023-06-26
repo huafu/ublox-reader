@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === RMC - Recommended minimum navigation information ===
 *
@@ -64,15 +64,6 @@ class RMCDecoder {
             this.faaMode = fields[12];
         }
         finally {}
-    }
-    
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
     }
     
     getJson = function(){

@@ -22,6 +22,9 @@ const TXTDecoder = require("./codecs/TXT.js");
 const VLWDecoder = require("./codecs/VLW.js");
 const VTGDecoder = require("./codecs/VTG.js");
 const ZDADecoder = require("./codecs/ZDA.js");
+const UBX00Decoder = require("./codecs/UBX00.js");
+const UBX03Decoder = require("./codecs/UBX03.js");
+const UBX04Decoder = require("./codecs/UBX04.js");
 
 var decoders = new Map();
 var selectedMessages = {};
@@ -41,6 +44,9 @@ const loadDecoders = function() {
     decoders.set("VLW", new VLWDecoder());
     decoders.set("VTG", new VTGDecoder());
     decoders.set("ZDA", new ZDADecoder());
+    decoders.set("UBX00", new UBX00Decoder());
+    decoders.set("UBX03", new UBX03Decoder());
+    decoders.set("UBX04", new UBX04Decoder());
 }
 
 mainFunction();
@@ -174,11 +180,11 @@ const sendMessage = function(decoder) {
 exports.selectMessages = function(data) {
     selectedMessages = data;
     decoders.forEach((decoder, key) => {
+        var enabled = false;
         if (selectedMessages[key] !== undefined) {
-            configurator.setMessageEnabled(decoder.cid, decoder.mid, true);
+            enabled = true;
         }
-        else {
-            configurator.setMessageEnabled(decoder.cid, decoder.mid, false);
-        }
+        configurator.setMessageEnabled(decoder.cid, decoder.mid, enabled);
+        console.log(`${decoder.sentenceId} enabled: ${enabled}`)
     });
 }

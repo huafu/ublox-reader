@@ -1,8 +1,8 @@
 "use strict";
 
-const express = require("express");
 const http = require("http");
 const { WebSocketServer } = require("ws");
+const express = require("express");
 const favicon = require('serve-favicon');
 const settings = require("./settings.js");
 const main = require("./main.js");
@@ -58,7 +58,7 @@ function runWebsockServer() {
     wss.on("connection", (wsconn) => {
         const id = Date.now();
         connections[id] = wsconn;
-        wsconn.send("CONNECTED TO WEBSOCKET SERVER!")
+        wsconn.send("connected to server... select desired message(s) and click on Submit") 
     
         wsconn.on("close", function () {
             console.log("connection closed");

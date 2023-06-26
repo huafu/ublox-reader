@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === GSV - Satellites in view ===
 *
@@ -83,15 +83,6 @@ class GSVDecoder {
             this.satellitesInView = helper.parseIntX(fields[3]);
         }
         finally {}
-    }
-
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
     }
 
     getJson = function() {

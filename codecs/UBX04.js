@@ -26,6 +26,8 @@ class UBX04Decoder {
     constructor() {
         this.sentenceId = "UBX04";
         this.sentenceName = "Time of day and clock information";
+        this.cid = 0xF1;
+        this.mid = 0x04;
         this.utcDateTime = "";
         this.utcTow = "";
         this.utcWeek = "";
@@ -47,15 +49,6 @@ class UBX04Decoder {
         finally {}
     }
 
-    subscribe = function(enable) {
-        if (enable) {
-            this.msgconfig[5] = 0x01;
-        }
-        else {
-            this.msgconfig[5] = 0x00;
-        }
-    }
-    
     getJson = function() {
         return helper.outputJson(this);   
     }

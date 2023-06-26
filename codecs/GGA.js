@@ -1,9 +1,8 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
-/*
-    * === GGA - Global positioning system fix data ===
+
+    /* === GGA - Global positioning system fix data ===
     *
     * ------------------------------------------------------------------------------
     *                                                      11
@@ -62,15 +61,6 @@ class GGADecoder {
         this.geoidalSeperation = "";
         this.differentialAge = ""; 
         this.differentialRefStn = "";
-    }
-
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
     }
 
     parse = function(fields) {

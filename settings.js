@@ -1,12 +1,10 @@
 
 module.exports = {
+    "httpport": 5000,
+    "wsport": 6060,
     "baudrate": 115200,
     "navrate": 1,
-    "pubxmessages": true,
-    "hnrmessages": false,
     "prettifyjson": false,
     "outputlogfile": false,
-    "outputconsole": true,
-    "httpport": 5000,
-    "wsport": 6060
+    "outputconsole": true
 }

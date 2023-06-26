@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
     * === GBS - GNSS satellite fault detection ===
     *
@@ -61,15 +61,6 @@ class GBSDecoder {
         finally {}
     }
     
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
-    }
-
     getJson = function() {
         return helper.outputJson(this);   
     }   

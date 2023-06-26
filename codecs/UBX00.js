@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === UBX00 -  Lat/Long position data ===
 *
@@ -38,6 +38,8 @@ class UBX00Decoder {
     constructor() {
         this.sentenceId = "UBX00";
         this.sentenceName = "Lat/Long position data";
+        this.cid = 0xF1;
+        this.mid = 0x00;
         this.utcTime = "";
         this.latitude = ""; 
         this.nsIndicator = "";
@@ -84,15 +86,6 @@ class UBX00Decoder {
         finally {}
     }
 
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
-    }
-    
     getJson = function() {
         return helper.outputJson(this);   
     }

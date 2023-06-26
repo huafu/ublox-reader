@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === VTG - Course over ground and ground speed ===
 *
@@ -53,15 +53,6 @@ class VTGDecoder {
         finally {}   
     }
 
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
-    }
-    
     getJson = function() {
         return helper.outputJson(this);   
     }

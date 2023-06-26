@@ -97,22 +97,22 @@ const writeUbloxGenericConfigCommands = function() {
     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // GNS - GNSS fix data
     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]))); // VLW - Dual ground/water distance
 
-    if (settings.processUbx) {
-        // UBX-CFG-MSG (TURN ON NMEA PUBX Messages)      msg   msg   Ports 1-6
-        //                                                                Class     ID  I2C  UART1 UART2  USB   SPI   Reseved
-        //---------------------------------------------------------------------------------------------------------------------
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX00
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x03, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX03
-        serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x04, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX04
-    }
-    else {
+    // //if (settings.processUbx) {
+    //     // UBX-CFG-MSG (TURN ON NMEA PUBX Messages)      msg   msg   Ports 1-6
+    //     //                                                       Class    ID  I2C  UART1 UART2  USB   SPI   Reseved
+    //     //---------------------------------------------------------------------------------------------------------------------
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX00
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x03, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX03
+    //     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x04, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00]))); // UBX04
+    // }
+    // else {
         // UBX-CFG-MSG (TURN OFF NMEA PUBX Messages)      msg   msg   Ports 1-6
-        //                                                                 Class    ID  I2C  UART1 UART2  USB   SPI   Reseved
+        //                                                       Class    ID  I2C  UART1 UART2  USB   SPI   Reseved
         //---------------------------------------------------------------------------------------------------------------------
         serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
         serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
         serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([0xF1, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00])));
-    }
+    // }
     
     if (navRate === 10) {
         serialPortWrite(makeUBXCFG(0x06, 0x08, 6, new Uint8Array([0x64, 0x00, 0x01, 0x00, 0x01, 0x00]))); // 100ms & 1 cycle -> 10Hz (UBX-CFG-RATE payload bytes: little endian!)
@@ -257,6 +257,6 @@ const serialPortWrite = function(msg) {
 }
 
 exports.setMessageEnabled = function(cls, id, enabled) {
-    var enbl = enabled ? 0x01 : 0x00;
-    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([cls, id, 0x00, 0x00, 0x00, enbl, 0x00, 0x00])));
+    var state = enabled ? 0x01 : 0x00;
+    serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([cls, id, 0x00, 0x00, 0x00, state, state, 0x00])));
 }

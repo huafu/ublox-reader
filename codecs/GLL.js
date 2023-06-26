@@ -1,7 +1,6 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
 
 /*
     * === GLL - Geographic position - latitude and longitude ===
@@ -50,15 +49,6 @@ class GLLDecoder {
             this.faaMode = fields[7];
         }
         finally {}
-    }
-
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
     }
 
     getJson = function() {

@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === ZDA - Time & Date - UTC, day, month, year and local time zone ===
 *
@@ -45,15 +45,6 @@ class ZDADecoder {
         finally {}
     }
 
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
-    }
-    
     getJson = function() {
         return helper.outputJson(this);   
     }

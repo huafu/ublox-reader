@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
 * === DTM - Datum reference ===
 *
@@ -29,10 +29,6 @@ const configurator = require("../configurator.js");
 */
 class DTMDecoder { 
     constructor() {
-        // message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
-        //----------------------------------------------------------------------------------
-        //                       byte#:    0     1     2     3     4     5     6     7 
-        // this.msgconfig = new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "DTM"; 
         this.sentenceName = "Datum reference";
         this.cid = 0xF0;
@@ -59,15 +55,6 @@ class DTMDecoder {
         return helper.outputJson(this);   
     }
     
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
-    }
-
     parseDatumCode = function(field) {
             return field == "W84" ? "W84"
                 : field == "W72" ? "W72"

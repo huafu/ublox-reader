@@ -21,8 +21,9 @@ class UBX03Decoder {
     constructor() {
         this.sentenceId = "UBX03";
         this.sentenceName = "Satellite status"; 
+        this.cid = 0xF1;
+        this.mid = 0x03;
         this.satellites = new Array();
-    
     }
 
     parse = function(fields) {    
@@ -46,15 +47,6 @@ class UBX03Decoder {
         finally {}
     }
 
-    subscribe = function(enable) {
-        if (enable) {
-            this.msgconfig[5] = 0x01;
-        }
-        else {
-            this.msgconfig[5] = 0x00;
-        }
-    }
-    
     getJson = function() {
         return helper.outputJson(this);   
     }

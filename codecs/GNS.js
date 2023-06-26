@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-const configurator = require("../configurator.js");
+
 /*
     * === GNS - GNSS fix data ===
     *
@@ -74,15 +74,6 @@ class GNSDecoder {
         finally {}
     }
     
-    subscribe = function(enable) {
-        if (enable) {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
-        }
-        else {
-            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
-        }
-    }
-
     getJson = function() {
         return helper.outputJson(this);   
     }
