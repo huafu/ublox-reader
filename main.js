@@ -72,7 +72,7 @@ mainFunction();
 function mainFunction() {
 
     loadDecoders();
-    
+
     webserver.runServers();
 
     let baudrate = settings.baudrate;
@@ -175,11 +175,11 @@ const getDeviceInfo = function(portjson){
     ----------------------------------
     MANUFACTURER ID = 0x1546 U-Blox AG 
     -----------------------------------
-    0x01A4 Antaris 4
-    0x01A5 u-blox 5
-    0x01A6 u-blox 6
-    0x01A7 u-blox 7
-    0x01A8 u-blox 8
+    0x01a4 Antaris 4
+    0x01a5 u-blox 5
+    0x01a6 u-blox 6
+    0x01a7 u-blox 7
+    0x01a8 u-blox 8
     0x1102 LISA-U2
 */
     let outjson = {"isublox": false, "path": "", "pid": ""};
@@ -205,7 +205,7 @@ const getDeviceInfo = function(portjson){
                     break;
             }
             if (portjson.vendorId === "1546") {
-                // we have a u-blox device on this serial port!
+                // u-blox device found on this serial port
                 outjson.isublox = true;
                 outjson.path = portjson.path;
                 outjson.pid = pid;    
