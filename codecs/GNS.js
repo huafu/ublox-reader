@@ -41,9 +41,11 @@ class GNSDecoder {
         // message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
         //----------------------------------------------------------------------------------
         //                       byte#:    0     1     2     3     4     5     6     7 
-        this.msgconfig = new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+        // this.msgconfig = new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GNS";
         this.sentenceName = "GNSS fix data";
+        this.class = 0xF0;
+        this.id = 0x06;
         this.time = ""; 
         this.latitude = ""; 
         this.longitude = ""; 

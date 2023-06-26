@@ -32,9 +32,11 @@ class DTMDecoder {
         // message configuration bytes:  CLASS   ID   I2C  UART1 UART2  USB   SPI  RESERVED
         //----------------------------------------------------------------------------------
         //                       byte#:    0     1     2     3     4     5     6     7 
-        this.msgconfig = new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
+        // this.msgconfig = new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "DTM"; 
         this.sentenceName = "Datum reference";
+        this.class = 0xF0;
+        this.id = 0x06;
         this.datumCode = ""; 
         this.datumSubcode = ""; 
         this.offsetLatitude = ""; 
