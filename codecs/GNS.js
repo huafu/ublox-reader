@@ -1,6 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
+const configurator = require("../configurator.js");
 /*
     * === GNS - GNSS fix data ===
     *
@@ -44,8 +45,8 @@ class GNSDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GNS";
         this.sentenceName = "GNSS fix data";
-        this.class = 0xF0;
-        this.id = 0x06;
+        this.cid = 0xF0;
+        this.mid = 0x06;
         this.time = ""; 
         this.latitude = ""; 
         this.longitude = ""; 
@@ -75,10 +76,10 @@ class GNSDecoder {
     
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 

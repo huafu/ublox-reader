@@ -1,6 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
+const configurator = require("../configurator.js");
 var UBX00Decoder = require("./UBX00.js");
 var UBX03Decoder = require("./UBX03.js");
 var UBX04Decoder = require("./UBX04.js");
@@ -37,10 +38,10 @@ class UBXDecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
     

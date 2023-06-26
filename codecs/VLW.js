@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
 * === VLW – Dual ground/water distance ===
 *
@@ -30,8 +30,8 @@ class VLWDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "VLW";
         this.sentenceName = "Dual ground/water distance";
-        this.class = 0xF0;
-        this.id = 0x0F;
+        this.cid = 0xF0;
+        this.mid = 0x0F;
         this.twd = 0;
         this.twdUnit = "";  
         this.wd = 0;
@@ -60,13 +60,13 @@ class VLWDecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
-    
+
     getJson = function() {
         return helper.outputJson(this);   
     }

@@ -1,6 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
+const configurator = require("../configurator.js");
 /*
     * === GRS - GNSS range residuals ===
     *
@@ -27,8 +28,8 @@ class GRSDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GSA";
         this.sentenceName = "GNSS range residuals";
-        this.class = 0xF0;
-        this.id = 0x06;
+        this.cid = 0xF0;
+        this.mid = 0x06;
         this.time = ""; 
         this.mode = ""; 
         this.residual = []; 
@@ -50,10 +51,10 @@ class GRSDecoder {
     
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 

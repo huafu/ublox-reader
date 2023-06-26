@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
 * === VTG - Course over ground and ground speed ===
 *
@@ -33,8 +33,8 @@ class VTGDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "VTG";
         this.sentenceName = "Course over ground and ground speed";
-        this.class = 0xF0;
-        this.id = 0x05;
+        this.cid = 0xF0;
+        this.mid = 0x05;
         this.trackTrue = "";
         this.trackMagnetic = "";
         this.speedKnots = "";
@@ -55,10 +55,10 @@ class VTGDecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
     

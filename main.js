@@ -6,7 +6,7 @@ const { SerialData } = require('./serialdata.js');
 const settings = require("./settings.js");
 const helper = require("./helper.js")
 const webserver = require("./server.js");
-const Configurator = require("./configurator.js");
+const configurator = require("./configurator.js");
 
 const DTMDecoder = require("./codecs/DTM.js");
 const GBSDecoder = require("./codecs/GBS.js");
@@ -64,8 +64,8 @@ function mainFunction() {
                 port.open();
                 port.on('open', function() {
                     console.log(port);
-                    const cfg = new Configurator();
-                    cfg.writeConfig(port, device.pid);
+                    //const cfg = new Configurator();
+                    configurator.writeConfig(port, device.pid);
                 }); 
                 port.on('readable', function() {
                     runParsing(port);
@@ -173,8 +173,12 @@ const sendMessage = function(decoder) {
 
 exports.selectMessages = function(data) {
     selectedMessages = data;
-    Object.entries(selectedMessages).forEach((entry) => {
-        const [key, value] = entry;
-        console.log(`${key}: ${value}`);
+    decoders.forEach((decoder, key) => {
+        if (selectedMessages[key] !== undefined) {
+            configurator.setMessageEnabled(decoder.cid, decoder.mid, true);
+        }
+        else {
+            configurator.setMessageEnabled(decoder.cid, decoder.mid, false);
+        }
     });
 }

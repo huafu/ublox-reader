@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
 * === UBX00 -  Lat/Long position data ===
 *
@@ -86,10 +86,10 @@ class UBX00Decoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
     

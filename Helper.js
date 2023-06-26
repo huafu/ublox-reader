@@ -62,7 +62,7 @@ exports.computeChecksum = function(sentence) {
         c1 = c1 ^ sentence.charCodeAt(i);
     }
 
-    return '*' + exports.toHexString(c1);
+    return '*' + toHexString(c1);
 };
 
 // =========================================
@@ -174,7 +174,7 @@ exports.encodeMagVar = function(v) {
     }
     a = Math.abs(v);
     s = (v < 0) ? (a.toFixed(1) + ',E') : (a.toFixed(1) + ',W');
-    return exports.padLeft(s, 7, '0');
+    return padLeft(s, 7, '0');
 };
 
 // degrees
@@ -182,7 +182,7 @@ exports.encodeDegrees = function(d) {
     if(d === undefined) {
         return '';
     }
-    return exports.padLeft(d.toFixed(1), 5, '0');
+    return padLeft(d.toFixed(1), 5, '0');
 };
 
 exports.encodeDate = function(d) {
@@ -196,7 +196,7 @@ exports.encodeDate = function(d) {
     yr = d.getUTCFullYear();
     mn = d.getUTCMonth() + 1;
     dy = d.getUTCDate();
-    return exports.padLeft(dy.toString(), 2, '0') + exports.padLeft(mn.toString(), 2, '0') + yr.toString().substr(2);
+    return padLeft(dy.toString(), 2, '0') + padLeft(mn.toString(), 2, '0') + yr.toString().substr(2);
 };
 
 exports.encodeTime = function(d) {
@@ -210,14 +210,14 @@ exports.encodeTime = function(d) {
     h = d.getUTCHours();
     m = d.getUTCMinutes();
     s = d.getUTCSeconds();
-    return exports.padLeft(h.toString(), 2, '0') + exports.padLeft(m.toString(), 2, '0') + exports.padLeft(s.toString(), 2, '0');
+    return padLeft(h.toString(), 2, '0') + padLeft(m.toString(), 2, '0') + padLeft(s.toString(), 2, '0');
 };
 
 exports.encodeKnots = function(k) {
     if(k === undefined) {
         return '';
     }
-    return exports.padLeft(k.toFixed(1), 5, '0');
+    return padLeft(k.toFixed(1), 5, '0');
 };
 
 exports.encodeValue = function(v) {

@@ -4,8 +4,8 @@ var linecount = 0;
 var dataspan = document.getElementById("dataspan");
 
 ws.onmessage = function(item) {
-    dataspan.innerHTML +=  `${item.data}\r\n`;
-    //dataspan.scrollTop = ele.scrollHeight;
+    dataspan.innerHTML += item.data + '\n' ;
+    dataspan.scrollTop = dataspan.scrollHeight;
     linecount += 1; 
     if (linecount >= 400) {
         dataspan.textContent = "";

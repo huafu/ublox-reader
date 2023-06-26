@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 
 /*
     * === GLL - Geographic position - latitude and longitude ===
@@ -33,8 +33,8 @@ class GLLDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GLL";
         this.sentenceName = "Geographic position - latitude and longitude";
-        this.class = 0xF0;
-        this.id = 0x01;
+        this.cid = 0xF0;
+        this.mid = 0x01;
         this.latitude = ""; 
         this.longitude = "";
         this.time = "";
@@ -54,10 +54,10 @@ class GLLDecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 

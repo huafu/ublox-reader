@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
 * === TXT - Human readable text information for display purposes ===
 *
@@ -27,8 +27,8 @@ class TXTDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x41, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "TXT";
         this.sentenceName = "Human readable text information for display purposes";
-        this.class = 0xF0;
-        this.id = 0x41;
+        this.cid = 0xF0;
+        this.mid = 0x41;
         this.numberOfSentences = "";
         this.sentenceNumber = "";
         this.textId = "";
@@ -47,10 +47,10 @@ class TXTDecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
     

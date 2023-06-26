@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
 * === RMC - Recommended minimum navigation information ===
 *
@@ -38,8 +38,8 @@ class RMCDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "RMC";
         this.sentenceName = "Recommended minimum navigation information";
-        this.class = 0xF0;
-        this.id = 0x04;
+        this.cid = 0xF0;
+        this.mid = 0x04;
         this.datetime = "";
         this.status = "";
         this.latitude = "";
@@ -68,10 +68,10 @@ class RMCDecoder {
     
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
     

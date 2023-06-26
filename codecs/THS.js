@@ -1,6 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
+const configurator = require("../configurator.js");
 /*
 * === THS - True heading and status ===
 *
@@ -48,8 +49,8 @@ class THSDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "THS";
         this.sentenceName = "True heading and status"; 
-        this.class = 0xF0;
-        this.id = 0x0E;
+        this.cid = 0xF0;
+        this.mid = 0x0E;
         this.headt = 0;
         this.mi = "";
     }
@@ -80,10 +81,10 @@ class THSDecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 

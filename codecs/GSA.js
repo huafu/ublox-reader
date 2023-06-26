@@ -1,6 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
+const configurator = require("../configurator.js");
 /*
 * === GSA - Active satellites and dilution of precision ===
 *
@@ -36,8 +37,8 @@ class GSADecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GSA";
         this.sentenceName = "Active satellites and dilution of precision";
-        this.class = 0xF0;
-        this.id = 0x02;
+        this.cid = 0xF0;
+        this.mid = 0x02;
         this.selectionMode = "";
         this.fixMode = "";
         this.satellites = "";
@@ -67,10 +68,10 @@ class GSADecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 

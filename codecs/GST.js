@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
 * === GST - GPS pseudorange noise statistics ===
 *
@@ -31,8 +31,8 @@ class GSTDecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GST";
         this.sentenceName = "GPS pseudorange noise statistics";
-        this.class = 0xF0;
-        this.id = 0x07;
+        this.cid = 0xF0;
+        this.mid = 0x07;
         this.time = "";
         this.totalRms = "";
         this.semiMajorError = "";
@@ -59,10 +59,10 @@ class GSTDecoder {
     
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 

@@ -1,7 +1,7 @@
 "use strict";
 
 const helper = require("../helper.js");
-
+const configurator = require("../configurator.js");
 /*
     * === GGA - Global positioning system fix data ===
     *
@@ -50,8 +50,8 @@ class GGADecoder {
         // this.msgconfig = new Uint8Array([0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00]);
         this.sentenceId = "GGA";
         this.sentenceName = "Global positioning system fix data";
-        this.class = 0xF0;
-        this.id = 0x00;
+        this.cid = 0xF0;
+        this.mid = 0x00;
         this.time = ""; 
         this.latitude = ""; 
         this.longitude = "";
@@ -66,10 +66,10 @@ class GGADecoder {
 
     subscribe = function(enable) {
         if (enable) {
-            this.msgconfig[5] = 0x01;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x01);
         }
         else {
-            this.msgconfig[5] = 0x00;
+            configurator.setMessageEnabled(this.cid, this.mid, 0x00);
         }
     }
 
