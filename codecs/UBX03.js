@@ -23,14 +23,13 @@ class UBX03Decoder {
         this.sentenceName = "Satellite status"; 
         this.cid = 0xF1;
         this.mid = 0x03;
-        this.satellites = new Array();
+        this.satellites = [];
     }
 
     parse = function(fields) {    
         try {
             var numsats = fields[2];
             var offset = 3;
-            var sats = new Array(numsats);
             for (var i = 0; i < numsats; i++) {
                 var satid = fields[offset];
                 this.satellites.push(new Satellite(

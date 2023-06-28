@@ -13,6 +13,8 @@ exports.writeConfig = function(port, prid) {
     navRate = settings.navrate;
     pid = prid;
     
+    reconfigureSerialPort();
+
     switch (pid) {
         case "u-blox6":
         case "u-blox7":
@@ -178,36 +180,36 @@ const writeUblox9ConfigCommands = function() {
 }
 
 const reconfigureSerialPort = function() {
-    // // // Reconfigure serial port.
-    // var cfg = new Uint8Array(20);
-    // cfg[0] = 0x01; // portID.
-    // cfg[1] = 0x00; // res0.
-    // cfg[2] = 0x00; // res1.
-    // cfg[3] = 0x00; // res1.
+    // // Reconfigure serial port.
+    var cfg = new Uint8Array(20);
+    cfg[0] = 0x01; // portID.
+    cfg[1] = 0x00; // res0.
+    cfg[2] = 0x00; // res1.
+    cfg[3] = 0x00; // res1.
 
         
-    // // // [   7   ] [   6   ] [   5   ] [   4   ]
-    // // // 0000 0000 0000 0000 0000 1000 1100 0000
-    // // // UART mode. 0 stop bits, no parity, 8 data bits. Little endian order.
-    // cfg[4] = 0xC0;
-    // cfg[5] = 0x08;
-    // cfg[6] = 0x00;
-    // cfg[7] = 0x00;
+    // // [   7   ] [   6   ] [   5   ] [   4   ]
+    // // 0000 0000 0000 0000 0000 1000 1100 0000
+    // // UART mode. 0 stop bits, no parity, 8 data bits. Little endian order.
+    cfg[4] = 0xC0;
+    cfg[5] = 0x08;
+    cfg[6] = 0x00;
+    cfg[7] = 0x00;
 
-    // // // Baud rate. Little endian order.
-    // var bdrt = baudRate;
-    // cfg[11] = (byte)((bdrt >> 24) & 0xFF);   // = 0x00
-    // cfg[10] = (byte)((bdrt >> 16) & 0xFF);   // = 0x01
-    // cfg[9] = (byte)((bdrt >> 8) & 0xFF);     // = 0xC2
-    // cfg[8] = (byte)(bdrt & 0xFF);            // = 0x00
+    // // Baud rate. Little endian order.
+    var bdrt = baudRate;
+    cfg[11] = ((bdrt >> 24) & 0xFF);   // = 0x00
+    cfg[10] = ((bdrt >> 16) & 0xFF);   // = 0x01
+    cfg[9] = ((bdrt >> 8) & 0xFF);     // = 0xC2
+    cfg[8] = (bdrt & 0xFF);            // = 0x00
 
-    // // // inProtoMask. NMEA and UBX. Little endian.
-    // cfg[12] = 0x03;
-    // cfg[13] = 0x00;
+    // // inProtoMask. NMEA and UBX. Little endian.
+    cfg[12] = 0x03;
+    cfg[13] = 0x00;
 
-    // // // outProtoMask. NMEA. Little endian.
-    // cfg[14] = 0x02;
-    // cfg[15] = 0x00;
+    // // outProtoMask. NMEA. Little endian.
+    cfg[14] = 0x02;
+    cfg[15] = 0x00;
 }
 
 const concatTypedArrays = function(a, b) {
@@ -261,4 +263,16 @@ const serialPortWrite = function(msg) {
 exports.setMessageEnabled = function(cls, id, enabled) {
     var state = enabled ? 0x01 : 0x00;
     serialPortWrite(makeUBXCFG(0x06, 0x01, 8, new Uint8Array([cls, id, 0x00, 0x00, 0x00, state, state, 0x00])));
+}
+
+exports.setNavRate = function(rate) {
+    if (rate === "10") {
+        serialPortWrite(makeUBXCFG(0x06, 0x08, 6, new Uint8Array([0x64, 0x00, 0x01, 0x00, 0x01, 0x00]))); // 100ms & 1 cycle -> 10Hz (UBX-CFG-RATE payload bytes: little endian!)
+    } else if (rate === "5") {
+        serialPortWrite(makeUBXCFG(0x06, 0x08, 6, new Uint8Array([0xC8, 0x00, 0x01, 0x00, 0x01, 0x00]))); // 200ms & 1 cycle -> 5Hz (UBX-CFG-RATE payload bytes: little endian!)
+    } else if (rate === "2") {
+        serialPortWrite(makeUBXCFG(0x06, 0x08, 6, new Uint8Array([0xF4, 0x01, 0x01, 0x00, 0x01, 0x00]))); // 500ms & 1 cycle -> 2Hz (UBX-CFG-RATE payload bytes: little endian!)
+    } else if (rate === "1") {
+        serialPortWrite(makeUBXCFG(0x06, 0x08, 6, new Uint8Array([0xE8, 0x03, 0x01, 0x00, 0x01, 0x00]))); // 1000ms & 1 cycle -> 1Hz (UBX-CFG-RATE payload bytes: little endian!)
+    }
 }

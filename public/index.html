@@ -42,45 +42,52 @@
     <div class="wrapper">
         <textarea class="data" id="dataspan"></textarea>
         <div class="menu">
-            <form id="msgselect">
-                <div>Select which message classes to monitor, then click Submit:</div><br><br>
-                <input type="checkbox" class="cb" id="DTM" name="DTM" value="DTM">
-                <label for="DTM"> DTM</label><br>
-                <input type="checkbox" class="cb" id="GBS" name="GBS" value="DBS">
-                <label for="GBS"> GBS</label><br>
-                <input type="checkbox" class="cb" id="GGA" name="GGA" value="GGA">
-                <label for="GGA"> GGA</label><br>
-                <input type="checkbox" class="cb" id="GLL" name="GLL" value="GLL">
-                <label for="GLL"> GLL</label><br>
-                <input type="checkbox" class="cb" id="GNS" name="GNS" value="GNS">
-                <label for="GNS"> GNS</label><br>
-                <input type="checkbox" class="cb" id="GRS" name="GRS" value="GRS">
-                <label for="GRS"> GRS</label><br>
-                <input type="checkbox" class="cb" id="GSA" name="GSA" value="GSA">
-                <label for="GSA"> GSA</label><br>
-                <input type="checkbox" class="cb" id="GST" name="GST" value="GST">
-                <label for="GST"> GST</label><br>
-                <input type="checkbox" class="cb" id="GSV" name="GSV" value="GSV">
-                <label for="GSV"> GSV</label><br>
-                <input type="checkbox" class="cb" id="RMC" name="RMC" value="RMC">
-                <label for="RMC"> RMC</label><br>
-                <input type="checkbox" class="cb" id="TXT" name="TXT" value="TXT">
-                <label for="TXT"> TXT</label><br>
-                <input type="checkbox" class="cb" id="VLW" name="VLW" value="VLW">
-                <label for="VLW"> VLW</label><br>
-                <input type="checkbox" class="cb" id="VTG" name="VTG" value="VTG">
-                <label for="VTG"> VTG</label><br>
-                <input type="checkbox" class="cb" id="ZDA" name="ZDA" value="ZDA">
-                <label for="ZDA"> ZDA</label><br>
-                <input type="checkbox" class="cb" id="UBX00" name="UBX00" value="UBX00">
-                <label for="UBX00"> UBX00</label><br>
-                <input type="checkbox" class="cb" id="UBX03" name="UBX03" value="UBX03">
-                <label for="UBX03"> UBX03</label><br>
-                <input type="checkbox" class="cb" id="UBX04" name="UBX04" value="UBX04">
-                <label for="UBX04"> UBX04</label><br><br>
-                <input type="button" class="button" value="Submit" onclick="onSubmitClick()">
-            </form>
+            <div>Select messages to monitor and Submit:</div><br><br>
+            <div><label for="navrate">  Navigation rate: </label>
+                <select class="combo" id="navrate" name="navrate">
+                    <option value="1">1hz</option>
+                    <option value="2">2hz</option>
+                    <option value="5">5hz</option>
+                    <option value="10">10hz</option>
+                </select><br><br>
+            </div>    
+            <input type="checkbox" class="cb" id="DTM" name="DTM" value="DTM">
+            <label for="DTM"> DTM</label><br>
+            <input type="checkbox" class="cb" id="GBS" name="GBS" value="DBS">
+            <label for="GBS"> GBS</label><br>
+            <input type="checkbox" class="cb" id="GGA" name="GGA" value="GGA">
+            <label for="GGA"> GGA</label><br>
+            <input type="checkbox" class="cb" id="GLL" name="GLL" value="GLL">
+            <label for="GLL"> GLL</label><br>
+            <input type="checkbox" class="cb" id="GNS" name="GNS" value="GNS">
+            <label for="GNS"> GNS</label><br>
+            <input type="checkbox" class="cb" id="GRS" name="GRS" value="GRS">
+            <label for="GRS"> GRS</label><br>
+            <input type="checkbox" class="cb" id="GSA" name="GSA" value="GSA">
+            <label for="GSA"> GSA</label><br>
+            <input type="checkbox" class="cb" id="GST" name="GST" value="GST">
+            <label for="GST"> GST</label><br>
+            <input type="checkbox" class="cb" id="GSV" name="GSV" value="GSV">
+            <label for="GSV"> GSV</label><br>
+            <input type="checkbox" class="cb" id="RMC" name="RMC" value="RMC">
+            <label for="RMC"> RMC</label><br>
+            <input type="checkbox" class="cb" id="TXT" name="TXT" value="TXT">
+            <label for="TXT"> TXT</label><br>
+            <input type="checkbox" class="cb" id="VLW" name="VLW" value="VLW">
+            <label for="VLW"> VLW</label><br>
+            <input type="checkbox" class="cb" id="VTG" name="VTG" value="VTG">
+            <label for="VTG"> VTG</label><br>
+            <input type="checkbox" class="cb" id="ZDA" name="ZDA" value="ZDA">
+            <label for="ZDA"> ZDA</label><br>
+            <input type="checkbox" class="cb" id="UBX00" name="UBX00" value="UBX00">
+            <label for="UBX00"> UBX00</label><br>
+            <input type="checkbox" class="cb" id="UBX03" name="UBX03" value="UBX03">
+            <label for="UBX03"> UBX03</label><br>
+            <input type="checkbox" class="cb" id="UBX04" name="UBX04" value="UBX04">
+            <label for="UBX04"> UBX04</label><br><br>
+            <input type="button" class="button" value="Submit" onclick="onSubmitClick()">
         </div>
     </div>
+    <input type="hidden" id="wsport" value="6060">
     <script src="index.js"></script>
 </body>

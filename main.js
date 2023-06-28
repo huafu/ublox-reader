@@ -2,11 +2,12 @@
 
 const { SerialPort } = require('serialport');
 const { SerialData } = require('./serialdata.js');
-
-const settings = require("./settings.js");
-const helper = require("./helper.js")
-const webserver = require("./server.js");
+const http = require("http");
+const { WebSocketServer } = require("ws");
+const express = require("express");
+const favicon = require('serve-favicon');
 const configurator = require("./configurator.js");
+const settings = require("./settings.js");
 
 const DTMDecoder = require("./codecs/DTM.js");
 const GBSDecoder = require("./codecs/GBS.js");
@@ -26,35 +27,37 @@ const UBX00Decoder = require("./codecs/UBX00.js");
 const UBX03Decoder = require("./codecs/UBX03.js");
 const UBX04Decoder = require("./codecs/UBX04.js");
 
-var decoders = new Map();
-var selectedMessages = {};
+const decoders = {};
+const connections = {};
+var port = {};
+
 
 const loadDecoders = function() {
-    decoders.set("DTM", new DTMDecoder());
-    decoders.set("GBS", new GBSDecoder());
-    decoders.set("GGA", new GGADecoder());
-    decoders.set("GLL", new GLLDecoder());
-    decoders.set("GNS", new GNSDecoder());
-    decoders.set("GRS", new GRSDecoder());
-    decoders.set("GSA", new GSADecoder());
-    decoders.set("GST", new GSTDecoder());
-    decoders.set("GSV", new GSVDecoder());
-    decoders.set("RMC", new RMCDecoder());
-    decoders.set("TXT", new TXTDecoder());
-    decoders.set("VLW", new VLWDecoder());
-    decoders.set("VTG", new VTGDecoder());
-    decoders.set("ZDA", new ZDADecoder());
-    decoders.set("UBX00", new UBX00Decoder());
-    decoders.set("UBX03", new UBX03Decoder());
-    decoders.set("UBX04", new UBX04Decoder());
+    decoders["DTM"] = new DTMDecoder();
+    decoders["GBS"] = new GBSDecoder();
+    decoders["GGA"] = new GGADecoder();
+    decoders["GLL"] = new GLLDecoder();
+    decoders["GNS"] = new GNSDecoder();
+    decoders["GRS"] = new GRSDecoder();
+    decoders["GSA"] = new GSADecoder();
+    decoders["GST"] = new GSTDecoder();
+    decoders["GSV"] = new GSVDecoder();
+    decoders["RMC"] = new RMCDecoder();
+    decoders["TXT"] = new TXTDecoder();
+    decoders["VLW"] = new VLWDecoder();
+    decoders["VTG"] = new VTGDecoder();
+    decoders["ZDA"] = new ZDADecoder();
+    decoders["UBX00"] = new UBX00Decoder();
+    decoders["UBX03"] = new UBX03Decoder();
+    decoders["UBX04"] = new UBX04Decoder();
 }
+
+loadDecoders();
 
 mainFunction();
 
 function mainFunction() {
-
     let baudrate = settings.baudrate;
-    let port; 
     let device;
     
     SerialPort.list().then(list => {
@@ -79,12 +82,10 @@ function mainFunction() {
         console.log(err);
     });
 
-    loadDecoders();
-    webserver.runServers();
-
+    runServers();
 }
 
-function runParsing(port) {
+function runParsing() {
     let buffer = port.read();
     if (buffer !== null) {
         let hdr0 = buffer[0];
@@ -106,10 +107,13 @@ function runParsing(port) {
             }
             var line = Buffer.from(msg).toString();
             var sd = new SerialData(line);
-            var decoder = decoders.get(sd.sentenceId);
+            if (sd.sentenceId === "UBX") {
+                sd.sentenceId += sd.fields[1]; 
+            }
+            var decoder = decoders[sd.sentenceId];
             if (decoder !== undefined) {
                 decoder.parse(sd.fields);
-                sendMessage(decoder);
+                sendDataToBrowser(decoder.getJson());
                 if (settings.outputconsole) console.log(decoder.getJson());
             }
         }
@@ -124,7 +128,7 @@ String.prototype.toBytes = function () {
     return bytes;
 };
 
-const getDeviceInfo = function(portjson){
+function getDeviceInfo(portjson){
 /* u-blox device codes
     ----------------------------------
     MANUFACTURER ID = 0x1546 U-Blox AG 
@@ -170,16 +174,98 @@ const getDeviceInfo = function(portjson){
     return outjson;
 }
 
-const sendMessage = function(decoder) {
+function sendMessage(decoder) {
     if (selectedMessages[decoder.sentenceId] !== undefined) {
-        webserver.sendDataToBrowser(decoder.getJson());
+        
     } 
 }
 
-exports.selectMessages = function(data) {
-    selectedMessages = data;
-    decoders.forEach((decoder, key) => {
-        configurator.setMessageEnabled(decoder.cid, decoder.mid, data[key]);
-        console.log(`${decoder.sentenceId} enabled: ${data[key]}`)
-    })
+function selectMessages(data) {
+    var list = data["list"];
+    var rate = data["navrate"];
+    for (var i = 0; i < list.length; i++) {
+        var decoder = decoders[list[i][0]];
+        var enabled = list[i][1];
+        configurator.setMessageEnabled(decoder.cid, decoder.mid, enabled);
+        console.log(`${decoder.sentenceId} enabled: ${enabled}`)
+    }
+    configurator.setNavRate(rate);
+}
+
+function runServers() {
+    var server = http.createServer();
+    var wss = new WebSocketServer({ server });
+    server.listen(settings.wsport, () => {});
+
+    console.log(`Data forwarding websocket server established on port ${settings.wsport}`); 
+
+    wss.on("connection", (wsconn) => {
+        const id = Date.now();
+        connections[id] = wsconn;
+        wsconn.send("connected to server... select desired message(s) and click on Submit") 
+    
+        wsconn.on("close", function () {
+            console.log("connection closed");
+            for(let id in connections) {
+                let cn = connections[id];
+                if (cn === wsconn) {
+                    delete connections[id];
+                    break;
+                }
+            }
+        });
+
+        wsconn.on("message", (message) => { 
+            var data = message.toString();
+            selectMessages(JSON.parse(data));
+        });
+    });
+
+    var app = express();
+    try {
+        app.use(express.urlencoded({ extended: true }));
+        app.listen(settings.httpport, () => {
+            console.log(`Http web server is listening on port ${settings.httpport}`);
+        });
+        
+        var options = {
+            dotfiles: 'ignore',
+            etag: false,
+            extensions: ['html'],
+            index: false,
+            redirect: false,
+            setHeaders: function (res, path, stat) {
+                res.set('x-timestamp', Date.now());
+            }
+        };
+
+        app.use(express.static(`${__dirname}/public`, options));
+        app.use(favicon(`${__dirname}/public/favicon.ico`));
+
+        app.get('/',(req, res) => {
+            res.sendFile(`${__dirname}/public/index.html`);
+        });
+
+        app.get('/wsport',(req, res) => {
+            res.send("6060");
+        });
+
+        app.post("/msgselect", (req, res) => {
+            selectMessages(req.body);
+            res.writeHead(200);
+            res.end();
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+function sendDataToBrowser(data) {
+    try {
+        for(let id in connections) {
+            connections[id].send(data);
+        };
+    }
+    finally{}
 }
