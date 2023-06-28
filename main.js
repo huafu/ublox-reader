@@ -119,14 +119,6 @@ function runParsing() {
     }
 }
 
-String.prototype.toBytes = function () {
-    var bytes = [];
-    for (var i = 0; i < this.length; ++i) {
-        bytes.push(this.charCodeAt(i));
-    }
-    return bytes;
-};
-
 function getDeviceInfo(portjson){
 /* u-blox device codes
     ----------------------------------
@@ -173,21 +165,16 @@ function getDeviceInfo(portjson){
     return outjson;
 }
 
-function sendMessage(decoder) {
-    if (selectedMessages[decoder.sentenceId] !== undefined) {
-        
-    } 
-}
-
 function selectMessages(data) {
+    
     var list = data["list"];
     var rate = data["navrate"];
-    for (var i = 0; i < list.length; i++) {
-        var decoder = decoders[list[i][0]];
-        var enabled = list[i][1];
+    list.forEach((item) => {
+        console.log(item);
+        var decoder = decoders[item[0]];
+        var enabled = item[1];
         configurator.setMessageEnabled(decoder.cid, decoder.mid, enabled);
-        console.log(`${decoder.sentenceId} enabled: ${enabled}`)
-    }
+    });
     configurator.setNavRate(rate);
 }
 
@@ -293,3 +280,11 @@ class SerialData {
         return this.sentenceId.length > 1;
     };
 }
+
+String.prototype.toBytes = function () {
+    var bytes = [];
+    for (var i = 0; i < this.length; ++i) {
+        bytes.push(this.charCodeAt(i));
+    }
+    return bytes;
+};
