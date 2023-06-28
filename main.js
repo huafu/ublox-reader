@@ -2,8 +2,8 @@
 
 const { SerialPort } = require('serialport');
 const { SerialData } = require('./serialdata.js');
-const http = require("http");
 const { WebSocketServer } = require("ws");
+const http = require("http");
 const express = require("express");
 const favicon = require('serve-favicon');
 const configurator = require("./configurator.js");
