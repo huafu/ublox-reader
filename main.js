@@ -29,7 +29,7 @@ const UBX04Decoder = require("./codecs/UBX04.js");
 
 const decoders = {};
 const connections = {};
-var port = {};
+var port = undefined;
 
 
 const loadDecoders = function() {
@@ -54,9 +54,11 @@ const loadDecoders = function() {
 
 loadDecoders();
 
-mainFunction();
+connectUblox();
 
-function mainFunction() {
+runServers();
+
+function connectUblox() {
     let baudrate = settings.baudrate;
     let device;
     
@@ -81,8 +83,6 @@ function mainFunction() {
     err => {
         console.log(err);
     });
-
-    runServers();
 }
 
 function runParsing() {
@@ -203,8 +203,12 @@ function runServers() {
     wss.on("connection", (wsconn) => {
         const id = Date.now();
         connections[id] = wsconn;
-        wsconn.send("connected to server... select desired message(s) and click on Submit") 
-    
+        if (port !== undefined) {
+            wsconn.send("connected to server... select desired message(s) to monitor") 
+        }
+        else {
+            wsconn.send("no U-blox gps device present on any serial port. Plug in a U-blox device and add /reconnect to the URL to try again</b>") 
+        }
         wsconn.on("close", function () {
             console.log("connection closed");
             for(let id in connections) {
@@ -251,6 +255,12 @@ function runServers() {
             let sip = getServerIPAddress();
             let wsdata = `ws://${sip}:${settings.wsport}`;
             res.send(wsdata);
+        });
+
+        app.get('/reconnect', (req, res) => {
+            connectUblox();
+            res.redirect("/");
+            res.end();
         });
 
         app.post("/msgselect", (req, res) => {
