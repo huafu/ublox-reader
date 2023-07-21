@@ -67,6 +67,7 @@ class GSVDecoder {
     }
 
     parse = function(fields) {
+        this.satellites = new Array();
         try {
             var numRecords = (fields.length - 4) / 4;
             for (var i = 0; i < numRecords; i++) {
