@@ -23,11 +23,12 @@ class UBX03Decoder {
         this.sentenceName = "Satellite status"; 
         this.cid = 0xF1;
         this.mid = 0x03;
-        this.satellites = [];
+        this.satellites = undefined;
     }
 
     parse = function(fields) {    
         try {
+            this.satellites = new Array();
             var numsats = fields[2];
             var offset = 3;
             for (var i = 0; i < numsats; i++) {
