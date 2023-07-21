@@ -7,6 +7,7 @@ const express = require("express");
 const favicon = require('serve-favicon');
 const configurator = require("./configurator.js");
 const settings = require("./settings.js");
+const { networkInterfaces } = require('os');
 
 const DTMDecoder = require("./codecs/DTM.js");
 const GBSDecoder = require("./codecs/GBS.js");
@@ -178,6 +179,20 @@ function selectMessages(data) {
     configurator.setNavRate(rate);
 }
 
+function getServerIPAddress() {
+    const nets = networkInterfaces();
+    const results = new Array(); //Object.create(null);
+    for (const name of Object.keys(nets)) {
+        for (const net of nets[name]) {
+            if (net.family === 'IPv4' && !net.internal) {
+                results.push(net.address);
+            }
+        }
+    }
+    console.log(`Server IP address: ${results[0]}`);
+    return results[0];
+}
+
 function runServers() {
     var server = http.createServer();
     var wss = new WebSocketServer({ server });
@@ -232,8 +247,10 @@ function runServers() {
             res.sendFile(`${__dirname}/public/index.html`);
         });
 
-        app.get('/wsport',(req, res) => {
-            res.send("6060");
+        app.get('/wsurl',(req, res) => {
+            let sip = getServerIPAddress();
+            let wsdata = `ws://${sip}:${settings.wsport}`;
+            res.send(wsdata);
         });
 
         app.post("/msgselect", (req, res) => {

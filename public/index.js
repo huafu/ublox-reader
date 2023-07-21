@@ -21,8 +21,7 @@ const onSubmitClick = function() {
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-        var wsport = xhttp.responseText;
-        ws = new WebSocket(`ws://localhost:${wsport}`)
+        ws = new WebSocket(xhttp.responseText);
         ws.onopen = function() { onSubmitClick() }
         ws.onmessage = function(item) {
             dataspan.innerHTML += item.data + '\n\n' ;
@@ -35,5 +34,5 @@ xhttp.onreadystatechange = function() {
         };
     }
 };
-xhttp.open("GET", "/wsport", true);
+xhttp.open("GET", "/wsurl", true);
 xhttp.send();
