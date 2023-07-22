@@ -1,9 +1,9 @@
 # ublox-reader
-Full node.js implementation of message parsing from U-Blox GPS usb devices.
+Node.js implementation of message parsing from U-Blox GPS usb devices.
 
 Application configuration settings are in the settings.js file.
 
-Serves an HTML page with message type checkbox selection(s) and data updated via websocket.
+Serves an HTML page with message type checkbox selection(s) and message data updated via websocket.
 
 Open browser and navigate to localhost:5000 (or whatever port is indicated in settings.js)
 
