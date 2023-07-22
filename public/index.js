@@ -1,17 +1,16 @@
 "use strict";
 
-var dataspan = document.getElementById("dataspan");;
+var dataspan = document.getElementById("dataspan");
+var chkboxes = document.querySelectorAll(".cb");
 var ws = {}; 
 var linecount = 0;
-
-let combos = document.querySelectorAll(".cb");
 
 const manageSelections = function() {
     dataspan.innerHTML = "";
     var navrate = document.getElementById("navrate");
     var msg = { "navrate": navrate.value, "list": [] };
-    Array.prototype.forEach.call(combos, function(combo) {   
-        msg["list"].push([combo.id, combo.checked]);   
+    Array.prototype.forEach.call(chkboxes, function(chkbox) {   
+        msg["list"].push([chkbox.id, chkbox.checked]);   
     });
     ws.send(JSON.stringify(msg));
 }
@@ -24,7 +23,8 @@ xhttp.onreadystatechange = function() {
             manageSelections();            
         }
         ws.onmessage = function(item) {
-            dataspan.innerHTML += item.data + '\n\n' ;
+            let message = JSON.parse(item.data);
+            dataspan.innerHTML += message.payload + '\n\n' ;
             dataspan.scrollTop = dataspan.scrollHeight;
             linecount += 1; 
             if (linecount >= 400) {
@@ -33,6 +33,6 @@ xhttp.onreadystatechange = function() {
             }
         };
     }
-};
+}
 xhttp.open("GET", "/wsurl", true);
 xhttp.send();
