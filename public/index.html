@@ -15,7 +15,8 @@
             font-size: small;
             color: lightgreen;
             width: 100%;
-            height: 600px;
+            height: inherit;
+            padding: 10px;
             border: 1px solid black;
             overflow-x: auto;
             overflow-y: visible;
@@ -25,16 +26,20 @@
             background-color: #8fa9be;
             font-family: system-ui;
             font-size: medium;
+            padding: 10px;
             width: 100%;
-            height: 600px;
+            height: inherit;
             border: 1px solid black;
-            overflow: scroll; 
+            overflow-y: scroll; 
+            overflow-x: hidden;
         }
         .button {
-            width: 60px;
+            width: 85px;
             height: 30px;
             border: 10px; 
-            margin-left: 10px;
+            border-radius: 8px;
+            visibility: hidden;
+            box-shadow: crimson;
         }
     </style>
 </head>
@@ -42,14 +47,14 @@
     <div class="wrapper">
         <textarea class="data" id="dataspan"></textarea>
         <div class="menu">
-            <div>Select messages to monitor</div><br><br>
+            <div>Select messages to monitor</div><br>
             <div><label for="navrate">  Navigation rate: </label>
                 <select class="combo" id="navrate" name="navrate">
                     <option value="1">1hz</option>
                     <option value="2">2hz</option>
                     <option value="5">5hz</option>
                     <option value="10">10hz</option>
-                </select><br><br>
+                </select><br>
             </div>    
             <input type="checkbox" class="cb" id="DTM" name="DTM" value="DTM" onchange="manageSelections()">
             <label for="DTM"> DTM</label><br>
