@@ -30,7 +30,7 @@ const UBX04Decoder = require("./codecs/UBX04.js");
 const decoders = {};
 const connections = {};
 var port = undefined;
-
+var timerid;
 
 const loadDecoders = function() {
     decoders["DTM"] = new DTMDecoder();
@@ -53,10 +53,15 @@ const loadDecoders = function() {
 }
 
 loadDecoders();
-
-connectUblox();
-
 runServers();
+
+
+function runSerialConnectionTimer() {
+    timerid = setInterval(function(){
+        console.log("checking for u-blox GPS dongle");
+        connectUblox();
+    }, 3000);
+}
 
 function connectUblox() {
     let baudrate = settings.baudrate;
@@ -72,9 +77,14 @@ function connectUblox() {
                 port.on('open', function() {
                     console.log(port);
                     configurator.writeConfig(port, device.pid);
+                    clearInterval(timerid);
                 }); 
                 port.on('readable', function() {
                     runParsing(port);
+                });
+                port.on('close', function() {
+                    sendDataToBrowser("disconnect","SERIAL PORT DISCONNECTED!\r\n\r\nThe application will attempt reconnection...")
+                    runSerialConnectionTimer();
                 });
                 break;
             }
@@ -113,7 +123,7 @@ function runParsing() {
             var decoder = decoders[sd.sentenceId];
             if (decoder !== undefined) {
                 decoder.parse(sd.fields);
-                sendDataToBrowser(decoder.getJson());
+                sendDataToBrowser("data", decoder.getJson());
                 if (settings.outputconsole) console.log(decoder.getJson());
             }
         }
@@ -167,7 +177,6 @@ function getDeviceInfo(portjson){
 }
 
 function selectMessages(data) {
-    
     var list = data["list"];
     var rate = data["navrate"];
     list.forEach((item) => {
@@ -197,17 +206,19 @@ function runServers() {
     var server = http.createServer();
     var wss = new WebSocketServer({ server });
     server.listen(settings.wsport, () => {});
-
+    runSerialConnectionTimer();
     console.log(`Data forwarding websocket server established on port ${settings.wsport}`); 
 
     wss.on("connection", (wsconn) => {
         const id = Date.now();
         connections[id] = wsconn;
         if (port !== undefined) {
-            wsconn.send("connected to server... select desired message(s) to monitor") 
+            sendDataToBrowser("gpssuccess", "Connected to server... select desired message(s) to monitor");
         }
         else {
-            wsconn.send("no U-blox gps device present on any serial port. Plug in a U-blox device and add /reconnect to the URL to try again</b>") 
+            sendDataToBrowser("gpsfailure","No U-blox gps device present on any serial port.\r\n\r\n" +
+                              "The application will keep attempting to recover until a U-blox\r\n" +
+                              "device is detected and messages will then be sent to the browser."); 
         }
         wsconn.on("close", function () {
             console.log("connection closed");
@@ -219,7 +230,6 @@ function runServers() {
                 }
             }
         });
-
         wsconn.on("message", (message) => { 
             var data = message.toString();
             selectMessages(JSON.parse(data));
@@ -257,14 +267,8 @@ function runServers() {
             res.send(wsdata);
         });
 
-        app.get('/reconnect', (req, res) => {
+        app.post("/reconnect", (req, res) => {
             connectUblox();
-            res.redirect("/");
-            res.end();
-        });
-
-        app.post("/msgselect", (req, res) => {
-            selectMessages(req.body);
             res.writeHead(200);
             res.end();
         });
@@ -274,10 +278,11 @@ function runServers() {
     }
 }
 
-function sendDataToBrowser(data) {
+function sendDataToBrowser(msgprefix, data) {
+    let msg = JSON.stringify({"prefix": msgprefix, "payload": data});
     try {
         for(let id in connections) {
-            connections[id].send(data);
+            connections[id].send(msg);
         };
     }
     finally{}
