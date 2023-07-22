@@ -78,6 +78,7 @@ function connectUblox() {
                     console.log(port);
                     configurator.writeConfig(port, device.pid);
                     clearInterval(timerid);
+                    selectMessages(JSON.parse(settings.initialization));
                 }); 
                 port.on('readable', function() {
                     runParsing(port);
@@ -190,7 +191,7 @@ function selectMessages(data) {
 
 function getServerIPAddress() {
     const nets = networkInterfaces();
-    const results = new Array(); //Object.create(null);
+    const results = new Array();
     for (const name of Object.keys(nets)) {
         for (const net of nets[name]) {
             if (net.family === 'IPv4' && !net.internal) {
@@ -232,6 +233,7 @@ function runServers() {
         });
         wsconn.on("message", (message) => { 
             var data = message.toString();
+            settings.initialization = data;
             selectMessages(JSON.parse(data));
         });
     });
@@ -265,12 +267,6 @@ function runServers() {
             let sip = getServerIPAddress();
             let wsdata = `ws://${sip}:${settings.wsport}`;
             res.send(wsdata);
-        });
-
-        app.post("/reconnect", (req, res) => {
-            connectUblox();
-            res.writeHead(200);
-            res.end();
         });
     }
     catch (error) {
