@@ -67,32 +67,42 @@ function connectUblox() {
     let baudrate = settings.baudrate;
     let device;
     
-    SerialPort.list().then(list => {
-        for (var i = 0; i < list.length; i++) {
-            device = getDeviceInfo(list[i]);
-            if (device.isublox) {
-                console.log(device);
-                port = new SerialPort({ path: device.path, baudRate: baudrate, autoOpen: false });
-                port.open();
-                port.on('open', function() {
-                    console.log(port);
-                    configurator.writeConfig(port, device.pid);
-                    clearInterval(timerid);
-                    selectMessages(JSON.parse(settings.initialization));
-                }); 
-                port.on('readable', function() {
-                    runParsing(port);
-                });
-                port.on('close', function() {
-                    sendDataToBrowser("disconnect","SERIAL PORT DISCONNECTED!\r\n\r\nThe application will attempt reconnection...")
-                    runSerialConnectionTimer();
-                });
-                break;
+    if (settings.isdocker) {
+        device = settings.device; 
+        setupSerialDevice(device, baudrate);
+    }
+    else {
+        SerialPort.list().then(list => {
+            for (var i = 0; i < list.length; i++) {
+                device = getDeviceInfo(list[i]);
+                if (device.isublox) {
+                    setupSerialDevice(device, baudrate);
+                    break;
+                }
             }
-        }
-    },
-    err => {
-        console.log(err);
+        },
+        err => {
+            console.log(err);
+        });
+    }
+}
+
+const setupSerialDevice = function(device, baudrate) {
+    console.log(device);
+    port = new SerialPort({ path: device.path, baudRate: baudrate, autoOpen: false });
+    port.open();
+    port.on('open', function() {
+        console.log(port);
+        configurator.writeConfig(port, device.pid);
+        clearInterval(timerid);
+        selectMessages(JSON.parse(settings.initialization));
+    }); 
+    port.on('readable', function() {
+        runParsing(port);
+    });
+    port.on('close', function() {
+        sendDataToBrowser("disconnect","SERIAL PORT DISCONNECTED!\r\n\r\nThe application will attempt reconnection...")
+        runSerialConnectionTimer();
     });
 }
 

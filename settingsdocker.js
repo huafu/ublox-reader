@@ -1,6 +1,5 @@
-
 module.exports = {
-    "isdocker": false, 
+    "isdocker": true, 
     "device": {"isublox": true, "path": "/dev/ttyACM0", "pid": "u-blox8"},
     "httpport": 5000,
     "wsport": 6060,
