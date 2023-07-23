@@ -32,11 +32,12 @@ class GRSDecoder {
         this.mid = 0x06;
         this.time = ""; 
         this.mode = ""; 
-        this.residual = []; 
+        this.residual = undefined; 
         this.systemId = 0; 
         this.signalId = 0;
     }
     parse = function(fields) {
+        this.residual = new Array();
         try {
             this.time =  helper.parseTime(fields[1], "");
             this.mode =  fields[2];
