@@ -2,8 +2,10 @@
 
 var dataspan = document.getElementById("dataspan");
 var chkboxes = document.querySelectorAll(".cb");
+var pausebutton = document.getElementById("pause");
 var ws = {}; 
 var linecount = 0;
+var paused = false;
 
 const manageSelections = function() {
     dataspan.innerHTML = "";
@@ -23,16 +25,28 @@ xhttp.onreadystatechange = function() {
             manageSelections();            
         }
         ws.onmessage = function(item) {
-            let message = JSON.parse(item.data);
-            dataspan.innerHTML += message.payload + '\n\n' ;
-            dataspan.scrollTop = dataspan.scrollHeight;
-            linecount += 1; 
-            if (linecount >= 400) {
-                dataspan.textContent = "";
-                linecount = 0;
+            if (!paused) {
+                let message = JSON.parse(item.data);
+                dataspan.innerHTML += message.payload + '\n\n' ;
+                dataspan.scrollTop = dataspan.scrollHeight;
+                linecount += 1; 
+                if (linecount >= 400) {
+                    dataspan.textContent = "";
+                    linecount = 0;
+                }
             }
         };
     }
 }
 xhttp.open("GET", "/wsurl", true);
 xhttp.send();
+
+const pause = function() {
+    paused = !paused;
+    if (paused) {
+        pausebutton.innerHTML = "Resume"
+    }
+    else {
+        pausebutton.innerHTML = "Pause"
+    }
+}
