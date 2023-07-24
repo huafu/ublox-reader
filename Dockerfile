@@ -8,7 +8,7 @@ FROM ubuntu
 RUN ["apt", "update"]
 RUN ["apt", "install", "curl", "-y"]
 RUN ["apt", "install", "git", "-y"]
-RUN ["git", "clone", "https://github.com/n129bz/ublox-reader.git", "--branch", "docker"]
+RUN ["git", "clone", "https://github.com/n129bz/ublox-reader.git"]
 RUN ["apt", "install", "net-tools", "-y"]
 RUN ["apt", "install", "nano", "-y"]
 ENV NODE_VERSION=18.12.0
