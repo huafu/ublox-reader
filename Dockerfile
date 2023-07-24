@@ -1,6 +1,6 @@
 # version 0.0.1
 
-# sudo docker run -it --privileged --device=/dev/ttyACM0 88579549b447 /bin/bash
+# sudo docker run -it --privileged --device=/dev/ttyACM0 n129bz/ublox-reader /bin/bash
 FROM ubuntu
 
 RUN ["apt", "update"]
