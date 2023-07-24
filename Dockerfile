@@ -1,6 +1,9 @@
 # version 0.0.1
 
 # sudo docker run -it --privileged --device=/dev/ttyACM0 n129bz/ublox-reader /bin/bash
+# run the image: sudo docker run -it --privileged --device=/dev/ttyACM0 n129bz/ublox-reader /bin/bash
+# at the bash prompt enter "node main"
+
 FROM ubuntu
 
 RUN ["apt", "update"]
