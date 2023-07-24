@@ -1,6 +1,6 @@
 # version 0.0.1
 
-# run the image: sudo docker run -it --privileged --device=/dev/ttyACM0 n129bz/ublox-reader /bin/bash
+# run the image: sudo docker run -it -d --privileged --device=/dev/ttyACM0 n129bz/ublox-reader
 # at the bash prompt enter "node main"
 
 FROM ubuntu
@@ -21,7 +21,7 @@ ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 WORKDIR /ublox-reader
 RUN ["mv", "-f", "settingsdocker.js", "settings.js"]
 RUN ["npm", "install"] 
-
+CMD ["node", "main.js"]
 EXPOSE 5000
 EXPOSE 6060
 
