@@ -26,12 +26,26 @@ const ZDADecoder = require("./codecs/ZDA.js");
 const UBX00Decoder = require("./codecs/UBX00.js");
 const UBX03Decoder = require("./codecs/UBX03.js");
 const UBX04Decoder = require("./codecs/UBX04.js");
-
 const decoders = {};
 const connections = {};
+
 var port = undefined;
-var timerid;
-var sip = getServerIPAddress();
+var timerid = 0;
+var sip = getServerIPAddress(); 
+
+function getServerIPAddress() {
+    const nets = networkInterfaces();
+    const results = new Array();
+    for (const name of Object.keys(nets)) {
+        for (const net of nets[name]) {
+            if (net.family === 'IPv4' && !net.internal) {
+                results.push(net.address);
+            }
+        }
+    }
+    console.log(`Server IP address: ${results[0]}`);
+    return results[0];
+}
 
 const loadDecoders = function() {
     decoders["DTM"] = new DTMDecoder();
@@ -198,20 +212,6 @@ function selectMessages(data) {
         configurator.setMessageEnabled(decoder.cid, decoder.mid, enabled);
     });
     configurator.setNavRate(rate);
-}
-
-function getServerIPAddress() {
-    const nets = networkInterfaces();
-    const results = new Array();
-    for (const name of Object.keys(nets)) {
-        for (const net of nets[name]) {
-            if (net.family === 'IPv4' && !net.internal) {
-                results.push(net.address);
-            }
-        }
-    }
-    console.log(`Server IP address: ${results[0]}`);
-    return results[0];
 }
 
 function runServers() {
