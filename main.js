@@ -31,6 +31,7 @@ const decoders = {};
 const connections = {};
 var port = undefined;
 var timerid;
+var sip = getServerIPAddress();
 
 const loadDecoders = function() {
     decoders["DTM"] = new DTMDecoder();
@@ -274,7 +275,6 @@ function runServers() {
         });
 
         app.get('/wsurl',(req, res) => {
-            let sip = getServerIPAddress();
             let wsdata = `ws://${sip}:${settings.wsport}`;
             res.send(wsdata);
         });
@@ -286,6 +286,7 @@ function runServers() {
 
 function sendDataToBrowser(msgprefix, data) {
     let msg = JSON.stringify({"prefix": msgprefix, "payload": data});
+    console.log(`Sending data from ${sip}`);
     try {
         for(let id in connections) {
             connections[id].send(msg);
