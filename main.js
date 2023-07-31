@@ -33,20 +33,6 @@ var port = undefined;
 var timerid = 0;
 var sip = getServerIPAddress(); 
 
-function getServerIPAddress() {
-    const nets = networkInterfaces();
-    const results = new Array();
-    for (const name of Object.keys(nets)) {
-        for (const net of nets[name]) {
-            if (net.family === 'IPv4' && !net.internal) {
-                results.push(net.address);
-            }
-        }
-    }
-    console.log(`Server IP address: ${results[0]}`);
-    return results[0];
-}
-
 const loadDecoders = function() {
     decoders["DTM"] = new DTMDecoder();
     decoders["GBS"] = new GBSDecoder();
@@ -70,6 +56,19 @@ const loadDecoders = function() {
 loadDecoders();
 runServers();
 
+function getServerIPAddress() {
+    const nets = networkInterfaces();
+    const results = new Array();
+    for (const name of Object.keys(nets)) {
+        for (const net of nets[name]) {
+            if (net.family === 'IPv4' && !net.internal) {
+                results.push(net.address);
+            }
+        }
+    }
+    console.log(`Server IP address: ${results[0]}`);
+    return results[0];
+}
 
 function runSerialConnectionTimer() {
     timerid = setInterval(function(){
