@@ -345,9 +345,10 @@ exports.parseTime = function(time) {
     var h = parseInt(time.slice(0, 2), 10);
     var m = parseInt(time.slice(2, 4), 10);
     var s = parseInt(time.slice(4, 6), 10);
-    var D = parseInt(new Date().getDay(), 10);
-    var M = parseInt(new Date().getMonth(), 10);
-    var Y = parseInt(new Date().getFullYear(), 10);
+    const now = new Date();
+    var D = now.getDate();
+    var M = now.getMonth();
+    var Y = now.getFullYear();
     return new Date(Date.UTC(Y, M, D, h, m, s));
 }
 
@@ -366,7 +367,7 @@ exports.parseDateTime = function(date, time) {
     else {
         Y = Y + 1900;
     }
-    return new Date(Date.UTC(Y, M, D, h, m, s));
+    return new Date(Date.UTC(Y, M - 1, D, h, m, s));
 };
 
 exports.parseUInt16 = function(hibyte, lowbyte) {
