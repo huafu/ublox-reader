@@ -345,7 +345,7 @@ exports.parseTime = function(time) {
     var h = parseInt(time.slice(0, 2), 10);
     var m = parseInt(time.slice(2, 4), 10);
     var s = parseInt(time.slice(4, 6), 10);
-    var D = parseInt(new Date().getDay(), 10);
+    var D = parseInt(new Date().getDate(), 10);
     var M = parseInt(new Date().getMonth(), 10);
     var Y = parseInt(new Date().getFullYear(), 10);
     return new Date(Date.UTC(Y, M, D, h, m, s));
