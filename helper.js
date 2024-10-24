@@ -366,7 +366,7 @@ exports.parseDateTime = function(date, time) {
     else {
         Y = Y + 1900;
     }
-    return new Date(Date.UTC(Y, M, D, h, m, s));
+    return new Date(Date.UTC(Y, M - 1, D, h, m, s));
 };
 
 exports.parseUInt16 = function(hibyte, lowbyte) {
