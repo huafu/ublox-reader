@@ -4,6 +4,10 @@
   "description": "Parse U-BLOX serial device messages",
   "main": "./main.js",
   "type": "module",
+  "scripts": {
+    "start": "node main.js",
+    "lint": "eslint ."
+  },
   "dependencies": {
     "dotenv": "^16.4.5",
     "exit-hook": "^4.0.0",
