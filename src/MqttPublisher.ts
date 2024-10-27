@@ -1,4 +1,4 @@
-import { connect, IClientOptions } from "mqtt";
+import { connect, IClientOptions, IClientPublishOptions } from "mqtt";
 import UbloxMessage from "./messages/UbloxMessage";
 import UbloxDevice from "./UbloxDevice";
 import { SentenceId } from "./constants";
@@ -17,22 +17,36 @@ export default class MqttPublisher {
         this.client = connect({
             ...options,
             will: {
-                topic: `${topic}/status`,
+                topic: this.fullTopic("status"),
                 payload: Status.offline as unknown as Buffer,
                 retain: true,
             },
         } satisfies IClientOptions);
         this.client.on("connect", this.handleConnect.bind(this));
+        this.client.on("reconnect", this.handleConnect.bind(this));
         this.client.on("error", this.handleError.bind(this));
+    }
+
+    /**
+     * Get the full topic for the MQTT publisher
+     * @param suffix The suffix to append to the topic
+     */
+    protected fullTopic(suffix: string): string {
+        return `${this.topic}/${suffix}`;
     }
 
     /**
      * Publish a message to the MQTT broker
      * @param suffix The suffix to append to the topic
      * @param message The message to publish
+     * @param opt The options for the publish
      */
-    protected publish(suffix: string, message: string) {
-        this.client.publish(`${this.topic}/${suffix}`, message);
+    protected publish(
+        suffix: string,
+        message: string,
+        opt?: IClientPublishOptions
+    ) {
+        this.client.publish(this.fullTopic(suffix), message, opt);
         return this;
     }
 
@@ -40,9 +54,14 @@ export default class MqttPublisher {
      * Publish a JSON message to the MQTT broker
      * @param suffix The suffix to append to the topic
      * @param data The data to publish
+     * @param opt The options for the publish
      */
-    protected publishJson(suffix: string, data: unknown) {
-        return this.publish(suffix, JSON.stringify(data));
+    protected publishJson(
+        suffix: string,
+        data: unknown,
+        opt?: IClientPublishOptions
+    ) {
+        return this.publish(suffix, JSON.stringify(data), opt);
     }
 
     /**
@@ -50,7 +69,7 @@ export default class MqttPublisher {
      */
     protected handleConnect() {
         console.log("Connected to MQTT");
-        this.publish("status", Status.online);
+        this.publish("status", Status.online, { retain: true });
     }
 
     /**
