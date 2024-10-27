@@ -125,14 +125,16 @@ export default abstract class UbloxMessage<T extends SentenceId = SentenceId> {
         if (this.constructor === UbloxMessage) {
             throw new Error("Cannot call from() on the base class");
         }
-        if (fields[0] !== this.sentenceId as string) return undefined;
+        if (fields[0] !== (this.sentenceId as string)) return undefined;
         try {
             const data = this.parse(fields);
             const MessageClass = this as unknown as Class<UbloxMessage<T>>;
             return new MessageClass(data);
         } catch (error) {
             console.error(
-                `Failed to parse a ${this.sentenceName} message: ${error as string}`
+                `Failed to parse a ${this.sentenceName} message: ${
+                    error as string
+                }`
             );
         }
     }

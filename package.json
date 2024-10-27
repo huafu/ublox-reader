@@ -2,8 +2,8 @@
     "name": "ublox-reader",
     "version": "1.0.0",
     "description": "Parse U-BLOX serial device messages",
-    "main": "./dist/main.js",
-    "type": "commonjs",
+    "main": "./dist/main.mjs",
+    "type": "module",
     "scripts": {
         "build": "tsc",
         "start": "node ./dist/main.js",

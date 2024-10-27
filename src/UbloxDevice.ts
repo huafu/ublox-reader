@@ -133,7 +133,9 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
             this.port.open();
             this.state = DeviceState.connecting;
         } catch (error) {
-            console.error(`Error opening ${this.device.path}: ${error as Error}`);
+            console.error(
+                `Error opening ${this.device.path}: ${error as Error}`
+            );
             this.connectionLoop();
         }
     }
@@ -170,7 +172,7 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
      * Read incoming data from the serial port
      */
     protected handleReadable() {
-        const buffer = this.port.read() as Buffer|null;
+        const buffer = this.port.read() as Buffer | null;
         if (!buffer) return;
 
         const [hdr0, hdr1] = buffer;

@@ -1,6 +1,6 @@
+import { SerialPort } from "serialport";
 import { DeviceInfo } from "../UbloxDevice";
 import ubloxProductId from "./ubloxProductId";
-import { SerialPort } from "serialport";
 
 type PortInfo = ReturnType<typeof SerialPort.list> extends Promise<
     Array<infer T>

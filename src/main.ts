@@ -1,10 +1,10 @@
 import { config } from "dotenv";
-import UbloxDevice from "./UbloxDevice.js";
-import findSerialDevices from "./helpers/findSerialDevices.js";
+import UbloxDevice from "./UbloxDevice";
+import findSerialDevices from "./helpers/findSerialDevices";
 import exitHook from "exit-hook";
-import MqttPublisher from "./MqttPublisher.js";
-import { NavRate, ProductId, SentenceId } from "./constants.js";
-import UbloxMessage from "./messages/UbloxMessage.js";
+import MqttPublisher from "./MqttPublisher";
+import { NavRate, ProductId, SentenceId } from "./constants";
+import UbloxMessage from "./messages/UbloxMessage";
 
 config();
 

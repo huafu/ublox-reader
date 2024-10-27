@@ -1,3 +1,7 @@
+import { SentenceId } from "../constants";
+import parseFloatX from "../helpers/parseFloatX";
+import UbloxMessage from "./UbloxMessage";
+
 /**
  * `UBX00` -  Lat/Long position data
  *
@@ -29,11 +33,6 @@
  * 20. DR used
  * 21. Checksum
  */
-
-import { SentenceId } from "../constants";
-import parseFloatX from "../helpers/parseFloatX";
-import UbloxMessage from "./UbloxMessage";
-
 export default class UbloxUbx00Message extends UbloxMessage<SentenceId.UBX00> {
     static readonly sentenceId = SentenceId.UBX00;
     static readonly sentenceName = "Lat/Long position data";

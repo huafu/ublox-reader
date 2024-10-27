@@ -47,7 +47,7 @@ export default class UbloxGnsMessage extends UbloxMessage<SentenceId.GNS> {
     static readonly cid = 0xf0;
     static readonly mid = 0x0d;
 
-   protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): object {
         return {
             time: parseTime(fields[1]),
             latitude: parseLatitude(fields[2], fields[3]),
