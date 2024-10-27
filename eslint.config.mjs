@@ -1,23 +1,33 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
+// @ts-check
 
-export default [
-    { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-    pluginJs.configs.recommended,
+import eslint from "@eslint/js";
+import tseslint from "typescript-eslint";
+
+export default tseslint.config(
+    eslint.configs.recommended,
+    ...tseslint.configs.recommendedTypeChecked,
     {
-        rules: {
-            "no-var": "error",
-            "prefer-const": "error",
-            "no-unused-vars": "error",
-            "no-undef": "error",
-            "no-undef-init": "error",
-            "no-use-before-define": "error",
-            "no-shadow": "error",
-            "no-shadow-restricted-names": "error",
-            "no-unused-expressions": "error",
-            "no-unused-labels": "error",
-            "no-empty": 0,
-            "no-empty-function": "error",
+        languageOptions: {
+            parserOptions: {
+                projectService: {
+                    allowDefaultProject: ["*.mjs", "*.js"],
+                },
+                tsconfigRootDir: import.meta.dirname,
+            },
         },
-    },
-];
+        rules: {
+            "@typescript-eslint/no-unused-vars": [
+                "error",
+                {
+                    args: "all",
+                    argsIgnorePattern: "^_",
+                    caughtErrors: "all",
+                    caughtErrorsIgnorePattern: "^_",
+                    destructuredArrayIgnorePattern: "^_",
+                    varsIgnorePattern: "^_",
+                    ignoreRestSiblings: true,
+                },
+            ],
+        },
+    }
+);
