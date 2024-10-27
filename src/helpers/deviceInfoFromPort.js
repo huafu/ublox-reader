@@ -3,7 +3,7 @@ import ubloxProductId from "./ubloxProductId.js";
 /**
  * Get the device information from the port object
  * @param {import("serialport").SerialPort} port The port object
- * @returns {import("./constants").DeviceInfo} The device information
+ * @returns {import("./constants.js").DeviceInfo} The device information
  */
 export default function deviceInfoFromPort(port) {
     if (port.vendorId !== "1546") return undefined;

@@ -3,7 +3,7 @@ import deviceInfoFromPort from "./deviceInfoFromPort.js";
 
 /**
  * List all serial u-blox devices connected to the computer
- * @returns {Promise<import("./constants").DeviceInfo[]>}
+ * @returns {Promise<import("./constants.js").DeviceInfo[]>}
  */
 export default async function findSerialDevices() {
     const devices = await SerialPort.list();

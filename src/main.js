@@ -1,8 +1,8 @@
 import { config } from "dotenv";
-import UbloxDevice from "./lib/UbloxDevice.js";
+import UbloxDevice from "./UbloxDevice.js";
 import findSerialDevices from "./helpers/findSerialDevices.js";
 import exitHook from "exit-hook";
-import MqttPublisher from "./lib/MqttPublisher.js";
+import MqttPublisher from "./MqttPublisher.js";
 
 config();
 

@@ -1,9 +1,9 @@
 import EventEmitter from "node:events";
 import { SerialPort } from "serialport";
 import SerialConfigurator from "./SerialConfigurator.js";
-import { NavRate } from "../helpers/constants.js";
-import UbloxMessage from "./UbloxMessage.js";
-import sentenceToMessage from "../helpers/sentenceToMessage.js";
+import { NavRate } from "./helpers/constants.js";
+import UbloxMessage from "./messages/UbloxMessage.js";
+import sentenceToMessage from "./helpers/sentenceToMessage.js";
 
 const Defaults = {
     baudRate: 9600,
@@ -18,31 +18,31 @@ const DeviceState = {
 
 /**
  * @typedef {{
- *     'message': [import("./UbloxMessage").default],
- *     'message:dtm': [import("./UbloxDtmMessage").default],
- *     'message:gbs': [import("./UbloxGbsMessage").default],
- *     'message:gga': [import("./UbloxGgaMessage").default],
- *     'message:gll': [import("./UbloxGllMessage").default],
- *     'message:gns': [import("./UbloxGnsMessage").default],
- *     'message:grs': [import("./UbloxGrsMessage").default],
- *     'message:gsa': [import("./UbloxGsaMessage").default],
- *     'message:gst': [import("./UbloxGstMessage").default],
- *     'message:gsv': [import("./UbloxGsvMessage").default],
- *     'message:rmc': [import("./UbloxRmcMessage").default],
- *     'message:ths': [import("./UbloxThsMessage").default],
- *     'message:txt': [import("./UbloxTxtMessage").default],
- *     'message:ubx00': [import("./UbloxUbx00Message").default],
- *     'message:ubx03': [import("./UbloxUbx03Message").default],
- *     'message:ubx04': [import("./UbloxUbx04Message").default],
- *     'message:vlw': [import("./UbloxVlwMessage").default],
- *     'message:vtg': [import("./UbloxVtgMessage").default],
- *     'message:zda': [import("./UbloxZdaMessage").default],
+ *     'message': [import("./messages/UbloxMessage.js").default],
+ *     'message:dtm': [import("./messages/UbloxDtmMessage.js").default],
+ *     'message:gbs': [import("./messages/UbloxGbsMessage.js").default],
+ *     'message:gga': [import("./messages/UbloxGgaMessage.js").default],
+ *     'message:gll': [import("./messages/UbloxGllMessage.js").default],
+ *     'message:gns': [import("./messages/UbloxGnsMessage.js").default],
+ *     'message:grs': [import("./messages/UbloxGrsMessage.js").default],
+ *     'message:gsa': [import("./messages/UbloxGsaMessage.js").default],
+ *     'message:gst': [import("./messages/UbloxGstMessage.js").default],
+ *     'message:gsv': [import("./messages/UbloxGsvMessage.js").default],
+ *     'message:rmc': [import("./messages/UbloxRmcMessage.js").default],
+ *     'message:ths': [import("./messages/UbloxThsMessage.js").default],
+ *     'message:txt': [import("./messages/UbloxTxtMessage.js").default],
+ *     'message:ubx00': [import("./messages/UbloxUbx00Message.js").default],
+ *     'message:ubx03': [import("./messages/UbloxUbx03Message.js").default],
+ *     'message:ubx04': [import("./messages/UbloxUbx04Message.js").default],
+ *     'message:vlw': [import("./messages/UbloxVlwMessage.js").default],
+ *     'message:vtg': [import("./messages/UbloxVtgMessage.js").default],
+ *     'message:zda': [import("./messages/UbloxZdaMessage.js").default],
  * }} UbloxDeviceEventMap
  */
 
 /**
  * Convert a sentence ID to an event name
- * @param {import("../helpers/constants").SentenceId} sentenceId The sentence ID
+ * @param {import("./helpers/constants.js").SentenceId} sentenceId The sentence ID
  * @returns {string} The event name
  */
 function sentenceIdToEvent(sentenceId) {
@@ -55,10 +55,10 @@ function sentenceIdToEvent(sentenceId) {
  */
 export default class UbloxDevice extends EventEmitter {
     /**
-     * @param {import("../helpers/constants").DeviceInfo} device
+     * @param {import("./helpers/constants.js").DeviceInfo} device
      * @param {Object} [options]
      * @param {number} [options.baudRate]
-     * @param {import("../helpers/constants").NavRate} [options.navRate]
+     * @param {import("./helpers/constants.js").NavRate} [options.navRate]
      */
     constructor(
         device,
@@ -67,11 +67,11 @@ export default class UbloxDevice extends EventEmitter {
         super();
         /** @type {boolean} */
         this.isConnectionWanted = false;
-        /** @type {import("../helpers/constants").DeviceInfo} */
+        /** @type {import("./helpers/constants.js").DeviceInfo} */
         this.device = device;
         /** @type {number} */
         this.baudRate = baudRate;
-        /** @type {import("../helpers/constants").NavRate} */
+        /** @type {import("./helpers/constants.js").NavRate} */
         this.navRate = navRate;
 
         /** @type {SerialPort} */
@@ -180,7 +180,7 @@ export default class UbloxDevice extends EventEmitter {
 
     /**
      * Listen for a message of a specific type
-     * @param {import("../helpers/constants").SentenceId} sentenceId The sentence ID
+     * @param {import("./helpers/constants.js").SentenceId} sentenceId The sentence ID
      * @param {(UbloxMessage) => void} listener The listener
      * @returns {this}
      */

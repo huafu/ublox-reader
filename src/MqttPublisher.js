@@ -73,7 +73,7 @@ export default class MqttPublisher {
 
     /**
      * Handle an incoming message from the device
-     * @param {import("./UbloxMessage").default} message The message from the device
+     * @param {import("./messages/UbloxMessage").default} message The message from the device
      * @protected
      */
     handleMessage(message) {

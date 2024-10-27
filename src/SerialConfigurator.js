@@ -1,6 +1,6 @@
-import concatTypedArrays from "../helpers/concatTypedArrays.js";
-import { NavRate, ProductId } from "../helpers/constants.js";
-import makeUbxPkg from "../helpers/makeUbxPkg.js";
+import concatTypedArrays from "./helpers/concatTypedArrays.js";
+import { NavRate, ProductId } from "./helpers/constants.js";
+import makeUbxPkg from "./helpers/makeUbxPkg.js";
 
 const BytesByRate = {
     // 1000ms & 1 cycle -> 1Hz (UBX-CFG-RATE payload bytes: little endian!)
@@ -332,7 +332,7 @@ export default class SerialConfigurator {
 
     /**
      * Enable or disable a message type
-     * @param {typeof import("./UbloxMessage").default} MessageClass Message class to enable/disable.
+     * @param {typeof import("./messages/UbloxMessage.js").default} MessageClass Message class to enable/disable.
      * @param {boolean} [enabled] True to enable, false to disable.
      * @returns {this} The SerialConfigurator object.
      */
