@@ -72,7 +72,7 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
 
     handleMessage(message: UbloxMessage) {
         const { topic, qos, retain } = this.config;
-        const fullTopic = `${topic}/${message.sentenceId.toLowerCase()}`;
+        const fullTopic = `${topic}/message/${message.sentenceId.toLowerCase()}`;
         const payload = JSON.stringify(message);
         this.client?.publish(fullTopic, payload, {
             qos,
