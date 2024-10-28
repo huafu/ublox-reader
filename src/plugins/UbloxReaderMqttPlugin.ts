@@ -67,6 +67,9 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
     }
 
     teardown(): void {
+        this.client?.publish(`${this.config.topic}/status`, Status.offline, {
+            retain: true,
+        });
         this.client?.end();
     }
 
