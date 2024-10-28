@@ -28,15 +28,16 @@ export default abstract class UbloxReaderPlugin<O extends PluginConfig> {
      */
     get config() {
         if (this._config === undefined) {
-            this._config = this.readOptions();
+            this._config = this.readConfig();
         }
         return this._config;
     }
 
     /**
      * Read the config for the plugin
+     * Override this method to set defaults
      */
-    protected readOptions(): O {
+    readConfig(): O {
         const { name } = this;
         return pluginConfig(name) as O;
     }

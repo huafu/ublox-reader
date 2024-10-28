@@ -59,7 +59,11 @@ export function deviceConfig(): DeviceConfig {
     return getConfig().device ?? {};
 }
 
-export function listPlugins(): string[] {
+/**
+ * List all enabled plugins
+ * @returns The list of enabled plugins
+ */
+export function listEnabledPlugins(): Array<keyof UbloxPluginConfigMap> {
     const plugins = getConfig().plugins ?? {};
     return Object.keys(plugins).filter((key) => !plugins[key].disabled);
 }

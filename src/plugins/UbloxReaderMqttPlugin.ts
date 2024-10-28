@@ -25,9 +25,19 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
     readonly name = "console";
     protected client: mqtt.MqttClient | undefined;
 
+    // set config defaults
+    readConfig() {
+        return {
+            ...super.readConfig(),
+            host: "localhost",
+            port: 1883,
+            topic: "ublox",
+        };
+    }
+
     setup(device: UbloxDevice) {
         // setup MQTT client
-        const { host, port = 1883, username, password, topic } = this.config;
+        const { host, port, username, password, topic } = this.config;
         const client = (this.client = mqtt.connect({
             host,
             port,

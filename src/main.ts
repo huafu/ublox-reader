@@ -1,7 +1,7 @@
 import UbloxDevice from "./UbloxDevice";
 import findSerialDevices from "./helpers/findSerialDevices";
 import exitHook from "exit-hook";
-import { deviceConfig } from "./helpers/config";
+import { deviceConfig, listEnabledPlugins } from "./helpers/config";
 import allPlugins from "./helpers/allPlugins";
 
 async function main() {
@@ -31,9 +31,9 @@ async function main() {
     }
 
     // get all plugins and setup the ones which are enabled
+    const enabledPluginNames = listEnabledPlugins();
     const plugins = allPlugins().filter((plugin) => {
-        const config = plugin.config;
-        return !config.disabled;
+        return enabledPluginNames.includes(plugin.name);
     });
     plugins.forEach((plugin) => plugin.setup(device));
 
