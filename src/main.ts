@@ -33,7 +33,13 @@ async function main() {
     // get all plugins and setup the ones which are enabled
     const enabledPluginNames = listEnabledPlugins();
     const plugins = allPlugins().filter((plugin) => {
-        return enabledPluginNames.includes(plugin.name);
+        const enabled = enabledPluginNames.includes(plugin.name);
+        console.log(
+            `Loaded plugin: ${plugin.name} - status: ${
+                enabled ? "enabled" : "disabled"
+            }`
+        );
+        return enabled;
     });
     plugins.forEach((plugin) => {
         console.log(`Setting up plugin: ${plugin.name}`);

@@ -22,7 +22,7 @@ enum Status {
 }
 
 export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReaderMqttPluginConfig> {
-    readonly name = "console";
+    readonly name = "mqtt";
     protected client: mqtt.MqttClient | undefined;
 
     // set config defaults
