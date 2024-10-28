@@ -1,0 +1,13 @@
+services:
+    ublox-reader:
+        build:
+            context: .
+        image: ublox-reader
+        container_name: ublox-reader
+        devices:
+            - ${UBLOX_DEVICE:-/dev/ttyACM0}:/dev/ttyACM0
+        volumes:
+          - ./config.docker.yaml:/app/config.yaml
+        restart: unless-stopped
+        extra_hosts:
+            - "host.docker.internal:host-gateway"

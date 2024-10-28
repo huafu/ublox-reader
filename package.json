@@ -4,7 +4,8 @@
     "description": "Parse U-BLOX serial device messages",
     "scripts": {
         "start": "tsx ./src/main.ts",
-        "lint": "eslint ."
+        "lint": "eslint .",
+        "docker:build": "docker build -t ublox-reader ."
     },
     "dependencies": {
         "exit-hook": "^4.0.0",
@@ -16,7 +17,8 @@
         "serve-favicon": "^2.5.0",
         "ws": "^8.18.0"
     },
-    "author": "Brian A. Manlove",
+    "author": "Huafu Gandon <huafu.gandon@gmail.com>",
+    "original-author": "Brian A. Manlove",
     "license": "MIT",
     "devDependencies": {
         "@eslint/js": "^9.13.0",

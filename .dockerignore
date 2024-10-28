@@ -1,6 +1,6 @@
 /node_modules
-/dist
-/.env
-!/.env.example
+/.vscode
 /config.yaml
 /config.*.yaml
+/Dockerfile
+/docker-compose.yaml
