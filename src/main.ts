@@ -35,19 +35,41 @@ async function main() {
     const plugins = allPlugins().filter((plugin) => {
         return enabledPluginNames.includes(plugin.name);
     });
-    plugins.forEach((plugin) => plugin.setup(device));
+    plugins.forEach((plugin) => {
+        console.log(`Setting up plugin: ${plugin.name}`);
+        try {
+            plugin.setup(device);
+        } catch (error) {
+            console.error(
+                `Error setting up plugin ${plugin.name}: ${error as Error}`
+            );
+        }
+    });
 
     // exit cleanly
     exitHook(() => {
+        console.log(`Disconnecting from device at ${device.device.path}`);
         device.disconnect();
-        plugins.forEach((plugin) => plugin.teardown());
+        plugins.forEach((plugin) => {
+            console.log(`Tearing down plugin: ${plugin.name}`);
+            try {
+                plugin.teardown();
+            } catch (error) {
+                console.error(
+                    `Error tearing down plugin ${plugin.name}: ${
+                        error as Error
+                    }`
+                );
+            }
+        });
     });
 
     // connect the device
+    console.log(`Connecting to device at ${device.device.path}`);
     device.connect();
 }
 
 main().catch((error) => {
-    console.error(error);
+    console.error(`Error: ${error as Error}`);
     process.exit(1);
 });

@@ -82,7 +82,7 @@ interface UbloxDeviceCtorOptions {
  */
 export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
     protected isConnectionWanted: boolean;
-    protected device: DeviceInfo;
+    readonly device: DeviceInfo;
     protected baudRate: number;
     protected navRate: NavRate;
     protected port: SerialPort;
