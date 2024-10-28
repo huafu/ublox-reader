@@ -6,7 +6,7 @@ import UbloxDevice from "../UbloxDevice";
 import UbloxReaderPlugin from "./UbloxReaderPlugin";
 
 export interface UbloxReaderMqttPluginConfig extends PluginConfig {
-    host: string;
+    host?: string;
     port?: number;
     username?: string;
     password?: string;
@@ -28,16 +28,17 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
     // set config defaults
     readConfig() {
         return {
-            ...super.readConfig(),
             host: "localhost",
             port: 1883,
             topic: "ublox",
+            ...super.readConfig(),
         };
     }
 
     setup(device: UbloxDevice) {
         // setup MQTT client
         const { host, port, username, password, topic } = this.config;
+        console.log(`Connecting to MQTT broker at ${host}:${port}`);
         const client = (this.client = mqtt.connect({
             host,
             port,
@@ -73,6 +74,7 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
         this.client?.publish(`${this.config.topic}/status`, Status.offline, {
             retain: true,
         });
+        console.log("Disconnecting from MQTT broker");
         this.client?.end();
     }
 
