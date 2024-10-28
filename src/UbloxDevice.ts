@@ -40,6 +40,8 @@ export enum DeviceState {
 }
 
 interface UbloxDeviceEventMap {
+    connected: [];
+    disconnected: [];
     message: [UbloxMessage];
     "message:dtm": [UbloxDtmMessage];
     "message:gbs": [UbloxGbsMessage];
@@ -132,6 +134,7 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
         try {
             this.port.open();
             this.state = DeviceState.connecting;
+            this.emit("connected");
         } catch (error) {
             console.error(
                 `Error opening ${this.device.path}: ${error as Error}`
@@ -147,6 +150,7 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
         this.isConnectionWanted = false;
         if (this.state === DeviceState.disconnected) return;
         this.port.close();
+        this.emit("disconnected");
     }
 
     /**

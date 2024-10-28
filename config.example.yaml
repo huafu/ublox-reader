@@ -1,0 +1,22 @@
+YAML configuration file for the U-Blox GPS reader
+---
+device:
+    path: /dev/ttyACM0
+    baudRate: 9600
+    navRate: 2
+    type: u-blox7
+
+plugins:
+    mqtt:
+        # disabled: true
+        host: localhost
+        port: 1883
+        topic: gps
+        username: 
+        password: 
+        retain: false
+        qos: 0
+
+    console:
+        # disabled: true
+        message: [GLL, TXT]
