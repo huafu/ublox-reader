@@ -49,6 +49,9 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
                 retain: true,
             },
         }));
+        client.on("error", (error) => {
+            console.error(`MQTT error: ${error as Error}`);
+        });
         client.on("connect", () => {
             client?.publish(`${topic}/status`, Status.online, {
                 retain: true,
