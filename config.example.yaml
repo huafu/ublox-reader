@@ -20,4 +20,5 @@ plugins:
 
     console:
         # disabled: true
-        message: [GLL, TXT]
+        message: [gll, txt, plugin:tpv]
+        severity: debug # debug, info, warn, error
