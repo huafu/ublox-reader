@@ -1,9 +1,25 @@
-import { SentenceId } from "../constants";
+import { FixType3D, SentenceId } from "../constants";
 import parseFloatX from "../helpers/parseFloatX";
 import parseIntX from "../helpers/parseIntX";
 import UbloxMessage from "./UbloxMessage";
 
-const ThreeDFixTypes = ["unknown", "none", "2D", "3D"] as const;
+const FixTypes = [
+    FixType3D.unknown,
+    FixType3D.none,
+    FixType3D.twoD,
+    FixType3D.threeD,
+] as const;
+
+export interface UbloxGsaMessageData {
+    selection: "A" | "M";
+    selectionStr: string;
+    fixType: FixType3D;
+    mode: 0 | 1 | 2 | 3;
+    satellites: string[];
+    pdop: number;
+    hdop: number;
+    vdop: number;
+}
 
 /**
  * # `GSA` - Active satellites and dilution of precision
@@ -19,6 +35,7 @@ const ThreeDFixTypes = ["unknown", "none", "2D", "3D"] as const;
  *     - `A` - Automatic
  *     - `M` - Manual, forced to operate in 2D or 3D
  * 2. 3D fix
+ *     - `0` - unknown
  *     - `1` - no fix
  *     - `2` - 2D fix
  *     - `3` - 3D fix
@@ -30,24 +47,27 @@ const ThreeDFixTypes = ["unknown", "none", "2D", "3D"] as const;
  * 17. Vertical dilution of precision
  * 18. Checksum
  */
-export default class UbloxGsaMessage extends UbloxMessage<SentenceId.GSA> {
+export default class UbloxGsaMessage extends UbloxMessage<
+    SentenceId.GSA,
+    UbloxGsaMessageData
+> {
     static readonly sentenceId = SentenceId.GSA;
     static readonly sentenceName =
         "Active satellites and dilution of precision";
     static readonly cid = 0xf0;
     static readonly mid = 0x02;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGsaMessageData {
         const fix = parseIntX(fields[2]);
         return {
-            selection: fields[1],
+            selection: fields[1] as "A" | "M",
             selectionStr: fields[1] === "A" ? "automatic" : "manual",
-            fix,
-            fixStr: ThreeDFixTypes[fix],
+            fixType: FixTypes[fix] ?? FixType3D.unknown,
+            mode: (fix ?? 0) as UbloxGsaMessageData["mode"],
             satellites: fields.slice(3, 15).filter((x) => x.length > 0),
-            PDOP: parseFloatX(fields[15]),
-            HDOP: parseFloatX(fields[16]),
-            VDOP: parseFloatX(fields[17]),
+            pdop: parseFloatX(fields[15]),
+            hdop: parseFloatX(fields[16]),
+            vdop: parseFloatX(fields[17]),
         };
     }
 }

@@ -5,6 +5,19 @@ import parseLatitude from "../helpers/parseLatitude";
 import parseLongitude from "../helpers/parseLongitude";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxRmcMessageData {
+    datetime: Date;
+    status: "A" | "V";
+    statusStr: "valid" | "warning";
+    latitude: string;
+    longitude: string;
+    speedKnots: number;
+    trackTrue: number;
+    variation: number;
+    variationPole: "E" | "W" | "";
+    faaMode: string;
+}
+
 /**
  * # `RMC` - Recommended minimum navigation information
  *
@@ -32,13 +45,16 @@ import UbloxMessage from "./UbloxMessage";
  * 12. FAA mode indicator (NMEA 2.3 and later)
  * 13. Checksum
  */
-export default class UbloxRmcMessage extends UbloxMessage<SentenceId.RMC> {
+export default class UbloxRmcMessage extends UbloxMessage<
+    SentenceId.RMC,
+    UbloxRmcMessageData
+> {
     static readonly sentenceId = SentenceId.RMC;
     static readonly sentenceName = "Recommended minimum navigation information";
     static readonly cid = 0xf0;
     static readonly mid = 0x04;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxRmcMessageData {
         return {
             datetime: parseDateTime(fields[9], fields[1]),
             status: fields[2] == "A" ? "A" : "V",

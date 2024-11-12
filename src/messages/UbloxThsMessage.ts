@@ -10,6 +10,12 @@ const StatusMap = {
     V: "Data not valid",
 } as const;
 
+export interface UbloxThsMessageData {
+    headt: number;
+    mi: string;
+    miStr: string;
+}
+
 /**
  * # `THS` - True heading and status
  *
@@ -29,13 +35,16 @@ const StatusMap = {
  *     - `V` = Data Invalid
  * 3. Checksum
  */
-export default class UbloxThsMessage extends UbloxMessage<SentenceId.THS> {
+export default class UbloxThsMessage extends UbloxMessage<
+    SentenceId.THS,
+    UbloxThsMessageData
+> {
     static readonly sentenceId = SentenceId.THS;
     static readonly sentenceName = "True heading and status";
     static readonly cid = 0xf0;
     static readonly mid = 0x0e;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxThsMessageData {
         return {
             headt: parseFloatX(fields[1]),
             mi: fields[2],

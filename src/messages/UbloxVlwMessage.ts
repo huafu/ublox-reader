@@ -2,6 +2,17 @@ import { SentenceId } from "../constants";
 import parseFloatX from "../helpers/parseFloatX";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxVlwMessageData {
+    twd: number;
+    twdUnit: string;
+    wd: number;
+    wdUnit: string;
+    tgd: number;
+    tgdUnit: string;
+    gd: number;
+    gdUnit: string;
+}
+
 /**
  * # `VLW` – Dual ground/water distance
  *
@@ -22,7 +33,10 @@ import UbloxMessage from "./UbloxMessage";
  * 8. K = Kilometers
  * 9. Checksum
  */
-export default class UbloxVlwMessage extends UbloxMessage<SentenceId.VLW> {
+export default class UbloxVlwMessage extends UbloxMessage<
+    SentenceId.VLW,
+    UbloxVlwMessageData
+> {
     static readonly sentenceId = SentenceId.VLW;
     static readonly sentenceName = "Dual ground/water distance";
     static readonly cid = 0xf0;

@@ -2,6 +2,13 @@ import { SentenceId } from "../constants";
 import parseIntX from "../helpers/parseIntX";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxTxtMessageData {
+    numberOfSentences: number;
+    sentenceNumber: number;
+    textId: number;
+    textInformation: string;
+}
+
 /**
  * # `TXT` - Human readable text information for display purposes
  *
@@ -19,14 +26,17 @@ import UbloxMessage from "./UbloxMessage";
  * 4. Message text, up to 61 characters
  * 5. Checksum
  */
-export default class UbloxTxtMessage extends UbloxMessage<SentenceId.TXT> {
+export default class UbloxTxtMessage extends UbloxMessage<
+    SentenceId.TXT,
+    UbloxTxtMessageData
+> {
     static readonly sentenceId = SentenceId.TXT;
     static readonly sentenceName =
         "Human readable text information for display purposes";
     static readonly cid = 0xf0;
     static readonly mid = 0x41;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxTxtMessageData {
         return {
             numberOfSentences: parseIntX(fields[1]),
             sentenceNumber: parseIntX(fields[2]),

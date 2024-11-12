@@ -3,6 +3,16 @@ import parseFloatX from "../helpers/parseFloatX";
 import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxGstMessageData {
+    time: Date;
+    totalRms: number;
+    semiMajorError: number;
+    semiMinorError: number;
+    orientationOfSemiMajorError: number;
+    latitudeError: number;
+    longitudeError: number;
+    altitudeError: number;
+}
 /**
  * # `GST` - GPS pseudorange noise statistics
  *
@@ -23,13 +33,16 @@ import UbloxMessage from "./UbloxMessage";
  * 8. Standard deviation of altitude error, meters
  * 9. Checksum
  */
-export default class UbloxGstMessage extends UbloxMessage<SentenceId.GST> {
+export default class UbloxGstMessage extends UbloxMessage<
+    SentenceId.GST,
+    UbloxGstMessageData
+> {
     static readonly sentenceId = SentenceId.GST;
     static readonly sentenceName = "GPS pseudorange noise statistics";
     static readonly cid = 0xf0;
     static readonly mid = 0x07;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGstMessageData {
         return {
             time: parseTime(fields[1]),
             totalRms: parseFloatX(fields[2]),

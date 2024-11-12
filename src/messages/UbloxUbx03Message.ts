@@ -15,6 +15,10 @@ class Satellite {
     ) {}
 }
 
+export interface UbloxUbx03MessageData {
+    satellites: Satellite[];
+}
+
 /**
  * Get satellite type
  */
@@ -40,13 +44,16 @@ function getSatelliteType(satId: string): string {
 /**
  * # `UBX03` - Satellite status
  */
-export default class UbloxUbx03Message extends UbloxMessage<SentenceId.UBX03> {
+export default class UbloxUbx03Message extends UbloxMessage<
+    SentenceId.UBX03,
+    UbloxUbx03MessageData
+> {
     static readonly sentenceId = SentenceId.UBX03;
     static readonly sentenceName = "Satellite status";
     static readonly cid = 0xf1;
     static readonly mid = 0x03;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxUbx03MessageData {
         const satellites = [];
         const satCount = parseFloatX(fields[2]);
         let offset = 3;

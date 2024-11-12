@@ -22,6 +22,8 @@ import UbloxVlwMessage from "./messages/UbloxVlwMessage";
 import UbloxVtgMessage from "./messages/UbloxVtgMessage";
 import UbloxZdaMessage from "./messages/UbloxZdaMessage";
 import SerialConfigurator from "./SerialConfigurator";
+import UbloxMessageCollector from "./messages/UbloxMessageCollector";
+import UbloxPluginMessage from "./messages/UbloxPluginMessage";
 
 export interface DeviceInfo {
     path: string;
@@ -61,6 +63,7 @@ interface UbloxDeviceEventMap {
     "message:vlw": [UbloxVlwMessage];
     "message:vtg": [UbloxVtgMessage];
     "message:zda": [UbloxZdaMessage];
+    "message:$$$": [UbloxPluginMessage];
 }
 
 /**
@@ -82,12 +85,16 @@ interface UbloxDeviceCtorOptions {
  */
 export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
     protected isConnectionWanted: boolean;
-    readonly device: DeviceInfo;
-    protected baudRate: number;
-    protected navRate: NavRate;
-    protected port: SerialPort;
     protected configurator: SerialConfigurator;
-    protected state: DeviceState;
+    readonly device: DeviceInfo;
+    readonly baudRate: number;
+    readonly navRate: NavRate;
+    readonly port: SerialPort;
+    protected _state: DeviceState;
+    get state() {
+        return this._state;
+    }
+    readonly collector: UbloxMessageCollector;
 
     constructor(
         device: DeviceInfo,
@@ -109,7 +116,9 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
         });
 
         this.configurator = new SerialConfigurator(this.port);
-        this.state = DeviceState.disconnected;
+        this._state = DeviceState.disconnected;
+
+        this.collector = new UbloxMessageCollector();
 
         this.port.on("open", this.handleOpen.bind(this));
         this.port.on("readable", this.handleReadable.bind(this));
@@ -133,7 +142,7 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
         if (this.state !== DeviceState.disconnected) return;
         try {
             this.port.open();
-            this.state = DeviceState.connecting;
+            this._state = DeviceState.connecting;
             this.emit("connected");
         } catch (error) {
             console.error(
@@ -164,7 +173,7 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
      * Run when the serial port is opened
      */
     protected handleOpen() {
-        this.state = DeviceState.connected;
+        this._state = DeviceState.connected;
         this.configurator.setupDevice(this.device.pid);
         UbloxMessage.Classes.forEach((MsgClass) => {
             this.configurator.enableMessages(MsgClass);
@@ -198,9 +207,24 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
         lines.forEach((line) => {
             const message = sentenceToMessage(line);
             if (!message) return;
-            this.emit("message", message);
-            this.emit(sentenceIdToEvent(message.sentenceId), message);
+            this.dispatchMessage(message);
         });
+    }
+
+    protected dispatchMessage(message: UbloxMessage) {
+        this.emit("message", message);
+        this.emit(sentenceIdToEvent(message.sentenceId), message);
+        this.collector.collect(message);
+        return this;
+    }
+
+    /**
+     * Dispatch a plugin message
+     * @param message The plugin message
+     * @returns This device
+     */
+    pluginMessage(message: UbloxPluginMessage) {
+        return this.dispatchMessage(message);
     }
 
     /**
@@ -217,7 +241,7 @@ export default class UbloxDevice extends EventEmitter<UbloxDeviceEventMap> {
      * Run when the serial port is closed
      */
     protected handleClose() {
-        this.state = DeviceState.disconnected;
+        this._state = DeviceState.disconnected;
         this.connectionLoop();
     }
 

@@ -34,21 +34,16 @@ async function main() {
     const enabledPluginNames = listEnabledPlugins();
     const plugins = allPlugins().filter((plugin) => {
         const enabled = enabledPluginNames.includes(plugin.name);
-        console.log(
-            `Loaded plugin: ${plugin.name} - status: ${
-                enabled ? "enabled" : "disabled"
-            }`
-        );
+        plugin.info(`Loaded, status: ${enabled ? "enabled" : "disabled"}`);
         return enabled;
     });
     plugins.forEach((plugin) => {
-        console.log(`Setting up plugin: ${plugin.name}`);
+        plugin.info(`Setting up plugin`);
+        plugin.boot(device);
         try {
-            plugin.setup(device);
+            plugin.setup();
         } catch (error) {
-            console.error(
-                `Error setting up plugin ${plugin.name}: ${error as Error}`
-            );
+            plugin.error("Error setting up plugin", error);
         }
     });
 
@@ -57,16 +52,13 @@ async function main() {
         console.log(`Disconnecting from device at ${device.device.path}`);
         device.disconnect();
         plugins.forEach((plugin) => {
-            console.log(`Tearing down plugin: ${plugin.name}`);
+            plugin.info(`Tearing down plugin`);
             try {
                 plugin.teardown();
             } catch (error) {
-                console.error(
-                    `Error tearing down plugin ${plugin.name}: ${
-                        error as Error
-                    }`
-                );
+                plugin.error("Error tearing down plugin", error);
             }
+            plugin.shutdown();
         });
     });
 

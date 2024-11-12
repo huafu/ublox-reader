@@ -14,6 +14,13 @@ class GsvSatellite {
     ) {}
 }
 
+export interface UbloxGsvMessageData {
+    numberOfMessages: number;
+    messageNumber: number;
+    satellitesInView: number;
+    satellites: GsvSatellite[];
+}
+
 /**
  * # `GSV` - Satellites in view
  *
@@ -46,13 +53,16 @@ class GsvSatellite {
  * 20. Signal to noise ratio   /
  * 21. Checksum
  */
-export default class UbloxGsvMessage extends UbloxMessage<SentenceId.GSV> {
+export default class UbloxGsvMessage extends UbloxMessage<
+    SentenceId.GSV,
+    UbloxGsvMessageData
+> {
     static readonly sentenceId = SentenceId.GSV;
     static readonly sentenceName = "Satellites in view";
     static readonly cid = 0xf0;
     static readonly mid = 0x03;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGsvMessageData {
         const satellites = [];
         const numRecords = (fields.length - 4) / 4;
         for (let i = 0; i < numRecords; i++) {

@@ -11,6 +11,15 @@ function parseDatumCode(field: string): string {
     return ["W84", "W72", "S85", "P90", "999"].includes(field) ? field : "";
 }
 
+export interface UbloxDtmMessageData {
+    datumCode: string;
+    datumSubcode: string;
+    offsetLatitude: string;
+    offsetLongitude: string;
+    offsetAltitudeMeters: number;
+    datumName: string;
+}
+
 /**
  * # `DTM` - Datum reference
  *
@@ -35,13 +44,16 @@ function parseDatumCode(field: string): string {
  * 8. Datum name. What’s usually seen here is `W84`, the standard WGS84 datum used by GPS.
  * 9. Checksum
  */
-export default class UbloxDtmMessage extends UbloxMessage<SentenceId.DTM> {
+export default class UbloxDtmMessage extends UbloxMessage<
+    SentenceId.DTM,
+    UbloxDtmMessageData
+> {
     static readonly sentenceId = SentenceId.DTM;
     static readonly sentenceName = "Datum reference";
     static readonly cid = 0xf0;
     static readonly mid = 0x06;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxDtmMessageData {
         return {
             datumCode: parseDatumCode(fields[1]),
             datumSubcode: fields[2],

@@ -32,6 +32,8 @@ export enum SentenceId {
     UBX04 = "UBX04",
     THS = "THS",
     TXT = "TXT",
+    // special for plugin messages
+    plugin = "$$$",
 }
 
 /**
@@ -42,4 +44,23 @@ export enum NavRate {
     two = "2",
     five = "5",
     ten = "10",
+}
+
+export enum FixType {
+    none = "none",
+    gps = "gps",
+    delta = "delta",
+    pps = "pps",
+    realTimeKinematic = "rtk",
+    floatRtk = "floatRtk",
+    estimated = "estimated",
+    manual = "manual",
+    simulation = "simulation",
+}
+
+export enum FixType3D {
+    unknown = "unknown",
+    none = "none",
+    twoD = "2D",
+    threeD = "3D",
 }

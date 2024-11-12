@@ -3,6 +3,18 @@ import parseFloatX from "../helpers/parseFloatX";
 import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxGbsMessageData {
+    time: Date;
+    errLat: number;
+    errLon: number;
+    errAlt: number;
+    svid: string;
+    prob: string;
+    bias: number;
+    stddev: number;
+    systemId: string;
+    signalId: string;
+}
 /**
  * # `GBS` - GNSS satellite fault detection
  *
@@ -24,13 +36,16 @@ import UbloxMessage from "./UbloxMessage";
  * 10. `signalId` - NMEA-defined GNSS signal ID
  * 11. Checksum
  */
-export default class UbloxGbsMessage extends UbloxMessage<SentenceId.GBS> {
+export default class UbloxGbsMessage extends UbloxMessage<
+    SentenceId.GBS,
+    UbloxGbsMessageData
+> {
     static readonly sentenceId = SentenceId.GBS;
     static readonly sentenceName = "GNSS satellite fault detection";
     static readonly cid = 0xf0;
     static readonly mid = 0x09;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGbsMessageData {
         return {
             time: parseTime(fields[1]),
             errLat: parseFloatX(fields[2]),

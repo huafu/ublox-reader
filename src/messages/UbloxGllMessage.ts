@@ -4,6 +4,15 @@ import parseLongitude from "../helpers/parseLongitude";
 import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxGllMessageData {
+    latitude: string;
+    longitude: string;
+    time: Date;
+    status: "A" | "V";
+    statusStr: "valid" | "invalid";
+    faaMode: string;
+}
+
 /**
  * # `GLL` - Geographic position - latitude and longitude
  *
@@ -25,14 +34,17 @@ import UbloxMessage from "./UbloxMessage";
  * 7. FAA mode indicator (NMEA 2.3 and later)
  * 8. Checksum
  */
-export default class UbloxGllMessage extends UbloxMessage<SentenceId.GLL> {
+export default class UbloxGllMessage extends UbloxMessage<
+    SentenceId.GLL,
+    UbloxGllMessageData
+> {
     static readonly sentenceId = SentenceId.GLL;
     static readonly sentenceName =
         "Geographic position - latitude and longitude";
     static readonly cid = 0xf0;
     static readonly mid = 0x01;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGllMessageData {
         return {
             latitude: parseLatitude(fields[1], fields[2]),
             longitude: parseLongitude(fields[3], fields[4]),

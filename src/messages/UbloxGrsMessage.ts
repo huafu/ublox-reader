@@ -2,6 +2,14 @@ import { SentenceId } from "../constants";
 import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxGrsMessageData {
+    time: Date;
+    mode: string;
+    residual: string[];
+    systemId: string;
+    signalId: string;
+}
+
 /**
  * # `GRS` - GNSS range residuals
  *
@@ -20,13 +28,16 @@ import UbloxMessage from "./UbloxMessage";
  * 16. `signalId`
  * 17. Checksum
  */
-export default class UbloxGrsMessage extends UbloxMessage<SentenceId.GRS> {
+export default class UbloxGrsMessage extends UbloxMessage<
+    SentenceId.GRS,
+    UbloxGrsMessageData
+> {
     static readonly sentenceId = SentenceId.GRS;
     static readonly sentenceName = "GNSS range residuals";
     static readonly cid = 0xf0;
     static readonly mid = 0x06;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGrsMessageData {
         return {
             time: parseTime(fields[1]),
             mode: fields[2],

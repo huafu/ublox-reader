@@ -3,6 +3,12 @@ import parseIntX from "../helpers/parseIntX";
 import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxZdaMessageData {
+    datetime: Date;
+    localZoneHours: number;
+    localZoneMinutes: number;
+}
+
 /**
  * # `ZDA` - Time & Date - UTC, day, month, year and local time zone
  *
@@ -21,13 +27,16 @@ import UbloxMessage from "./UbloxMessage";
  * 6. Local zone minutes description, 00 to 59, apply same sign as local hours
  * 7. Checksum
  */
-export default class UbloxZdaMessage extends UbloxMessage<SentenceId.ZDA> {
+export default class UbloxZdaMessage extends UbloxMessage<
+    SentenceId.ZDA,
+    UbloxZdaMessageData
+> {
     static readonly sentenceId = SentenceId.ZDA;
     static readonly sentenceName = "UTC, day, month, year, and local time zone";
     static readonly cid = 0xf0;
     static readonly mid = 0x08;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxZdaMessageData {
         return {
             datetime: parseTime(fields[1]),
             localZoneHours: parseIntX(fields[5]),

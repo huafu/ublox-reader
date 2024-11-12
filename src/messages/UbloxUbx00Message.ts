@@ -1,6 +1,29 @@
 import { SentenceId } from "../constants";
 import parseFloatX from "../helpers/parseFloatX";
+import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
+
+export interface UbloxUbx00MessageData {
+    utcTime: Date;
+    latitude: number;
+    nsIndicator: string;
+    longitude: number;
+    ewIndicator: string;
+    altRef: number;
+    navStatus: string;
+    hAccuracy: number;
+    vAccuracy: number;
+    speedOverGround: number;
+    courseOverGround: number;
+    vVelocity: number;
+    ageCorrections: number;
+    hdop: number;
+    vdop: number;
+    tdop: number;
+    gpsSatellites: number;
+    glonassSatellites: number;
+    drUsed: number;
+}
 
 /**
  * `UBX00` -  Lat/Long position data
@@ -33,15 +56,18 @@ import UbloxMessage from "./UbloxMessage";
  * 20. DR used
  * 21. Checksum
  */
-export default class UbloxUbx00Message extends UbloxMessage<SentenceId.UBX00> {
+export default class UbloxUbx00Message extends UbloxMessage<
+    SentenceId.UBX00,
+    UbloxUbx00MessageData
+> {
     static readonly sentenceId = SentenceId.UBX00;
     static readonly sentenceName = "Lat/Long position data";
     static readonly cid = 0xf1;
     static readonly mid = 0x00;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxUbx00MessageData {
         return {
-            utcTime: fields[2],
+            utcTime: parseTime(fields[2]),
             latitude: parseFloatX(fields[3]),
             nsIndicator: fields[4],
             longitude: parseFloatX(fields[5]),

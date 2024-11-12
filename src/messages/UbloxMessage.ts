@@ -2,10 +2,26 @@ import { SentenceId } from "../constants";
 
 const Classes: Array<Class<UbloxMessage>> = [];
 
+export type MessageDataOf<T extends UbloxMessage> = T extends UbloxMessage<
+    SentenceId,
+    infer D
+>
+    ? D
+    : never;
+export type SentenceIdOf<T extends UbloxMessage> = T extends UbloxMessage<
+    infer S,
+    object
+>
+    ? S
+    : never;
+
 /**
  * Base class for messages
  */
-export default abstract class UbloxMessage<T extends SentenceId = SentenceId> {
+export default abstract class UbloxMessage<
+    T extends SentenceId = SentenceId,
+    D extends object = object
+> {
     get Class() {
         return this.constructor as unknown as Class<UbloxMessage<T>>;
     }
@@ -98,10 +114,10 @@ export default abstract class UbloxMessage<T extends SentenceId = SentenceId> {
         return this.Class.mid as number;
     }
 
-    protected data: object;
+    private coreData: D;
 
-    constructor(data: object) {
-        this.data = data;
+    constructor(data: D) {
+        this.coreData = data;
     }
 
     /**
@@ -150,5 +166,12 @@ export default abstract class UbloxMessage<T extends SentenceId = SentenceId> {
             mid: this.mid,
             ...this.data,
         };
+    }
+
+    /**
+     * Returns the data of this message
+     */
+    get data(): D {
+        return this.coreData;
     }
 }

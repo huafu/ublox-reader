@@ -2,6 +2,14 @@ import { SentenceId } from "../constants";
 import parseFloatX from "../helpers/parseFloatX";
 import UbloxMessage from "./UbloxMessage";
 
+export interface UbloxVtgMessageData {
+    trackTrue: number;
+    trackMagnetic: number;
+    speedKnots: number;
+    speedKmph: number;
+    faaMode: string;
+}
+
 /**
 * # `VTG` - Course over ground and ground speed
 *
@@ -24,13 +32,16 @@ import UbloxMessage from "./UbloxMessage";
 * 9. FAA mode indicator (NMEA 2.3 and later)
 * 10. Checksum
 */
-export default class UbloxVtgMessage extends UbloxMessage<SentenceId.VTG> {
+export default class UbloxVtgMessage extends UbloxMessage<
+    SentenceId.VTG,
+    UbloxVtgMessageData
+> {
     static readonly sentenceId = SentenceId.VTG;
     static readonly sentenceName = "Course over ground and ground speed";
     static readonly cid = 0xf0;
     static readonly mid = 0x05;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxVtgMessageData {
         return {
             trackTrue: parseFloatX(fields[1]),
             trackMagnetic: parseFloatX(fields[3]),

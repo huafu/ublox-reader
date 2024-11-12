@@ -1,4 +1,4 @@
-import { SentenceId } from "../constants";
+import { FixType, SentenceId } from "../constants";
 import parseFloatX from "../helpers/parseFloatX";
 import parseIntX from "../helpers/parseIntX";
 import parseLatitude from "../helpers/parseLatitude";
@@ -7,16 +7,29 @@ import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
 
 const FixTypes = [
-    "none",
-    "fix",
-    "delta",
-    "pps",
-    "rtk",
-    "frtk",
-    "estimated",
-    "manual",
-    "simulation",
+    FixType.none,
+    FixType.gps,
+    FixType.delta,
+    FixType.pps,
+    FixType.realTimeKinematic,
+    FixType.floatRtk,
+    FixType.estimated,
+    FixType.manual,
+    FixType.simulation,
 ] as const;
+
+export interface UbloxGgaMessageData {
+    time: Date;
+    latitude: string;
+    longitude: string;
+    fixType: FixType;
+    satellitesInView: number;
+    horizontalDilution: number;
+    altitudeMeters: number;
+    geoidalSeparation: number;
+    differentialAge: number;
+    differentialRefStn: string;
+}
 
 /* # `GGA` - Global positioning system fix data
  *
@@ -55,13 +68,16 @@ const FixTypes = [
  * 14. Differential reference station ID, 0000-1023
  * 15. Checksum
  */
-export default class UbloxGgaMessage extends UbloxMessage<SentenceId.GGA> {
+export default class UbloxGgaMessage extends UbloxMessage<
+    SentenceId.GGA,
+    UbloxGgaMessageData
+> {
     static readonly sentenceId = SentenceId.GGA;
     static readonly sentenceName = "Global positioning system fix data";
     static readonly cid = 0xf0;
     static readonly mid = 0x00;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGgaMessageData {
         return {
             time: parseTime(fields[1]),
             latitude: parseLatitude(fields[2], fields[3]),

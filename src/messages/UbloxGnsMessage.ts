@@ -1,10 +1,35 @@
-import { SentenceId } from "../constants";
+import { FixType, SentenceId } from "../constants";
 import parseFloatX from "../helpers/parseFloatX";
 import parseIntX from "../helpers/parseIntX";
 import parseLatitude from "../helpers/parseLatitude";
 import parseLongitude from "../helpers/parseLongitude";
 import parseTime from "../helpers/parseTime";
 import UbloxMessage from "./UbloxMessage";
+
+const FixTypes = {
+    N: FixType.none,
+    A: FixType.gps,
+    D: FixType.delta,
+    P: FixType.pps,
+    R: FixType.realTimeKinematic,
+    F: FixType.floatRtk,
+    E: FixType.estimated,
+    M: FixType.manual,
+    S: FixType.simulation,
+};
+
+export interface UbloxGnsMessageData {
+    time: Date;
+    latitude: string;
+    longitude: string;
+    fixType: FixType;
+    satellitesInView: number;
+    horizontalDilution: number;
+    altitudeMeters: number;
+    geoidalSeparation: number;
+    differentialAge: number;
+    differentialRefStn: string;
+}
 
 /**
  * # `GNS` - GNSS fix data
@@ -41,18 +66,21 @@ import UbloxMessage from "./UbloxMessage";
  * 12. Reference station ID1, range 0000-4095
  * 13. Checksum
  */
-export default class UbloxGnsMessage extends UbloxMessage<SentenceId.GNS> {
+export default class UbloxGnsMessage extends UbloxMessage<
+    SentenceId.GNS,
+    UbloxGnsMessageData
+> {
     static readonly sentenceId = SentenceId.GNS;
     static readonly sentenceName = "GNSS fix data";
     static readonly cid = 0xf0;
     static readonly mid = 0x0d;
 
-    protected static parse(fields: string[]): object {
+    protected static parse(fields: string[]): UbloxGnsMessageData {
         return {
             time: parseTime(fields[1]),
             latitude: parseLatitude(fields[2], fields[3]),
             longitude: parseLongitude(fields[4], fields[5]),
-            modeIndicator: fields[6],
+            fixType: FixTypes[fields[6] as keyof typeof FixTypes],
             satellitesInView: parseIntX(fields[7]),
             horizontalDilution: parseFloatX(fields[8]),
             altitudeMeters: parseFloatX(fields[9]),

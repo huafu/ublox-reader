@@ -1,17 +1,95 @@
 import { PluginConfig, pluginConfig } from "../helpers/config";
+import UbloxPluginMessage, {
+    UbloxPluginMessageData,
+} from "../messages/UbloxPluginMessage";
 import UbloxDevice from "../UbloxDevice";
 
-export default abstract class UbloxReaderPlugin<O extends PluginConfig> {
+export default abstract class UbloxReaderPlugin<
+    O extends PluginConfig = PluginConfig
+> {
     /**
      * The name of the plugin
      */
     abstract readonly name: string;
 
+    private _device?: UbloxDevice;
+    /**
+     * Attached device
+     */
+    get device(): UbloxDevice {
+        if (!this._device) {
+            throw new Error("Device not attached");
+        }
+        return this._device;
+    }
+
+    /**
+     * Boot the plugin
+     * @param device The device to attach
+     * @returns This plugin
+     */
+    boot(device: UbloxDevice) {
+        if (this._device) {
+            throw new Error("Plugin already booted");
+        }
+        this._device = device;
+        return this;
+    }
+    /**
+     * Shutdown the plugin
+     */
+    shutdown() {
+        if (!this._device) {
+            throw new Error("Plugin not booted");
+        }
+        this._device = undefined;
+        return this;
+    }
+
+    private _log(
+        severity: "debug" | "info" | "warn" | "error",
+        message: string,
+        ...args: unknown[]
+    ) {
+        console[severity](`[${this.name}] ${message}`, ...args);
+        return this;
+    }
+    debug(message: string, ...args: unknown[]) {
+        return this._log("debug", message, ...args);
+    }
+    info(message: string, ...args: unknown[]) {
+        return this._log("info", message, ...args);
+    }
+    warn(message: string, ...args: unknown[]) {
+        return this._log("warn", message, ...args);
+    }
+    error(message: string, ...args: unknown[]) {
+        return this._log("error", message, ...args);
+    }
+
+    /**
+     * The messages collected by the device
+     */
+    get messages() {
+        return this.device.collector;
+    }
+
+    /**
+     * Emit a plugin message
+     * @param data The data to emit
+     * @returns This plugin
+     */
+    emit<T extends UbloxPluginMessageData>(data: Omit<T, "pluginName">) {
+        const msg = new UbloxPluginMessage(this, data);
+        this.device.pluginMessage(msg);
+        return this;
+    }
+
     /**
      * Setup the plugin
      * Called after initialization, before the device is connected
      */
-    setup(_device: UbloxDevice): void {}
+    setup(): void {}
 
     /**
      * Teardown the plugin
