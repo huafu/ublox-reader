@@ -9,6 +9,7 @@ import { UbloxRmcMessageData } from "../messages/UbloxRmcMessage";
 import { UbloxUbx00MessageData } from "../messages/UbloxUbx00Message";
 import { UbloxVtgMessageData } from "../messages/UbloxVtgMessage";
 import UbloxReaderPlugin from "./UbloxReaderPlugin";
+import UbloxPluginMessage from "../messages/UbloxPluginMessage";
 
 export enum NmeaMode {
     Unknown = 0,
@@ -172,13 +173,19 @@ export default class UbloxReaderTpvPlugin extends UbloxReaderPlugin {
     protected fillDataFromMessage(
         message: UbloxMessage
     ): Partial<TpvPluginMessage> | void {
-        const { sentenceId } = message;
-        // prefix is ucfirst of sentenceId
-        const prefix =
-            sentenceId.charAt(0).toUpperCase() +
-            sentenceId.slice(1).toLowerCase();
+        let prefix = "";
+        let suffix: string;
+
+        if (message instanceof UbloxPluginMessage) {
+            prefix = `Plugin`;
+            suffix = message.pluginName;
+        } else {
+            suffix = message.sentenceId;
+        }
+        // UC first letter of suffix
+        suffix = suffix.charAt(0).toUpperCase() + suffix.slice(1).toLowerCase();
         // finds wether there is a method to handle the message
-        const method = `updateWith${prefix}` as keyof this;
+        const method = `updateWith${prefix}${suffix}` as keyof this;
         if (typeof this[method] === "function") {
             // call the method and update the data using the partial returned
             const partial = (

@@ -27,6 +27,10 @@ export default class UbloxPluginMessage<
             ? this.data.pluginName === plugin
             : this.data.pluginName === plugin.name;
     }
+
+    get pluginName() {
+        return this.data.pluginName;
+    }
 }
 
 UbloxMessage.registerClass(UbloxPluginMessage);
