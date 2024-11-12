@@ -72,7 +72,7 @@ export function deviceConfig(): DeviceConfig {
  */
 export function listEnabledPlugins(): Array<keyof UbloxPluginConfigMap> {
     const plugins = getConfig().plugins ?? {};
-    return Object.keys(plugins).filter((key) => !plugins[key].disabled);
+    return Object.keys(plugins).filter((key) => !plugins[key]?.disabled);
 }
 
 /**
