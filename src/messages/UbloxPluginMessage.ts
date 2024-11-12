@@ -1,9 +1,9 @@
 import { SentenceId } from "../constants";
-import UbloxReaderPlugin from "../plugins/UbloxReaderPlugin";
+import UbloxReaderPlugin, { PluginName } from "../plugins/UbloxReaderPlugin";
 import UbloxMessage from "./UbloxMessage";
 
 export interface UbloxPluginMessageData {
-    readonly pluginName: string;
+    readonly pluginName: PluginName;
     [key: string]: string | number;
 }
 

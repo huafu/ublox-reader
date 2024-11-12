@@ -1,6 +1,8 @@
 import { readFileSync } from "node:fs";
 import yaml from "js-yaml";
-import { NavRate, ProductId } from "../constants";
+import { NavRate, ProductId, SentenceId } from "../constants";
+import UbloxMessage from "../messages/UbloxMessage";
+import UbloxPluginMessage from "../messages/UbloxPluginMessage";
 
 export interface DeviceConfig {
     path?: string; // /dev/ttyACM0
@@ -9,8 +11,13 @@ export interface DeviceConfig {
     navRate?: NavRate; // 1
 }
 
+export type MessageType =
+    | Lowercase<Exclude<SentenceId, SentenceId.plugin>>
+    | `plugin:${Lowercase<string>}`;
+
 export interface PluginConfig {
     disabled?: boolean;
+    messages?: MessageType[];
     [key: string]: unknown;
 }
 
@@ -66,4 +73,27 @@ export function deviceConfig(): DeviceConfig {
 export function listEnabledPlugins(): Array<keyof UbloxPluginConfigMap> {
     const plugins = getConfig().plugins ?? {};
     return Object.keys(plugins).filter((key) => !plugins[key].disabled);
+}
+
+/**
+ * Get the type of a message
+ * @param message The message
+ * @returns The type of the message
+ */
+export function typeFromMessage(message: UbloxMessage): MessageType {
+    if (message instanceof UbloxPluginMessage) {
+        return `plugin:${message.pluginName}`;
+    }
+    return message.sentenceId.toLowerCase() as MessageType;
+}
+
+/**
+ * Check if the type of a message is included in a list of types
+ * @param types The list of types
+ * @param message The message
+ * @returns True if the message is included
+ */
+export function includesMessage(types: MessageType[], message: UbloxMessage) {
+    const type = typeFromMessage(message);
+    return types.includes(type);
 }

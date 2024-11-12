@@ -1,6 +1,5 @@
 import mqtt, { IClientPublishOptions } from "mqtt";
-import { SentenceId } from "../constants";
-import { PluginConfig } from "../helpers/config";
+import { PluginConfig, typeFromMessage } from "../helpers/config";
 import UbloxMessage from "../messages/UbloxMessage";
 import UbloxReaderPlugin from "./UbloxReaderPlugin";
 
@@ -12,7 +11,6 @@ export interface UbloxReaderMqttPluginConfig extends PluginConfig {
     topic?: string;
     qos?: IClientPublishOptions["qos"];
     retain?: boolean;
-    messages?: SentenceId[];
 }
 
 enum Status {
@@ -59,17 +57,7 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
         });
 
         // bind event handlers
-        const { messages } = this.config;
-        if (messages) {
-            messages.forEach((message) => {
-                this.device.onMessageOfType(
-                    message,
-                    this.handleMessage.bind(this)
-                );
-            });
-        } else {
-            this.device.on("message", this.handleMessage.bind(this));
-        }
+        this.device.on("message", this.handleMessage.bind(this));
     }
 
     teardown(): void {
@@ -80,11 +68,18 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
         this.client?.end();
     }
 
+    protected topicForMessage(message: UbloxMessage): string {
+        const suffix = typeFromMessage(message);
+        return `${this.config.topic}/message/${suffix}`;
+    }
+
     handleMessage(message: UbloxMessage) {
-        const { topic, qos, retain } = this.config;
-        const fullTopic = `${topic}/message/${message.sentenceId.toLowerCase()}`;
+        if (!this.includesMessage(message)) return;
+
+        const { qos, retain } = this.config;
+        const topic = this.topicForMessage(message);
         const payload = JSON.stringify(message);
-        this.client?.publish(fullTopic, payload, {
+        this.client?.publish(topic, payload, {
             qos,
             retain,
         });

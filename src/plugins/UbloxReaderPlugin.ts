@@ -1,8 +1,11 @@
-import { PluginConfig, pluginConfig } from "../helpers/config";
+import { includesMessage, PluginConfig, pluginConfig } from "../helpers/config";
+import UbloxMessage from "../messages/UbloxMessage";
 import UbloxPluginMessage, {
     UbloxPluginMessageData,
 } from "../messages/UbloxPluginMessage";
 import UbloxDevice from "../UbloxDevice";
+
+export type PluginName = Lowercase<string>;
 
 export default abstract class UbloxReaderPlugin<
     O extends PluginConfig = PluginConfig
@@ -10,7 +13,7 @@ export default abstract class UbloxReaderPlugin<
     /**
      * The name of the plugin
      */
-    abstract readonly name: string;
+    abstract readonly name: PluginName;
 
     private _device?: UbloxDevice;
     /**
@@ -118,5 +121,19 @@ export default abstract class UbloxReaderPlugin<
     readConfig(): O {
         const { name } = this;
         return pluginConfig(name) as O;
+    }
+
+    /**
+     * Check if the type of a message is included in a specific list of types or the list from the config
+     * @param message The message to check
+     * @param types The types to check (default list from config)
+     * @returns True if the message is included
+     */
+    includesMessage(
+        message: UbloxMessage,
+        types = this.config.messages
+    ): boolean {
+        if (types === undefined) return true;
+        return includesMessage(types, message);
     }
 }
