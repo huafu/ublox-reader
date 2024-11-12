@@ -2,7 +2,6 @@ import mqtt, { IClientPublishOptions } from "mqtt";
 import { SentenceId } from "../constants";
 import { PluginConfig } from "../helpers/config";
 import UbloxMessage from "../messages/UbloxMessage";
-import UbloxDevice from "../UbloxDevice";
 import UbloxReaderPlugin from "./UbloxReaderPlugin";
 
 export interface UbloxReaderMqttPluginConfig extends PluginConfig {
@@ -35,7 +34,7 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
         };
     }
 
-    setup(device: UbloxDevice) {
+    setup() {
         // setup MQTT client
         const { host, port, username, password, topic } = this.config;
         console.log(`Connecting to MQTT broker at ${host}:${port}`);
@@ -63,10 +62,13 @@ export default class UbloxReaderMqttPlugin extends UbloxReaderPlugin<UbloxReader
         const { messages } = this.config;
         if (messages) {
             messages.forEach((message) => {
-                device.onMessageOfType(message, this.handleMessage.bind(this));
+                this.device.onMessageOfType(
+                    message,
+                    this.handleMessage.bind(this)
+                );
             });
         } else {
-            device.on("message", this.handleMessage.bind(this));
+            this.device.on("message", this.handleMessage.bind(this));
         }
     }
 
